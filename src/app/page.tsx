@@ -19,7 +19,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <main className="bg-white overflow-x-hidden">
+      <main className="bg-white w-full">
         
         {/* Sticky Scroll Sequence */}
         <div className="relative pb-[100vh]">
