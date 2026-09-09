@@ -67,7 +67,7 @@ export function Hero() {
             </motion.p>
 
             <motion.h1
-              className="font-display font-medium text-[64px] md:text-[84px] lg:text-[96px] leading-[1.02] tracking-tight text-[var(--foreground)] text-balance"
+              className="font-display font-medium text-5xl sm:text-[64px] md:text-[84px] lg:text-[96px] leading-[1.02] tracking-tight text-[var(--foreground)] text-balance"
               variants={itemVariants}
             >
               Ramp up new engineers

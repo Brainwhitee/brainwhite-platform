@@ -63,7 +63,7 @@ export function LockedSection({ children }: { children: React.ReactNode }) {
                   <circle cx="12" cy="16" r="1" fill="#ff6600" stroke="#ff6600"></circle>
                 </svg>
               </div>
-              <h2 className="font-display font-bold text-3xl md:text-4xl text-black mb-4 uppercase tracking-tight">Classified Area</h2>
+              <h2 className="font-display font-bold text-2xl sm:text-3xl md:text-4xl text-black mb-4 uppercase tracking-tight">Classified Area</h2>
               <p className="font-mono text-sm md:text-base text-gray-600 mb-8 leading-relaxed">
                 This onboarding documentation is sealed. You must unlock the early access tier to view the full product specifications.
               </p>
@@ -217,7 +217,7 @@ function InteractiveWhiteboard() {
             </svg>
           </div>
           
-          <h2 className="font-display font-bold text-3xl md:text-4xl text-black mb-4 uppercase tracking-tight">
+          <h2 className="font-display font-bold text-2xl sm:text-3xl md:text-4xl text-black mb-4 uppercase tracking-tight">
             Classified Area
           </h2>
           
@@ -281,7 +281,6 @@ function InteractiveWhiteboard() {
               value={note.text}
               onChange={(e) => updateNoteText(id, e.target.value)}
               placeholder="Write a note..."
-              autoFocus
               style={{ fontFamily: "var(--font-caveat), cursive" }}
               className="w-full h-full bg-transparent resize-none outline-none text-2xl text-gray-800 leading-tight placeholder-gray-800/40"
               spellCheck={false}
