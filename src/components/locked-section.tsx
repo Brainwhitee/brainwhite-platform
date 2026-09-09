@@ -55,7 +55,7 @@ export function LockedSection({ children }: { children: React.ReactNode }) {
                 <rect x="0" y="0" width="100%" height="100%" fill="url(#chain)" />
               </svg>
             </div>
-            <div className="relative z-10 bg-white border-[3px] border-black shadow-[16px_16px_0px_0px_rgba(0,0,0,1)] p-10 md:p-14 text-center max-w-lg mx-auto pointer-events-auto">
+            <div className="relative z-10 bg-white border-[3px] border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] md:shadow-[16px_16px_0px_0px_rgba(0,0,0,1)] p-6 sm:p-10 md:p-14 text-center w-[90%] sm:w-full max-w-lg mx-auto pointer-events-auto">
               <div className="mx-auto w-24 h-24 mb-6 relative">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full text-black">
                   <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
@@ -155,8 +155,13 @@ function InteractiveWhiteboard() {
   const handleBackgroundClick = (e: React.MouseEvent) => {
     if (e.target !== containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left - 100;
+    let x = e.clientX - rect.left - 100;
     const y = e.clientY - rect.top - 100;
+    
+    // Clamp to screen bounds for mobile
+    if (x < 10) x = 10;
+    if (x > rect.width - 230) x = rect.width - 230;
+
     addNote(x, y);
   };
 
@@ -171,7 +176,7 @@ function InteractiveWhiteboard() {
       {/* Giant header at the start of the section */}
       <div className="absolute top-32 left-0 w-full flex flex-col items-center pointer-events-none select-none z-10">
         <h2 
-          className="text-6xl md:text-8xl lg:text-[120px] text-black/80 rotate-[-2deg]"
+          className="text-5xl sm:text-6xl md:text-8xl lg:text-[120px] text-center px-4 leading-none text-black/80 rotate-[-2deg]"
           style={{ fontFamily: "var(--font-caveat), cursive" }}
         >
           Teach us anything...
@@ -201,7 +206,7 @@ function InteractiveWhiteboard() {
           initial={{ opacity: 0, scale: 0.9, y: 20 }}
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
           viewport={{ once: true }}
-          className="relative z-10 bg-white border-[3px] border-black shadow-[16px_16px_0px_0px_rgba(0,0,0,1)] p-10 md:p-14 text-center max-w-lg mx-auto pointer-events-auto"
+          className="relative z-10 bg-white border-[3px] border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] md:shadow-[16px_16px_0px_0px_rgba(0,0,0,1)] p-6 sm:p-10 md:p-14 text-center w-[90%] sm:w-full max-w-lg mx-auto pointer-events-auto"
         >
           {/* Giant Padlock Icon */}
           <div className="mx-auto w-24 h-24 mb-6 relative">
