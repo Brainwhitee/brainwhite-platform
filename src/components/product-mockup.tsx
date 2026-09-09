@@ -93,9 +93,9 @@ function MockupPanel() {
       style={{ y: panelParallax, rotate: panelRotate }}
       transition={{ duration: 0.3, ease }}
     >
-      <div className="border-b border-[var(--border)] px-6 py-4 bg-[var(--background)]/50 flex items-center justify-between">
+      <div className="border-b border-[var(--border)] px-6 py-4 bg-[var(--background)]/50 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="flex items-center gap-4">
-          <div className="w-8 h-8 rounded border border-[var(--border)] flex items-center justify-center">
+          <div className="w-8 h-8 rounded border border-[var(--border)] flex items-center justify-center shrink-0">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-[var(--muted)]">
               <rect x="3" y="3" width="18" height="18" rx="2" />
               <path d="M9 9h6M9 15h4" />
@@ -112,7 +112,7 @@ function MockupPanel() {
       </div>
 
       <div className="p-6 space-y-6">
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <MockupStat label="CLIENT" value="Acme Financial" />
           <MockupStat label="ENGINEER" value="Alex Morgan" />
           <MockupStat label="ENGAGEMENT" value="Payments Platform" />
@@ -227,12 +227,12 @@ function TaskPanel() {
       transition={{ duration: 0.3, ease }}
     >
       <div className="border-b border-[var(--border)] px-6 py-4 bg-[var(--background)]/50">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <p className="font-mono text-[10px] uppercase tracking-wider text-[var(--muted)]">HANDS-ON TASKS</p>
             <p className="font-medium text-[var(--foreground)]">Alex Morgan • Payments Platform</p>
           </div>
-          <span className="font-mono text-[10px] px-2 py-1 border border-[var(--border)] text-[var(--muted)]">CONCEPTUAL UI</span>
+          <span className="font-mono text-[10px] px-2 py-1 border border-[var(--border)] text-[var(--muted)] w-fit">CONCEPTUAL UI</span>
         </div>
       </div>
 
@@ -243,9 +243,9 @@ function TaskPanel() {
       </div>
 
       <div className="border-t border-[var(--border)] p-4 bg-[var(--background)]/50">
-        <div className="flex items-center justify-between text-sm">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-sm">
           <span className="text-[var(--muted)]">5 tasks • 2 completed • 1 in progress</span>
-          <button className="font-mono text-[11px] uppercase tracking-wider text-[var(--muted)] hover:text-[var(--foreground)] transition-colors flex items-center gap-1">
+          <button className="font-mono text-[11px] uppercase tracking-wider text-[var(--muted)] hover:text-[var(--foreground)] transition-colors flex items-center gap-1 w-fit">
             View all tasks
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M5 12h14M12 5l7 7-7 7" />
