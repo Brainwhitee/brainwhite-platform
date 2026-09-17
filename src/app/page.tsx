@@ -13,7 +13,6 @@ import { Differentiation } from "@/components/differentiation";
 import { CompoundingValue } from "@/components/compounding-value";
 import { Waitlist } from "@/components/waitlist";
 import { Footer } from "@/components/footer";
-import { LockedSection } from "@/components/locked-section";
 
 export default function Home() {
   return (
@@ -62,7 +61,6 @@ export default function Home() {
         </div>
         
         <div className="relative z-50 bg-white">
-        <LockedSection>
           <Metrics />
           <OldWay />
           <FresherOnboarding />
@@ -70,7 +68,6 @@ export default function Home() {
           <ManagerProgress />
           <Differentiation />
           <CompoundingValue />
-        </LockedSection>
         </div>
       </main>
       <Footer />
