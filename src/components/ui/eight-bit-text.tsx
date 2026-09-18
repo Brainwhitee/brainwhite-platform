@@ -62,8 +62,7 @@ export function EightBitText({
   return (
     <span
       ref={ref}
-      className={cn("inline-block transition-all duration-75", isScrambling && "font-mono tracking-tighter opacity-80", className)}
-      onMouseEnter={scramble}
+      className={cn("inline-block transition-all duration-300 hover:font-[family-name:var(--font-vt323)] hover:tracking-normal", isScrambling && "font-mono tracking-tighter opacity-80", className)}
     >
       {displayText || text.replace(/./g, "░")}
     </span>
