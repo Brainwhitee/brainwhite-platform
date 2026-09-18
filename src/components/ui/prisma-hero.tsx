@@ -114,15 +114,15 @@ const PrismaHero = () => {
 
 
         {/* Subtitle and Button (Left-aligned, Shifted Up) */}
-        <div className="absolute inset-0 flex flex-col items-start justify-center px-4 sm:px-6 md:px-10 z-10 pointer-events-none pb-24 md:pb-32">
+        <div className="absolute inset-0 flex flex-col items-start justify-start px-4 sm:px-6 md:px-10 z-10 pointer-events-none pt-[25vh] sm:pt-[30vh]">
           <div className="pointer-events-auto flex flex-col items-start max-w-3xl">
             
             <motion.h2
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium text-white tracking-tight text-left drop-shadow-md mb-10"
-              style={{ lineHeight: 1.15 }}
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium text-white tracking-tight text-left drop-shadow-md mb-10"
+              style={{ lineHeight: 1.2 }}
             >
               <EightBitText 
                 text="New developers shouldn't need six weeks and three mentors just to understand your codebase." 
