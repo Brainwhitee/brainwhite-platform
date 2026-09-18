@@ -134,20 +134,14 @@ const PrismaHero = () => {
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-wrap items-center gap-4"
+              className="flex flex-wrap items-center gap-4 mt-4"
             >
-              <Link href="/early-access">
-                <button className="group inline-flex h-12 sm:h-14 items-center gap-3 rounded-full bg-white pl-6 pr-2 text-sm font-medium text-black transition-all hover:pr-3 sm:text-base font-sans cursor-pointer shadow-xl">
-                  Request Early Access
-                  <span className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-black transition-transform group-hover:scale-105">
-                    <ArrowRight className="h-4 w-4" style={{ color: "#E1E0CC" }} />
-                  </span>
-                </button>
-              </Link>
-              
               <Link href="#how-it-works">
-                <button className="inline-flex h-12 sm:h-14 items-center justify-center rounded-full border border-white/20 bg-white/5 px-8 text-sm font-medium text-white backdrop-blur-md transition-colors hover:bg-white/10 sm:text-base font-sans cursor-pointer">
+                <button className="inline-flex h-12 sm:h-14 items-center justify-center rounded-full border border-white/20 bg-white/5 px-8 text-sm font-medium text-white backdrop-blur-md transition-colors hover:bg-white/10 sm:text-base font-sans cursor-pointer shadow-xl">
                   See How It Works
+                  <span className="ml-3 flex h-6 w-6 items-center justify-center rounded-full bg-white/10 transition-transform group-hover:scale-105">
+                    <ArrowRight className="h-3 w-3" style={{ color: "#E1E0CC" }} />
+                  </span>
                 </button>
               </Link>
             </motion.div>
