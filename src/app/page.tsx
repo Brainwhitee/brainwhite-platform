@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { Navbar } from "@/components/navbar";
-import { Hero } from "@/components/hero";
+import { PrismaHero } from "@/components/ui/prisma-hero";
 import { Metrics } from "@/components/metrics";
 import { OldWay } from "@/components/old-way";
 import { FresherOnboarding } from "@/components/fresher-onboarding";
@@ -23,8 +23,8 @@ export default function Home() {
         {/* Sticky Scroll Sequence */}
         <div className="relative pb-[100vh]">
           {/* Layer 1: Hero */}
-          <div className="sticky top-0 h-screen w-full bg-white z-10 overflow-y-auto pt-16">
-            <Hero />
+          <div className="sticky top-0 h-screen w-full bg-black z-10 overflow-y-auto">
+            <PrismaHero />
           </div>
           
           {/* Pause Buffer */}
