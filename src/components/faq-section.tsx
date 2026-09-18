@@ -41,8 +41,11 @@ export function FaqSection() {
             <p className="text-neutral-600 font-sans mb-8 leading-relaxed">
               brainwhite is in active development, and we're working closely with a handful of engineering teams to get it right before opening up more broadly. Join as an early partner and help shape a product built around how your team actually onboards.
             </p>
-            <button className="bg-black text-white px-6 py-3 rounded-full font-medium hover:scale-105 transition-transform">
-              Request Early Access
+            <button className="relative inline-flex h-12 items-center justify-center rounded-full bg-black px-8 text-sm font-medium text-white sm:text-base font-sans cursor-pointer shadow-xl overflow-hidden group">
+              <span className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.3)_50%,transparent_75%)] bg-[length:250%_250%,100%_100%] bg-[position:-100%_0,0_0] bg-no-repeat transition-[background-position_0s_ease] hover:bg-[position:200%_0,0_0] hover:duration-[1.5s]" />
+              <span className="relative z-10 flex items-center gap-2">
+                Request Early Access
+              </span>
             </button>
           </div>
         </div>

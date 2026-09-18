@@ -140,10 +140,11 @@ const PrismaHero = () => {
             transition={{ duration: 0.8, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
             <Link href="#how-it-works">
-              <button className="inline-flex h-12 sm:h-14 items-center justify-center rounded-full border border-white/20 bg-white/5 px-8 text-sm font-medium text-white backdrop-blur-md transition-colors hover:bg-white/10 sm:text-base font-sans cursor-pointer shadow-xl">
-                See How It Works
-                <span className="ml-3 flex h-6 w-6 items-center justify-center rounded-full bg-white/10 transition-transform group-hover:scale-105">
-                  <ArrowRight className="h-3 w-3" style={{ color: "#E1E0CC" }} />
+              <button className="relative inline-flex h-12 sm:h-14 items-center justify-center rounded-full bg-[#0a0a0a] px-8 text-sm font-medium text-white sm:text-base font-sans cursor-pointer shadow-xl overflow-hidden group border border-white/20">
+                <span className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.2)_50%,transparent_75%)] bg-[length:250%_250%,100%_100%] bg-[position:-100%_0,0_0] bg-no-repeat transition-[background-position_0s_ease] hover:bg-[position:200%_0,0_0] hover:duration-[1.5s]" />
+                <span className="relative z-10 flex items-center gap-2">
+                  See How It Works
+                  <ArrowRight className="h-4 w-4 text-white/70 transition-transform group-hover:translate-x-1" />
                 </span>
               </button>
             </Link>

@@ -59,31 +59,34 @@ const FeatureCard = ({
       transition={{ duration: 0.6, delay: index * 0.1 }}
       onMouseMove={handleMouseMove}
       className={cn(
-        "group relative flex flex-col justify-between overflow-hidden rounded-3xl bg-neutral-50 border border-neutral-200 p-8 hover:bg-neutral-100 transition-colors cursor-pointer",
+        "group relative flex flex-col justify-between overflow-hidden rounded-3xl bg-[#0a0a0a] border border-white/10 p-8 transition-colors cursor-pointer shadow-2xl",
         feature.className
       )}
     >
       <div
         className="pointer-events-none absolute -inset-px rounded-3xl opacity-0 transition duration-300 group-hover:opacity-100"
         style={{
-          background: `radial-gradient(400px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(0,0,0,0.04), transparent 40%)`,
+          background: `radial-gradient(400px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(255,255,255,0.1), transparent 40%)`,
         }}
       />
       
-      <div className="z-10 flex flex-col gap-4">
-        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-sm border border-neutral-100 group-hover:scale-110 transition-transform duration-300">
+      {/* Subtle grid background */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:20px_20px] [mask-image:radial-gradient(ellipse_at_center,black_10%,transparent_70%)] pointer-events-none" />
+      
+      <div className="z-10 flex flex-col gap-4 relative">
+        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/5 shadow-[0_0_15px_rgba(255,255,255,0.05)] border border-white/10 group-hover:scale-110 group-hover:bg-white/10 transition-all duration-300">
           {feature.icon}
         </div>
         <div>
           <div className="flex items-center gap-2 mb-2">
-            <span className="flex h-6 w-6 items-center justify-center rounded-full bg-neutral-200 text-xs font-semibold text-neutral-600">
+            <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white/10 text-xs font-semibold text-white/70">
               {index + 1}
             </span>
-            <h3 className="text-xl font-semibold tracking-tight text-neutral-900">
+            <h3 className="text-xl font-semibold tracking-tight text-white group-hover:text-white transition-colors">
               {feature.title}
             </h3>
           </div>
-          <p className="text-neutral-600 font-sans leading-relaxed">
+          <p className="text-white/50 font-sans leading-relaxed group-hover:text-white/70 transition-colors">
             {feature.description}
           </p>
         </div>
@@ -97,7 +100,7 @@ export function HowItWorks() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="w-full py-24 md:py-32 bg-white relative z-20" id="how-it-works">
+    <section className="w-full py-24 md:py-32 bg-[#0a0a0a] relative z-20" id="how-it-works">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10">
         
         <div className="max-w-3xl mb-16 md:mb-24" ref={ref}>
@@ -105,7 +108,7 @@ export function HowItWorks() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center rounded-full border border-neutral-200 bg-neutral-50 px-3 py-1 text-xs font-semibold text-neutral-600 uppercase tracking-widest mb-6"
+            className="inline-flex items-center rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold text-white/70 uppercase tracking-widest mb-6"
           >
             How It Works
           </motion.div>
@@ -113,7 +116,7 @@ export function HowItWorks() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-black"
+            className="text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-white"
             style={{ lineHeight: 1.15 }}
           >
             From new repo to first real commit, guided the whole way.
