@@ -113,37 +113,45 @@ const PrismaHero = () => {
 
 
         {/* Hero content */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center px-4 z-10 text-center">
-          <h1
-            className="font-medium leading-[0.85] tracking-[-0.07em] text-[16vw] sm:text-[14vw] md:text-[12vw] lg:text-[10vw]"
-            style={{ color: "#E1E0CC" }}
-          >
-            <WordsPullUp text="Brainwhite" showAsterisk />
-          </h1>
+        <div className="absolute bottom-0 left-0 right-0 px-4 pb-2 sm:px-6 md:px-10 z-10">
+          <div className="flex flex-col-reverse lg:grid lg:grid-cols-12 lg:items-end gap-4">
+            
+            <div className="lg:col-span-8">
+              <h1
+                className="font-medium leading-[0.85] tracking-[-0.07em] text-[26vw] sm:text-[24vw] md:text-[22vw] lg:text-[20vw] xl:text-[19vw] 2xl:text-[20vw]"
+                style={{ color: "#E1E0CC" }}
+              >
+                <WordsPullUp text="Brainwhite" showAsterisk />
+              </h1>
+            </div>
 
-          <motion.p
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="text-xs text-white/80 sm:text-sm md:text-base font-sans mt-6 max-w-xl"
-            style={{ lineHeight: 1.4 }}
-          >
-            Brainwhite gives your engineering teams a structured way to onboard freshers and track their progress seamlessly.
-          </motion.p>
+            <div className="flex flex-col gap-5 pb-6 lg:col-span-4 lg:pb-10">
+              
+              <motion.p
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                className="text-xs text-white/80 sm:text-sm md:text-base font-sans"
+                style={{ lineHeight: 1.4 }}
+              >
+                Brainwhite gives your engineering teams a structured way to onboard freshers and track their progress seamlessly.
+              </motion.p>
 
-          <Link href="/early-access" className="mt-8">
-            <motion.button
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="group inline-flex h-12 sm:h-14 items-center gap-3 rounded-full bg-white pl-6 pr-2 text-sm font-medium text-black transition-all hover:pr-3 sm:text-base font-sans cursor-pointer"
-            >
-              Start Onboarding
-              <span className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-black transition-transform group-hover:scale-105">
-                <ArrowRight className="h-4 w-4" style={{ color: "#E1E0CC" }} />
-              </span>
-            </motion.button>
-          </Link>
+              <Link href="/early-access" className="w-fit">
+                <motion.button
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.8, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                  className="group inline-flex h-12 sm:h-14 items-center gap-3 rounded-full bg-white pl-6 pr-2 text-sm font-medium text-black transition-all hover:pr-3 sm:text-base font-sans cursor-pointer"
+                >
+                  Start Onboarding
+                  <span className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-black transition-transform group-hover:scale-105">
+                    <ArrowRight className="h-4 w-4" style={{ color: "#E1E0CC" }} />
+                  </span>
+                </motion.button>
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </section>
