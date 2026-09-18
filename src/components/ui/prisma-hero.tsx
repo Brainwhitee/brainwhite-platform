@@ -128,24 +128,25 @@ const PrismaHero = () => {
                 text="New developers shouldn't need six weeks and three mentors just to understand your codebase." 
                 delay={0.5}
               />
-            </motion.h2>
-
-            <motion.div
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-wrap items-center gap-4 mt-4"
-            >
-              <Link href="#how-it-works">
-                <button className="inline-flex h-12 sm:h-14 items-center justify-center rounded-full border border-white/20 bg-white/5 px-8 text-sm font-medium text-white backdrop-blur-md transition-colors hover:bg-white/10 sm:text-base font-sans cursor-pointer shadow-xl">
-                  See How It Works
-                  <span className="ml-3 flex h-6 w-6 items-center justify-center rounded-full bg-white/10 transition-transform group-hover:scale-105">
-                    <ArrowRight className="h-3 w-3" style={{ color: "#E1E0CC" }} />
-                  </span>
-                </button>
-              </Link>
-            </motion.div>
           </div>
+        </div>
+
+        {/* Call to Action Button (Bottom Right) */}
+        <div className="absolute bottom-16 sm:bottom-24 md:bottom-32 right-4 sm:right-6 md:right-10 z-20 pointer-events-auto flex justify-end">
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <Link href="#how-it-works">
+              <button className="inline-flex h-12 sm:h-14 items-center justify-center rounded-full border border-white/20 bg-white/5 px-8 text-sm font-medium text-white backdrop-blur-md transition-colors hover:bg-white/10 sm:text-base font-sans cursor-pointer shadow-xl">
+                See How It Works
+                <span className="ml-3 flex h-6 w-6 items-center justify-center rounded-full bg-white/10 transition-transform group-hover:scale-105">
+                  <ArrowRight className="h-3 w-3" style={{ color: "#E1E0CC" }} />
+                </span>
+              </button>
+            </Link>
+          </motion.div>
         </div>
 
         {/* Hero title (Bottom) */}
