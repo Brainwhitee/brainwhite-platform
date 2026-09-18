@@ -128,6 +128,7 @@ const PrismaHero = () => {
                 text="New developers shouldn't need six weeks and three mentors just to understand your codebase." 
                 delay={0.5}
               />
+            </motion.h2>
           </div>
         </div>
 
