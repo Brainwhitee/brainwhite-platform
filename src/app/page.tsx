@@ -6,6 +6,7 @@ import { PrismaHero } from "@/components/ui/prisma-hero";
 import { TheProblem } from "@/components/the-problem";
 import { HowItWorks } from "@/components/how-it-works";
 import { ThreeViews } from "@/components/three-views";
+import { WhyBrainwhite } from "@/components/why-brainwhite";
 import { Footer } from "@/components/footer";
 
 export default function Home() {
@@ -20,6 +21,7 @@ export default function Home() {
           <TheProblem />
           <HowItWorks />
           <ThreeViews />
+          <WhyBrainwhite />
         </div>
       </main>
       <Footer />
