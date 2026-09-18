@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useMotionValue, useTransform, useSpring } from "framer-motion";
 import { Database, Network, Map, MessageSquareCode } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -10,25 +10,25 @@ const features = [
     title: "Connect your project",
     description: "Point brainwhite at your repositories and approved documentation. Nothing else about how your team works has to change.",
     icon: <Database className="w-6 h-6 text-orange-500" />,
-    className: "md:col-span-1 md:row-span-1",
+    className: "lg:col-span-1 lg:row-span-2", // Tall
   },
   {
     title: "brainwhite learns the codebase",
     description: "It maps your architecture, dependencies, tools, and workflows — the parts most documentation leaves out.",
     icon: <Network className="w-6 h-6 text-blue-500" />,
-    className: "md:col-span-1 md:row-span-1",
+    className: "lg:col-span-2 lg:row-span-1", // Wide
   },
   {
     title: "Get a personalized learning path",
     description: "Built around the developer's role and existing knowledge, not a generic checklist every new hire gets.",
     icon: <Map className="w-6 h-6 text-emerald-500" />,
-    className: "md:col-span-1 md:row-span-1",
+    className: "lg:col-span-1 lg:row-span-1", // Square
   },
   {
     title: "Ask, and actually get answered",
     description: "A project-aware AI assistant answers real questions about your code, grounded in your actual project — not a generic explanation.",
     icon: <MessageSquareCode className="w-6 h-6 text-purple-500" />,
-    className: "md:col-span-1 md:row-span-1",
+    className: "lg:col-span-1 lg:row-span-1", // Square
   },
 ];
 
@@ -43,12 +43,32 @@ const FeatureCard = ({
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
+  // 3D Tilt effect
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  
+  const mouseXSpring = useSpring(x, { stiffness: 150, damping: 20 });
+  const mouseYSpring = useSpring(y, { stiffness: 150, damping: 20 });
+  
+  // Subtle rotation for a premium feel
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["5deg", "-5deg"]);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-5deg", "5deg"]);
+
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
-    setMousePosition({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    });
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+    
+    setMousePosition({ x: mouseX, y: mouseY });
+    
+    // Calculate percentages (-0.5 to 0.5)
+    x.set(mouseX / rect.width - 0.5);
+    y.set(mouseY / rect.height - 0.5);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
   };
 
   return (
@@ -58,6 +78,12 @@ const FeatureCard = ({
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, delay: index * 0.1 }}
       onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        rotateX,
+        rotateY,
+        transformStyle: "preserve-3d",
+      }}
       className={cn(
         "group relative flex flex-col justify-between overflow-hidden rounded-3xl bg-[#0a0a0a] border border-white/10 p-8 transition-colors cursor-pointer shadow-2xl",
         feature.className
@@ -123,7 +149,10 @@ export function HowItWorks() {
           </motion.h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 relative">
+        <div 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:grid-rows-2 gap-6 relative"
+          style={{ perspective: "1000px" }}
+        >
           {features.map((feature, index) => (
             <FeatureCard key={index} feature={feature} index={index} />
           ))}
