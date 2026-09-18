@@ -1,17 +1,18 @@
 "use client";
 
 import * as React from "react";
-import { FloatingNav } from "@/components/ui/floating-navbar";
+import { TubelightNavbar } from "@/components/ui/tubelight-navbar";
 
 const navLinks = [
-  { name: "Product", link: "#product" },
-  { name: "Why Brainwhite", link: "#why-brainwhite" },
+  { name: "Product", url: "#product" },
+  { name: "Collective", url: "#collective" },
+  { name: "Why Brainwhite", url: "#why-brainwhite" },
 ];
 
 export function Navbar() {
   return (
     <div className="relative w-full">
-      <FloatingNav navItems={navLinks} />
+      <TubelightNavbar items={navLinks} />
     </div>
   );
 }
