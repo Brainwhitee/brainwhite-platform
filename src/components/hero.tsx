@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import ConstellationGrid from "@/components/ui/constellation-grid";
 
 const ease = [0.25, 0.1, 0.25, 1] as const;
 
@@ -40,9 +41,12 @@ export function Hero() {
   const fadeOut = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const scaleUp = useTransform(scrollYProgress, [0, 1], [1, 1.05]);
   return (
-    <section className="relative w-full min-h-[calc(100vh-64px)] flex items-center justify-center overflow-hidden bg-[#f6f6ef]/20">
+    <section className="relative w-full min-h-[calc(100vh-64px)] flex items-center justify-center overflow-hidden bg-transparent">
+      <div className="absolute inset-0 z-0">
+        <ConstellationGrid />
+      </div>
       <motion.div
-        className="absolute inset-0 bg-[linear-gradient(180deg,transparent_0%,rgba(0,0,0,0.02)_100%)] pointer-events-none"
+        className="absolute inset-0 bg-[linear-gradient(180deg,transparent_0%,rgba(0,0,0,0.02)_100%)] pointer-events-none z-0"
         style={{ y: parallaxY, scale: scaleUp }}
       />
       
