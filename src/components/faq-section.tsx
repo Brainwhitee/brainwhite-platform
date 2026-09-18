@@ -63,47 +63,48 @@ export function FaqSection() {
           <h2 className="text-3xl md:text-5xl font-medium tracking-tight mb-4 text-white">Frequently Asked Questions</h2>
         </div>
 
-        {/* FAQ Accordion - Dev21 Glassmorphic Style */}
-        <div className="space-y-4">
+        {/* FAQ 3D Flip Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 perspective-1000" style={{ perspective: "1000px" }}>
           {faqs.map((faq, index) => {
-            const isOpen = openIndex === index;
+            const isFlipped = openIndex === index;
             return (
               <div 
-                key={index} 
-                className={cn(
-                  "relative rounded-2xl overflow-hidden transition-all duration-500",
-                  isOpen ? "bg-white/5 border-white/20 shadow-[0_0_30px_rgba(255,255,255,0.05)]" : "bg-transparent border-white/5 hover:bg-white/[0.02]"
-                )}
+                key={index}
+                className="relative h-[250px] w-full cursor-pointer group"
+                onClick={() => setOpenIndex(isFlipped ? null : index)}
+                onMouseEnter={() => setOpenIndex(index)}
+                onMouseLeave={() => setOpenIndex(null)}
               >
-                <div className={cn("absolute inset-0 bg-gradient-to-r from-orange-500/10 to-transparent opacity-0 transition-opacity duration-500", isOpen && "opacity-100")} />
-                <div className={cn("absolute left-0 top-0 bottom-0 w-[2px] bg-orange-500 transition-transform duration-500 origin-top", isOpen ? "scale-y-100" : "scale-y-0")} />
-                
-                <button 
-                  onClick={() => setOpenIndex(isOpen ? null : index)}
-                  className="w-full text-left px-6 py-6 md:py-8 flex items-center justify-between focus:outline-none relative z-10"
+                <motion.div
+                  initial={false}
+                  animate={{ rotateY: isFlipped ? 180 : 0 }}
+                  transition={{ duration: 0.6, type: "spring", stiffness: 100, damping: 20 }}
+                  style={{ transformStyle: "preserve-3d" }}
+                  className="w-full h-full relative"
                 >
-                  <span className={cn("font-medium text-lg md:text-xl pr-8 transition-colors duration-300", isOpen ? "text-white" : "text-neutral-300")}>
-                    {faq.question}
-                  </span>
-                  <div className={cn("w-8 h-8 rounded-full flex items-center justify-center border transition-all duration-300", isOpen ? "border-orange-500/50 bg-orange-500/10" : "border-white/10 bg-white/5")}>
-                    <ChevronDown className={cn("w-4 h-4 transition-transform duration-500", isOpen ? "rotate-180 text-orange-400" : "rotate-0 text-neutral-400")} />
+                  {/* Front of Card (Question) */}
+                  <div 
+                    className="absolute inset-0 rounded-3xl bg-[#0a0a0a] border border-white/10 p-8 flex flex-col justify-center items-center text-center shadow-xl backface-hidden"
+                    style={{ backfaceVisibility: "hidden" }}
+                  >
+                    <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mb-6 border border-white/10 group-hover:scale-110 transition-transform">
+                      <span className="text-xl font-serif italic text-white/50">?</span>
+                    </div>
+                    <h3 className="text-xl md:text-2xl font-medium text-white tracking-tight">
+                      {faq.question}
+                    </h3>
                   </div>
-                </button>
-                <AnimatePresence>
-                  {isOpen && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-                      className="relative z-10"
-                    >
-                      <div className="px-6 pb-8 md:px-8 text-neutral-400 font-sans leading-relaxed text-base md:text-lg">
-                        {faq.answer}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+
+                  {/* Back of Card (Answer) */}
+                  <div 
+                    className="absolute inset-0 rounded-3xl bg-gradient-to-br from-orange-500/20 to-purple-500/20 border border-orange-500/30 p-8 flex flex-col justify-center text-center shadow-[0_0_30px_rgba(255,165,0,0.15)] backface-hidden backdrop-blur-xl"
+                    style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
+                  >
+                    <p className="text-base md:text-lg text-white font-sans leading-relaxed">
+                      {faq.answer}
+                    </p>
+                  </div>
+                </motion.div>
               </div>
             );
           })}
