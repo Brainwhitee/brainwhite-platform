@@ -50,21 +50,18 @@ export const StickyScroll = ({ content, className }: StickyScrollProps) => {
   return (
     <motion.div
       className={cn(
-        "h-[300vh] w-full relative flex justify-center", // Extremely tall container for scrolling
+        "h-[250vh] w-full relative flex justify-center", // Extremely tall container for scrolling
         className
       )}
       ref={ref}
     >
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden px-4 md:px-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-20 max-w-7xl w-full h-[70vh]">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 max-w-7xl w-full h-[80vh] items-center">
           
           {/* Left Side: Sticky Text */}
-          <div className="flex flex-col justify-center h-full">
+          <div className="flex flex-col justify-center gap-12 lg:gap-16 h-full py-10">
             {content.map((item, index) => (
-              <div
-                key={item.title + index}
-                className="my-10 lg:my-20"
-              >
+              <div key={item.title + index}>
                 <motion.h3
                   initial={{ opacity: 0 }}
                   animate={{
@@ -91,11 +88,11 @@ export const StickyScroll = ({ content, className }: StickyScrollProps) => {
 
           {/* Right Side: Sticky Visuals */}
           <div className="hidden md:flex h-full w-full items-center justify-center relative">
-            <div className="w-full h-[400px] md:h-[500px] rounded-3xl overflow-hidden relative shadow-2xl border border-neutral-100 bg-white">
+            <div className="w-full h-[400px] md:h-[500px] lg:h-[600px] rounded-3xl overflow-hidden relative shadow-[0_20px_50px_rgba(0,0,0,0.2)] border border-neutral-100 bg-black">
               {content.map((item, index) => (
                 <motion.div
                   key={"visual-" + index}
-                  className="absolute inset-0 w-full h-full flex items-center justify-center bg-white"
+                  className="absolute inset-0 w-full h-full flex items-center justify-center bg-[#050505]"
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{
                     opacity: activeCard === index ? 1 : 0,
