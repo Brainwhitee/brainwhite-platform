@@ -5,6 +5,7 @@ import { Navbar } from "@/components/navbar";
 import { PrismaHero } from "@/components/ui/prisma-hero";
 import { TheProblem } from "@/components/the-problem";
 import { HowItWorks } from "@/components/how-it-works";
+import { ThreeViews } from "@/components/three-views";
 import { Footer } from "@/components/footer";
 
 export default function Home() {
@@ -18,6 +19,7 @@ export default function Home() {
         <div className="relative z-50 bg-white">
           <TheProblem />
           <HowItWorks />
+          <ThreeViews />
         </div>
       </main>
       <Footer />
