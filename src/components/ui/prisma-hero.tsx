@@ -112,14 +112,14 @@ const PrismaHero = () => {
 
 
 
-        {/* Subtitle and Button (Centered) */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center px-4 z-10 text-center pointer-events-none">
-          <div className="pointer-events-auto flex flex-col items-center">
+        {/* Subtitle and Button (Left-aligned, Vertically Centered) */}
+        <div className="absolute inset-0 flex flex-col items-start justify-center px-4 sm:px-6 md:px-10 z-10 pointer-events-none">
+          <div className="pointer-events-auto flex flex-col items-start">
             <motion.p
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="text-xs text-white/90 sm:text-sm md:text-base font-sans max-w-xl text-balance drop-shadow-md"
+              className="text-xs text-white/90 sm:text-sm md:text-base font-sans max-w-xl text-left drop-shadow-md"
               style={{ lineHeight: 1.4 }}
             >
               Brainwhite gives your engineering teams a structured way to onboard freshers and track their progress seamlessly.
