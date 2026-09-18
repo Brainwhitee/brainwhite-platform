@@ -46,7 +46,10 @@ export function TubelightNavbar({ items, className }: NavBarProps) {
         className,
       )}
     >
-      <div className="flex items-center gap-3 bg-white/5 border border-white/10 backdrop-blur-xl py-1.5 px-1.5 rounded-full shadow-2xl">
+      <div className={cn(
+        "flex items-center gap-3 backdrop-blur-xl py-1.5 px-1.5 rounded-full shadow-2xl transition-all duration-500",
+        scrolled ? "bg-black/90 border border-white/10" : "bg-white/5 border border-white/10"
+      )}>
         
         {/* Logo Area */}
         <div className="pl-4 pr-6 hidden md:block">
