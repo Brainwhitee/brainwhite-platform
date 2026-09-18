@@ -156,10 +156,10 @@ const PrismaHero = () => {
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                className="group inline-flex items-center gap-2 self-start rounded-full bg-white py-1 pl-5 pr-1 text-sm font-medium text-black transition-all hover:gap-3 sm:text-base font-sans"
+                className="group inline-flex h-12 sm:h-14 items-center gap-3 self-start rounded-full bg-white pl-6 pr-2 text-sm font-medium text-black transition-all hover:pr-3 sm:text-base font-sans"
               >
                 Start Onboarding
-                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-black transition-transform group-hover:scale-110 sm:h-10 sm:w-10">
+                <span className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-black transition-transform group-hover:scale-105">
                   <ArrowRight className="h-4 w-4" style={{ color: "#E1E0CC" }} />
                 </span>
               </motion.button>
