@@ -114,30 +114,58 @@ const PrismaHero = () => {
 
         {/* Subtitle and Button (Left-aligned, Vertically Centered) */}
         <div className="absolute inset-0 flex flex-col items-start justify-center px-4 sm:px-6 md:px-10 z-10 pointer-events-none">
-          <div className="pointer-events-auto flex flex-col items-start">
+          <div className="pointer-events-auto flex flex-col items-start max-w-2xl">
+            
+            <motion.div
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="mb-4 inline-flex items-center rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium text-white backdrop-blur-md"
+            >
+              AI Onboarding for Engineering Teams
+            </motion.div>
+
+            <motion.h2
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium text-white tracking-tight text-left drop-shadow-md mb-6"
+              style={{ lineHeight: 1.15 }}
+            >
+              New developers shouldn't need six weeks and three mentors just to understand your codebase.
+            </motion.h2>
+
             <motion.p
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="text-xs text-white/90 sm:text-sm md:text-base font-sans max-w-xl text-left drop-shadow-md"
-              style={{ lineHeight: 1.4 }}
+              className="text-sm sm:text-base md:text-lg text-white/80 font-sans text-left drop-shadow-md mb-10 max-w-xl"
+              style={{ lineHeight: 1.5 }}
             >
-              Brainwhite gives your engineering teams a structured way to onboard freshers and track their progress seamlessly.
+              brainwhite is an AI onboarding assistant that actually understands your project — the architecture, the code, the tools — so new hires and developers moving between projects get productive in days, not months.
             </motion.p>
 
-            <Link href="/early-access" className="mt-8">
-              <motion.button
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                className="group inline-flex h-12 sm:h-14 items-center gap-3 rounded-full bg-white pl-6 pr-2 text-sm font-medium text-black transition-all hover:pr-3 sm:text-base font-sans cursor-pointer shadow-xl"
-              >
-                Start Onboarding
-                <span className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-black transition-transform group-hover:scale-105">
-                  <ArrowRight className="h-4 w-4" style={{ color: "#E1E0CC" }} />
-                </span>
-              </motion.button>
-            </Link>
+            <motion.div
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              className="flex flex-wrap items-center gap-4"
+            >
+              <Link href="/early-access">
+                <button className="group inline-flex h-12 sm:h-14 items-center gap-3 rounded-full bg-white pl-6 pr-2 text-sm font-medium text-black transition-all hover:pr-3 sm:text-base font-sans cursor-pointer shadow-xl">
+                  Request Early Access
+                  <span className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-black transition-transform group-hover:scale-105">
+                    <ArrowRight className="h-4 w-4" style={{ color: "#E1E0CC" }} />
+                  </span>
+                </button>
+              </Link>
+              
+              <Link href="#how-it-works">
+                <button className="inline-flex h-12 sm:h-14 items-center justify-center rounded-full border border-white/20 bg-white/5 px-8 text-sm font-medium text-white backdrop-blur-md transition-colors hover:bg-white/10 sm:text-base font-sans cursor-pointer">
+                  See How It Works
+                </button>
+              </Link>
+            </motion.div>
           </div>
         </div>
 

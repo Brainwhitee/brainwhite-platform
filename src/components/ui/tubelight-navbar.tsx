@@ -106,8 +106,8 @@ export function TubelightNavbar({ items, className }: NavBarProps) {
         {/* CTA Area */}
         <div className="pl-2 pr-1.5 hidden md:block">
            <Link href="/early-access">
-              <button className="bg-white text-black font-semibold text-sm px-5 py-2.5 rounded-full hover:bg-white/90 transition-transform hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(255,255,255,0.2)]">
-                Join Waitlist
+              <button className="bg-white text-black font-semibold text-sm px-5 py-2.5 rounded-full hover:bg-white/90 transition-transform hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(255,255,255,0.2)] whitespace-nowrap">
+                Request Early Access
               </button>
            </Link>
         </div>
