@@ -4,6 +4,7 @@ import { motion, useInView } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { useRef } from "react";
 import Link from "next/link";
+import { EightBitText } from "./eight-bit-text";
 
 /* ---------------- WordsPullUp ---------------- */
 interface WordsPullUpProps {
@@ -123,7 +124,10 @@ const PrismaHero = () => {
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium text-white tracking-tight text-left drop-shadow-md mb-10"
               style={{ lineHeight: 1.15 }}
             >
-              New developers shouldn't need six weeks and three mentors just to understand your codebase.
+              <EightBitText 
+                text="New developers shouldn't need six weeks and three mentors just to understand your codebase." 
+                delay={0.5}
+              />
             </motion.h2>
 
             <motion.div
