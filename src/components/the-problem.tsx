@@ -12,6 +12,7 @@ const problemContent = [
     description:
       "Spread across repos, wikis, tickets, and chat, with no single place to start. Most of it assumes the reader already knows what's going on.",
     content: (
+      <div className="h-full w-full flex items-center justify-center bg-[#0a0a0a] p-10 relative overflow-hidden">
         {/* Abstract Dev21 Style Aurora Background */}
         <div className="absolute inset-0 overflow-hidden">
           <motion.div
@@ -48,17 +49,17 @@ const problemContent = [
               key={i}
               className="absolute w-1 h-1 bg-blue-400 rounded-full shadow-[0_0_10px_rgba(96,165,250,0.8)]"
               style={{
-                top: `${Math.random() * 100}%`,
-                left: `${Math.random() * 100}%`,
+                top: `${(i * 17) % 100}%`,
+                left: `${(i * 23) % 100}%`,
               }}
               animate={{
                 opacity: [0, 1, 0],
                 scale: [0, 1.5, 0],
               }}
               transition={{
-                duration: 2 + Math.random() * 3,
+                duration: 2 + (i % 3),
                 repeat: Infinity,
-                delay: Math.random() * 2,
+                delay: (i % 5) * 0.4,
               }}
             />
           ))}
