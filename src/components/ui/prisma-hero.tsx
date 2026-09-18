@@ -112,38 +112,19 @@ const PrismaHero = () => {
 
 
 
-        {/* Subtitle and Button (Left-aligned, Vertically Centered) */}
-        <div className="absolute inset-0 flex flex-col items-start justify-center px-4 sm:px-6 md:px-10 z-10 pointer-events-none">
-          <div className="pointer-events-auto flex flex-col items-start max-w-2xl">
+        {/* Subtitle and Button (Left-aligned, Shifted Up) */}
+        <div className="absolute inset-0 flex flex-col items-start justify-center px-4 sm:px-6 md:px-10 z-10 pointer-events-none pb-24 md:pb-32">
+          <div className="pointer-events-auto flex flex-col items-start max-w-3xl">
             
-            <motion.div
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="mb-4 inline-flex items-center rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium text-white backdrop-blur-md"
-            >
-              AI Onboarding for Engineering Teams
-            </motion.div>
-
             <motion.h2
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium text-white tracking-tight text-left drop-shadow-md mb-6"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium text-white tracking-tight text-left drop-shadow-md mb-10"
               style={{ lineHeight: 1.15 }}
             >
               New developers shouldn't need six weeks and three mentors just to understand your codebase.
             </motion.h2>
-
-            <motion.p
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="text-sm sm:text-base md:text-lg text-white/80 font-sans text-left drop-shadow-md mb-10 max-w-xl"
-              style={{ lineHeight: 1.5 }}
-            >
-              brainwhite is an AI onboarding assistant that actually understands your project — the architecture, the code, the tools — so new hires and developers moving between projects get productive in days, not months.
-            </motion.p>
 
             <motion.div
               initial={{ y: 20, opacity: 0 }}
