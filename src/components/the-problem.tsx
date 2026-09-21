@@ -1,8 +1,6 @@
 "use client";
 
-import React from "react";
 import { StickyScroll } from "./ui/sticky-scroll";
-import { FileText, MessagesSquare, Clock } from "lucide-react";
 
 import { motion } from "framer-motion";
 
@@ -135,18 +133,18 @@ const problemContent = [
 
 export function TheProblem() {
   return (
-    <section className="bg-white py-24 md:py-32 w-full relative z-20">
+    <section className="painted-section painted-paper py-24 md:py-32 w-full relative z-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 mb-16 md:mb-24">
         <div className="max-w-3xl">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-black mb-6" style={{ lineHeight: 1.15 }}>
+          <h2 className="painted-heading text-3xl sm:text-4xl md:text-5xl mb-6" style={{ lineHeight: 1.15 }}>
             Onboarding shouldn't run on your best engineer's patience
           </h2>
-          <p className="text-lg md:text-xl text-neutral-600 font-sans leading-relaxed">
+          <p className="painted-body text-lg md:text-xl leading-relaxed">
             Every developer who joins your team — or moves onto a new project — has to learn two things at once: how the company works, and how this specific codebase works.
           </p>
         </div>
       </div>
-      
+
       <StickyScroll content={problemContent} />
     </section>
   );

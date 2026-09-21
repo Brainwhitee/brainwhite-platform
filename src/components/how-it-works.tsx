@@ -126,15 +126,15 @@ export function HowItWorks() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="w-full py-24 md:py-32 bg-[#0a0a0a] relative z-20" id="how-it-works">
+    <section className="w-full py-24 md:py-32 painted-section-dark relative" id="how-it-works">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10">
-        
+
         <div className="max-w-3xl mb-16 md:mb-24" ref={ref}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold text-white/70 uppercase tracking-widest mb-6"
+            className="inline-flex items-center rounded-full border border-[#C99A5C]/30 bg-[#C99A5C]/10 px-3 py-1 text-xs font-semibold text-[#F3E9D6]/80 uppercase tracking-widest mb-6 backdrop-blur-md"
           >
             How It Works
           </motion.div>
@@ -142,14 +142,14 @@ export function HowItWorks() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-white"
+            className="painted-heading text-3xl sm:text-4xl md:text-5xl"
             style={{ lineHeight: 1.15 }}
           >
             From new repo to first real commit, guided the whole way.
           </motion.h2>
         </div>
 
-        <div 
+        <div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:grid-rows-2 gap-6 relative"
           style={{ perspective: "1000px" }}
         >

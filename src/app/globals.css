@@ -6,6 +6,15 @@
   --muted: #6b6b6b;
   --border: #e5e5e5;
   --accent: #0a0a0a;
+
+  /* ---- crafted-painting palette (warm) ---- */
+  --painted-canvas: #E7D9C4;
+  --painted-ink: #3A2B20;
+  --painted-ink-soft: #5C483A;
+  --painted-accent: #B5693F;
+  --painted-accent-2: #6E7D55;
+  --painted-cream: #F3E9D6;
+  --painted-underline: #8A5A3A;
 }
 
 @theme inline {
@@ -16,6 +25,8 @@
   --color-accent: var(--accent);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-general: var(--font-general);
+  --font-serif: var(--font-serif);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -61,9 +72,144 @@ body {
   .text-balance {
     text-wrap: balance;
   }
-  
+
   .font-display {
     font-family: var(--font-sans), system-ui, sans-serif;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  /* ============================================================
+     CRAFTED-PAINTING THEME
+     These classes wrap every section EXCEPT the hero.
+     ============================================================ */
+
+  /* Full-bleed painted backdrop behind the section's own content.
+     Content sits on top of the painting via a cream paper panel. */
+  .painted-section {
+    position: relative;
+    background: var(--painted-canvas);
+    color: var(--painted-ink);
+    overflow: hidden;
+  }
+
+  /* The "paper" panel that content sits on, so text stays legible
+     over the washes. Slightly warm, slight texture. */
+  .painted-paper {
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(
+      180deg,
+      rgba(243, 233, 214, 0.96) 0%,
+      rgba(231, 217, 196, 0.94) 100%
+    );
+    border-radius: inherit;
+  }
+
+  /* Painted headings: serif, ink-dark, with a painted underline. */
+  .painted-heading {
+    font-family: var(--font-serif), Georgia, "Times New Roman", serif;
+    font-weight: 700;
+    color: var(--painted-ink);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+  }
+
+  .painted-heading .painted-accent {
+    color: var(--painted-accent);
+  }
+
+  /* A subtle hand-painted rule under section titles. */
+  .painted-rule {
+    height: 2px;
+    width: 64px;
+    background: linear-gradient(
+      90deg,
+      var(--painted-accent) 0%,
+      var(--painted-accent-2) 100%
+    );
+    border-radius: 2px;
+    opacity: 0.85;
+    margin: 1.5rem 0;
+  }
+
+  /* Body copy on the painted paper. */
+  .painted-body {
+    font-family: var(--font-general), var(--font-sans), system-ui, sans-serif;
+    color: var(--painted-ink-soft);
+    line-height: 1.65;
+  }
+
+  /* Warm, painted CTA button (replaces the black/white ones in these sections). */
+  .painted-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-general), var(--font-sans), sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+    color: #fff6ec;
+    background: linear-gradient(180deg, #C97A4A 0%, #A85A30 100%);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 0.85rem 1.75rem;
+    border-radius: 999px;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.35),
+      inset 0 -2px 6px rgba(0, 0, 0, 0.18),
+      0 10px 24px rgba(120, 60, 20, 0.35);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .painted-cta:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.4),
+      inset 0 -2px 6px rgba(0, 0, 0, 0.2),
+      0 16px 32px rgba(120, 60, 20, 0.45);
+  }
+
+  .painted-cta:active {
+    transform: translateY(0);
+  }
+
+  /* Painted card: a paper panel with a soft drop shadow, like a card
+     laid on a painted canvas. */
+  .painted-card {
+    background: linear-gradient(180deg, #FDF8EE 0%, #F3E9D6 100%);
+    border: 1px solid rgba(181, 105, 63, 0.18);
+    border-radius: 1.25rem;
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.6) inset,
+      0 18px 40px -12px rgba(80, 45, 20, 0.35);
+  }
+
+  /* Dark painted variant (for sections that were previously black). */
+  .painted-section-dark {
+    position: relative;
+    background: linear-gradient(
+      180deg,
+      #3A2B20 0%,
+      #241810 100%
+    );
+    color: #F3E9D6;
+    overflow: hidden;
+  }
+
+  .painted-section-dark .painted-heading {
+    color: #F3E9D6;
+  }
+
+  .painted-section-dark .painted-body {
+    color: rgba(243, 233, 214, 0.82);
+  }
+
+  .painted-section-dark .painted-rule {
+    background: linear-gradient(90deg, #C99A5C 0%, #6E7D55 100%);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .painted-cta {
+      transition: none;
+    }
   }
 }

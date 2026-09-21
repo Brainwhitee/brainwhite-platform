@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Code2, BarChart, ShieldCheck } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -136,19 +136,19 @@ export function ThreeViews() {
   const activeView = views.find((v) => v.id === activeTab) || views[0];
 
   return (
-    <section className="py-24 md:py-32 bg-[#050505] relative z-20">
+    <section className="painted-section-dark py-24 md:py-32 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-white mb-6">
+          <h2 className="painted-heading text-3xl sm:text-4xl md:text-5xl mb-6">
             One platform, three views
           </h2>
-          <p className="text-lg text-neutral-400 font-sans">
+          <p className="painted-body text-lg">
             Built for everyone involved in getting a new hire up to speed.
           </p>
         </div>
 
         <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-start">
-          
+
           {/* Tabs Navigation (Left side on desktop) */}
           <div className="flex flex-col gap-2 w-full lg:w-1/3">
             {views.map((view) => (
@@ -158,25 +158,25 @@ export function ThreeViews() {
                 className={cn(
                   "relative flex flex-col text-left p-6 rounded-2xl transition-all duration-300",
                   activeTab === view.id
-                    ? "bg-white/10 shadow-xl border border-white/20 backdrop-blur-md"
-                    : "hover:bg-white/5 border border-transparent"
+                    ? "bg-[#F3E9D6]/10 shadow-xl border border-[#C99A5C]/30 backdrop-blur-md"
+                    : "hover:bg-[#F3E9D6]/5 border border-transparent"
                 )}
               >
                 <div
                   className={cn(
                     "flex items-center gap-3 mb-2 font-semibold",
-                    activeTab === view.id ? "text-white" : "text-neutral-500"
+                    activeTab === view.id ? "text-[#F3E9D6]" : "text-[#F3E9D6]/50"
                   )}
                 >
                   <div className={cn(
                     "p-2 rounded-lg",
-                    activeTab === view.id ? "bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.3)]" : "bg-white/5 text-neutral-400"
+                    activeTab === view.id ? "bg-[#C99A5C] text-[#1C1210] shadow-[0_0_15px_rgba(201,154,92,0.35)]" : "bg-[#F3E9D6]/5 text-[#F3E9D6]/50"
                   )}>
                     {view.icon}
                   </div>
                   <span className="text-lg tracking-tight">{view.title}</span>
                 </div>
-                
+
                 <AnimatePresence initial={false}>
                   {activeTab === view.id && (
                     <motion.div
@@ -186,7 +186,7 @@ export function ThreeViews() {
                       transition={{ duration: 0.3 }}
                       className="overflow-hidden"
                     >
-                      <p className="text-neutral-400 font-sans text-sm mt-2 leading-relaxed">
+                      <p className="painted-body text-sm mt-2 leading-relaxed">
                         {view.description}
                       </p>
                     </motion.div>
@@ -198,7 +198,7 @@ export function ThreeViews() {
 
           {/* Tab Content Window (Right side on desktop) */}
           <div className="w-full lg:w-2/3">
-            <div className="relative w-full h-[480px] sm:h-[500px] lg:h-[550px] rounded-2xl border border-white/20 bg-[#0f0f11] shadow-2xl overflow-hidden flex flex-col ring-1 ring-white/10">
+            <div className="relative w-full h-[480px] sm:h-[500px] lg:h-[550px] rounded-2xl border border-[#C99A5C]/25 bg-[#0f0f11] shadow-2xl overflow-hidden flex flex-col ring-1 ring-[#C99A5C]/10">
               
               {/* Fake Mac Title Bar */}
               <div className="h-10 w-full bg-[#1a1b1e] border-b border-white/10 flex items-center px-4 gap-2 flex-shrink-0 z-10">
