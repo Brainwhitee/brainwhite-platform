@@ -30,7 +30,7 @@
   --font-serif: var(--font-serif);
 }
 
-@media (prefers-color-scheme: dark) {
+.dark {
   :root {
     --background: #000000;
     --foreground: #ffffff;

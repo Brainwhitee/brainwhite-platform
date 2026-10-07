@@ -54,7 +54,7 @@ export function Waitlist() {
 
     setSubmitStatus("loading");
 
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    const { submitWaitlist } = await import("@/app/actions"); const res = await submitWaitlist(new FormData(e.target as HTMLFormElement)); if (!res.success) { setSubmitStatus("error"); return; }
 
     setSubmitStatus("success");
     setFormData({ name: "", email: "", company: "", companySize: "", placementsPerYear: "" });

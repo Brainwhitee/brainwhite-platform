@@ -23,7 +23,7 @@ export function ClientOnboarding() {
   return (
     <section
       id="why-different"
-      className="relative py-24 md:py-32 lg:py-40 border-y border-[var(--border)] overflow-hidden"
+      className="relative py-24 md:py-32 lg:py-40 border-y border-white/10 overflow-hidden"
       aria-labelledby="client-onboarding-heading"
     >
       <motion.div
@@ -39,13 +39,13 @@ export function ClientOnboarding() {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6, ease }}
         >
-          <p className="text-xs font-medium uppercase tracking-widest text-[var(--muted)] mb-4" style={{ letterSpacing: "0.2em" }}>
+          <p className="text-xs font-medium uppercase tracking-widest text-white/60 mb-4" style={{ letterSpacing: "0.2em" }}>
             WHY THIS IS DIFFERENT
           </p>
-          <h2 id="client-onboarding-heading" className="font-display font-medium text-[48px] md:text-[60px] lg:text-[72px] leading-[1.05] tracking-tight text-[var(--foreground)] text-balance">
+          <h2 id="client-onboarding-heading" className="font-display font-medium text-[48px] md:text-[60px] lg:text-[72px] leading-[1.05] tracking-tight text-white text-balance">
             Onboarding is different when your engineers move between clients.
           </h2>
-          <p className="mt-6 text-lg md:text-xl leading-relaxed text-[var(--muted)] max-w-xl">
+          <p className="mt-6 text-lg md:text-xl leading-relaxed text-white/60 max-w-xl">
             Product companies may onboard an engineer once. Staffing and consulting firms do it again and again.
           </p>
         </motion.div>
@@ -91,14 +91,14 @@ function FeatureCard({ item, index }: { item: { title: string; detail: string };
 
   return (
     <motion.div
-      className="p-6 border border-[var(--border)]"
+      className="p-6 border border-white/10"
       style={{ y: cardParallax, scale: cardScale }}
       transition={{ duration: 0.3, ease }}
     >
-      <p className="font-mono text-[11px] font-medium uppercase tracking-wider text-[var(--muted)] mb-2">
+      <p className="font-mono text-[11px] font-medium uppercase tracking-wider text-white/60 mb-2">
         {item.title.toUpperCase()}
       </p>
-      <p className="text-[var(--foreground)] leading-relaxed">{item.detail}</p>
+      <p className="text-white leading-relaxed">{item.detail}</p>
     </motion.div>
   );
 }
@@ -140,7 +140,7 @@ function ClientJourneyVisualization({ clients }: { clients: typeof clientNodes }
           strokeWidth="1"
           fill="none"
           opacity="0.15"
-          className="text-[var(--foreground)]"
+          className="text-white"
           markerEnd="url(#arrow-client)"
         />
       </svg>
@@ -153,7 +153,7 @@ function ClientJourneyVisualization({ clients }: { clients: typeof clientNodes }
             style={{ left: `${(index / (clients.length - 1)) * 100}%` }}
           >
             <motion.div
-              className="relative w-16 h-16 md:w-20 md:h-20 rounded-full border-2 flex items-center justify-center bg-white"
+              className="relative w-16 h-16 md:w-20 md:h-20 rounded-full border-2 flex items-center justify-center bg-transparent"
               style={{
                 borderColor: activeIndex === index ? client.color : "var(--border)",
                 boxShadow: activeIndex === index ? `0 0 0 4px ${client.color}20, 0 0 20px ${client.color}30` : "none",
@@ -177,11 +177,11 @@ function ClientJourneyVisualization({ clients }: { clients: typeof clientNodes }
               }}
               transition={{ duration: 0.3 }}
             >
-              <p className="font-mono text-[10px] font-medium uppercase tracking-wider text-[var(--foreground)] mb-1">
+              <p className="font-mono text-[10px] font-medium uppercase tracking-wider text-white mb-1">
                 {client.name}
               </p>
-              <p className="font-mono text-[9px] text-[var(--muted)] mb-1">{client.domain}</p>
-              <p className="font-mono text-[8px] text-[var(--muted)]">{client.stack}</p>
+              <p className="font-mono text-[9px] text-white/60 mb-1">{client.domain}</p>
+              <p className="font-mono text-[8px] text-white/60">{client.stack}</p>
             </motion.div>
 
             {index < clients.length - 1 && (
@@ -212,8 +212,8 @@ function ClientJourneyVisualization({ clients }: { clients: typeof clientNodes }
                 <p className="font-mono text-[9px] font-medium uppercase tracking-wider mb-1" style={{ color: client.color }}>
                   PLACEMENT {String(index + 1).padStart(2, "0")}
                 </p>
-                <p className="font-mono text-[10px] text-[var(--foreground)] mb-1">{client.domain}</p>
-                <p className="font-mono text-[8px] text-[var(--muted)]">{client.stack}</p>
+                <p className="font-mono text-[10px] text-white mb-1">{client.domain}</p>
+                <p className="font-mono text-[8px] text-white/60">{client.stack}</p>
               </div>
               {activeIndex >= index && (
                 <motion.div
@@ -229,7 +229,7 @@ function ClientJourneyVisualization({ clients }: { clients: typeof clientNodes }
         </div>
       </div>
 
-      <p className="absolute bottom-8 left-1/2 -translate-x-1/2 text-center text-xs uppercase tracking-widest text-[var(--muted)]">
+      <p className="absolute bottom-8 left-1/2 -translate-x-1/2 text-center text-xs uppercase tracking-widest text-white/60">
         Each placement has its own onboarding cycle
       </p>
     </div>

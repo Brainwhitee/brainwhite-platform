@@ -1,45 +1,64 @@
-"use client";
-
+﻿import { SceneBackground } from "@/components/3d-scene";
 import { Navbar } from "@/components/navbar";
-import { PrismaHero } from "@/components/ui/prisma-hero";
-import { VelocityScroll } from "@/components/ui/velocity-scroll";
+import { BlurFade } from "@/components/ui/blur-fade";
 import { TheProblem } from "@/components/the-problem";
-import { HowItWorks } from "@/components/how-it-works";
+import { ClientOnboarding } from "@/components/client-onboarding";
+import { FresherOnboarding } from "@/components/fresher-onboarding";
 import { ThreeViews } from "@/components/three-views";
-import { WhyBrainwhite } from "@/components/why-brainwhite";
-import { FaqSection } from "@/components/faq-section";
+import { Waitlist } from "@/components/waitlist";
 import { Footer } from "@/components/footer";
 
 export default function Home() {
   return (
-    <div className="bg-black min-h-screen">
+    <main className="relative min-h-screen bg-transparent overflow-x-hidden selection:bg-orange-500/30">
+      <SceneBackground />
       <Navbar />
-      <main className="relative z-20 w-full mb-[100vh] md:mb-[80vh]">
-        {/* Deep Tech Background Pattern */}
-        <div className="absolute inset-0 z-0 opacity-20 pointer-events-none bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.15)_0,transparent_100%)]" />
+      
+      <div className="relative z-10 w-full flex flex-col">
+        {/* 1. HERO */}
+        <section className="h-screen flex items-center justify-center px-4 md:px-8">
+          <BlurFade delay={0.2} className="text-center max-w-5xl mx-auto">
+            <div className="inline-flex items-center rounded-full border border-orange-500/30 bg-orange-500/10 px-4 py-1.5 text-xs font-bold text-orange-400 uppercase tracking-[0.2em] mb-8 backdrop-blur-md">
+              BrainWhite V1
+            </div>
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-white/40 mb-8 leading-[1.1]">
+              Onboarding is an<br/>Engineering Problem.
+            </h1>
+            <p className="text-lg md:text-2xl text-zinc-400 mt-6 max-w-3xl mx-auto font-light leading-relaxed">
+              Company codebase + engineering knowledge <br className="hidden md:block" />
+              <span className="text-orange-400/80">→</span> BrainWhite understands the project <br className="hidden md:block" />
+              <span className="text-orange-400/80">→</span> personalized learning & evidence-based readiness.
+            </p>
+          </BlurFade>
+        </section>
 
-        {/* HERO */}
-        <PrismaHero />
-
-        <div className="relative z-10 flex flex-col bg-black">
-          <div className="py-16 md:py-24 border-y border-white/10 overflow-hidden flex flex-col gap-6 bg-black relative">
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_70%,transparent_100%)]"></div>
-            <VelocityScroll text="STOP RE-EXPLAINING ARCHITECTURE" defaultVelocity={2} className="text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] font-mono tracking-widest relative z-10" />
-            <VelocityScroll text="AUTOMATE YOUR ONBOARDING" defaultVelocity={-2} className="text-blue-500/50 italic font-mono tracking-widest relative z-10" />
-          </div>
-
-          <div className="relative z-10 bg-black rounded-b-3xl">
-            <TheProblem />
-            <HowItWorks />
-            <ThreeViews />
-            <WhyBrainwhite />
-            <FaqSection />
-          </div>
+        {/* 2. THE PROBLEM */}
+        <div className="bg-black/40 backdrop-blur-[2px] border-t border-white/5">
+          <TheProblem />
         </div>
-      </main>
-      <Footer />
-    </div>
+
+        {/* 3. B2B STAFFING & CONSULTING */}
+        <div className="bg-black/60 backdrop-blur-[4px] border-t border-white/5">
+          <ClientOnboarding />
+        </div>
+        
+        {/* 4. FRESHER ONBOARDING */}
+        <div className="bg-black/70 backdrop-blur-[6px] border-t border-white/5">
+          <FresherOnboarding />
+        </div>
+
+        {/* 5. THREE VIEWS */}
+        <div className="bg-black/80 backdrop-blur-[8px] border-t border-white/5">
+          <ThreeViews />
+        </div>
+
+        {/* 6. WAITLIST / CTA */}
+        <div className="bg-black/90 backdrop-blur-[12px] border-t border-white/10">
+          <Waitlist />
+        </div>
+
+        <Footer />
+      </div>
+    </main>
   );
 }
-
-github -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
