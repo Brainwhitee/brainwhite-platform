@@ -4,6 +4,7 @@ import * as React from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { ease } from "@/lib/constants";
+import { FlickeringGrid } from "@/components/ui/flickering-grid";
 
 const clientNodes = [
   { name: "CLIENT A", domain: "Fintech", stack: "Java / Spring", color: "hsl(210, 80%, 45%)" },
@@ -27,9 +28,19 @@ export function ClientOnboarding() {
       aria-labelledby="client-onboarding-heading"
     >
       <motion.div
-        className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(0,0,0,0.02)_0%,_transparent_70%)]"
+        className="absolute inset-0 overflow-hidden"
         style={{ y: bgParallax }}
-      />
+      >
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_10%,_black_80%)] z-10" />
+        <FlickeringGrid
+          className="absolute inset-0 z-0 opacity-40"
+          squareSize={4}
+          gridGap={6}
+          color="rgb(255, 102, 0)"
+          maxOpacity={0.2}
+          flickerChance={0.05}
+        />
+      </motion.div>
 
       <div className="mx-auto max-w-7xl px-6 md:px-8 relative z-10">
         <motion.div

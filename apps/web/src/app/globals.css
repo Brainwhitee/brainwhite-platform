@@ -187,3 +187,21 @@ body {
     }
   }
 }
+
+@theme {
+  --animate-grid: grid 15s linear infinite;
+  @keyframes grid {
+    0% { transform: translateY(-50%); }
+    100% { transform: translateY(0); }
+  }
+}
+
+
+@theme {
+  --animate-aurora: aurora 60s linear infinite;
+  @keyframes aurora {
+    from { background-position: 50% 50%, 50% 50%; }
+    to { background-position: 350% 50%, 350% 50%; }
+  }
+}
+

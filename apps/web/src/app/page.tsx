@@ -1,5 +1,6 @@
 import { Magnetic } from "@/components/ui/magnetic";
-﻿import { SceneBackground } from "@/components/3d-scene";
+﻿import RetroGrid from "@/components/ui/retro-grid";
+import { SparklesCore } from "@/components/ui/sparkles";
 import { Navbar } from "@/components/navbar";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { TheProblem } from "@/components/the-problem";
@@ -12,13 +13,26 @@ import { Footer } from "@/components/footer";
 export default function Home() {
   return (
     <main className="relative min-h-screen bg-transparent overflow-x-hidden selection:bg-orange-500/30">
-      <SceneBackground />
+      
       <Navbar />
       
       <div className="relative z-10 w-full flex flex-col">
         {/* 1. HERO */}
-        <section className="h-screen flex items-center justify-center px-4 md:px-8">
-          <BlurFade delay={0.2} className="text-center max-w-5xl mx-auto">
+        <section className="relative h-screen flex flex-col items-center justify-center px-4 md:px-8 overflow-hidden bg-black">
+          <RetroGrid className="z-0" />
+          <div className="absolute inset-0 z-0">
+            <SparklesCore
+              background="transparent"
+              minSize={0.4}
+              maxSize={1.5}
+              particleDensity={100}
+              className="w-full h-full"
+              particleColor="#FFFFFF"
+            />
+          </div>
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-orange-500/10 via-black to-black z-0 pointer-events-none" />
+
+          <BlurFade delay={0.2} className="text-center max-w-5xl mx-auto relative z-10">
             <Magnetic intensity={0.1}>
               <div className="inline-flex items-center rounded-full border border-orange-500/30 bg-orange-500/10 px-4 py-1.5 text-xs font-bold text-orange-400 uppercase tracking-[0.2em] mb-8 backdrop-blur-md cursor-pointer">
                 BrainWhite V1

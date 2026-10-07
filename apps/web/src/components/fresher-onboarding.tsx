@@ -3,6 +3,7 @@
 import * as React from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ease } from "@/lib/constants";
+import { FlickeringGrid } from "@/components/ui/flickering-grid";
 
 const fresherNodes = [
   { name: "WEEK 1", domain: "Environment Setup", stack: "Codebase Tour", color: "#ff6600" },
@@ -26,9 +27,19 @@ export function FresherOnboarding() {
       aria-labelledby="fresher-onboarding-heading"
     >
       <motion.div
-        className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(0,0,0,0.02)_0%,_transparent_70%)]"
+        className="absolute inset-0 overflow-hidden"
         style={{ y: bgParallax }}
-      />
+      >
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_10%,_black_80%)] z-10" />
+        <FlickeringGrid
+          className="absolute inset-0 z-0 opacity-40"
+          squareSize={4}
+          gridGap={6}
+          color="rgb(255, 102, 0)"
+          maxOpacity={0.2}
+          flickerChance={0.05}
+        />
+      </motion.div>
 
       <div className="mx-auto max-w-7xl px-6 md:px-8 relative z-10">
         <motion.div

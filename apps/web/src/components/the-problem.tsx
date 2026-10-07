@@ -2,7 +2,7 @@
 
 import { StickyScroll } from "./ui/sticky-scroll";
 import { motion } from "framer-motion";
-import { HaikeiBackground } from "./ui/haikei-background";
+import { AuroraBackground } from "./ui/aurora-background";
 
 const problemContent = [
   {
@@ -134,7 +134,7 @@ const problemContent = [
 export function TheProblem() {
   return (
     <section className="py-24 md:py-32 w-full relative z-20 overflow-hidden bg-black/40 border-y border-white/5">
-      <HaikeiBackground />
+      <div className="absolute inset-0 z-0 opacity-40"><AuroraBackground showRadialGradient={true} className="h-full bg-transparent" /></div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 mb-16 md:mb-24 relative z-10">
         <div className="max-w-3xl">
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-b from-white to-white/40 mb-6" style={{ lineHeight: 1.15 }}>
