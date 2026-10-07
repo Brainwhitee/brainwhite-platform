@@ -26,8 +26,8 @@ export function BlurFade({
   const inViewResult = useInView(ref, { once: true, margin: inViewMargin as any });
   const isInView = !inView || inViewResult;
   const defaultVariants = {
-    hidden: { y: yOffset, opacity: 0, filter: lur( + blur + ) },
-    visible: { y: 0, opacity: 1, filter: lur(0px) },
+    hidden: { y: yOffset, opacity: 0, filter: `blur(${blur})` },
+    visible: { y: 0, opacity: 1, filter: `blur(0px)` },
   };
 
   return (
