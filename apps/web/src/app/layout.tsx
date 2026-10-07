@@ -2,6 +2,8 @@
 import { Geist, Geist_Mono, Caveat, VT323 } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 import { PostHogProvider } from '@/components/providers/posthog-provider';
+import { SmoothScroll } from "@/components/motion/smooth-scroll";
+import { Cursor } from "@/components/motion/cursor";
 import './globals.css';
 
 const geistSans = Geist({
@@ -43,12 +45,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="${geistSans.variable} ${geistMono.variable} antialiased dark">
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} antialiased dark`}>
       <body className="min-h-screen bg-black text-white selection:bg-orange-500/30">
+        <Cursor />
+        <SmoothScroll>
         <PostHogProvider>
           {children}
         </PostHogProvider>
         <Analytics />
+        </SmoothScroll>
       </body>
     </html>
   );
