@@ -1,84 +1,84 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import { useEffect, useRef } from "react";
 
 export function Hero() {
-  const statement = "ONBOARDING IS AN ENGINEERING PROBLEM.";
-  
   return (
-    <section className="relative h-screen w-full flex flex-col justify-between pt-32 pb-12 px-6 md:px-12 z-10 noise-bg">
-      {/* Top Meta */}
-      <div className="flex justify-between w-full overflow-hidden">
-        <motion.div 
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 1.5, duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
-          className="text-meta"
-        >
-          <span className="text-accent mr-2">V1</span> 2026 EDITION
-        </motion.div>
-        <motion.div 
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 1.6, duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
-          className="text-meta text-right"
-        >
-          SCROLL TO EXPLORE
-        </motion.div>
-      </div>
-
-      {/* Main Typography */}
-      <div className="flex flex-col items-center justify-center flex-1 w-full relative">
-        <h1 className="text-giant text-center uppercase flex flex-wrap justify-center gap-x-[3vw] leading-[0.85]">
-          {statement.split(" ").map((word, i) => (
-            <span key={i} className="overflow-hidden inline-block pt-2">
-              <motion.span
-                initial={{ y: "120%" }}
-                animate={{ y: 0 }}
-                transition={{ 
-                  delay: 1.2 + i * 0.1, 
-                  duration: 1, 
-                  ease: [0.76, 0, 0.24, 1] 
-                }}
-                className="inline-block"
-              >
-                {word}
-              </motion.span>
-            </span>
-          ))}
-        </h1>
-        
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 2, duration: 1.2, ease: "easeOut" }}
-          className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-[80vw] h-[80vw] md:w-[40vw] md:h-[40vw] rounded-full bg-accent/5 blur-[100px] pointer-events-none"
+    <section className="relative h-[100dvh] w-full overflow-hidden bg-black text-white selection:bg-white selection:text-black">
+      {/* Background Video (Using placeholder as requested, though referencing the same for structure) */}
+      <div className="absolute inset-0 z-0 bg-black/40">
+        <video 
+          src="https://noth-in.b-cdn.net/nothin-sharp-high.mp4" 
+          autoPlay 
+          loop 
+          muted 
+          playsInline 
+          crossOrigin="anonymous" 
+          className="w-full h-full object-cover mix-blend-lighten opacity-80"
         />
       </div>
 
-      {/* Bottom Meta */}
-      <div className="flex flex-col md:flex-row justify-between items-end md:items-center w-full gap-8">
-        <motion.p 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2, duration: 1 }}
-          className="text-body max-w-sm text-muted font-light"
-        >
-          Company codebase + engineering knowledge. We understand the project, you understand the code.
-        </motion.p>
+      {/* Hero Content */}
+      <div className="relative z-10 flex flex-col justify-between h-full w-full px-6 py-8 md:px-10 md:py-12 pointer-events-none">
         
-        <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ delay: 2.2, type: "spring", stiffness: 200, damping: 20 }}
-          className="w-16 h-16 rounded-full border border-white/20 flex items-center justify-center"
-          data-cursor="hover"
-        >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-            <line x1="12" y1="5" x2="12" y2="19"></line>
-            <polyline points="19 12 12 19 5 12"></polyline>
-          </svg>
-        </motion.div>
+        {/* Top Spacer for Navbar */}
+        <div className="h-20" />
+
+        {/* Top/Middle Text & Button */}
+        <div className="flex flex-col items-start mt-[10vh] md:mt-[20vh] max-w-xl pointer-events-auto">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.5, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="text-[1.3rem] md:text-[2rem] leading-[1.1] font-light tracking-tight mb-8"
+          >
+            Not just a tool, a readiness platform.<br />
+            Because BrainWhite is Everything.
+          </motion.div>
+          
+          <motion.a 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 2, duration: 1 }}
+            href="#" 
+            className="group relative inline-flex items-center gap-4 bg-transparent border border-white/20 hover:border-white transition-colors duration-500 rounded-full px-6 py-3 md:px-8 md:py-4 overflow-hidden"
+          >
+            <div className="absolute inset-0 bg-white translate-y-[101%] group-hover:translate-y-0 transition-transform duration-500 ease-[0.16,1,0.3,1] rounded-full z-0" />
+            <span className="relative z-10 text-xs md:text-sm uppercase tracking-widest font-mono group-hover:text-black transition-colors duration-500">
+              book a demo
+            </span>
+            <div className="relative z-10 flex items-center justify-center w-6 h-6 md:w-8 md:h-8 rounded-full bg-white text-black group-hover:bg-black group-hover:text-white transition-colors duration-500">
+              <ArrowRight className="w-3 h-3 md:w-4 md:h-4 -rotate-45 group-hover:rotate-0 transition-transform duration-500" />
+            </div>
+          </motion.a>
+        </div>
+
+        {/* Bottom Giant Title & Links */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between w-full pb-4 pointer-events-auto">
+          <motion.h1 
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.5, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            className="text-[10vw] md:text-[7vw] leading-[0.85] font-medium tracking-tighter uppercase mb-6 md:mb-0"
+          >
+            B2B Onboarding <br /> Platform
+          </motion.h1>
+
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.5, duration: 1 }}
+            className="flex items-center gap-6 text-xs md:text-sm font-mono uppercase tracking-widest"
+          >
+            <a href="#" className="hover:opacity-50 transition-opacity">LKDN</a>
+            <span className="opacity-30">/</span>
+            <a href="#" className="hover:opacity-50 transition-opacity">X.COM</a>
+            <span className="opacity-30">/</span>
+            <a href="#" className="hover:opacity-50 transition-opacity">EN</a>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
