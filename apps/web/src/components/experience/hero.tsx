@@ -1,14 +1,42 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
 import { useEffect, useRef } from "react";
 
 export function Hero() {
+  const heroRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!heroRef.current) return;
+      const rect = heroRef.current.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      heroRef.current.style.setProperty("--x", `${x}px`);
+      heroRef.current.style.setProperty("--y", `${y}px`);
+    };
+    
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
   return (
-    <section className="relative h-[100dvh] w-full overflow-hidden bg-black text-white selection:bg-white selection:text-black">
-      {/* Background Video (Using placeholder as requested, though referencing the same for structure) */}
-      <div className="absolute inset-0 z-0 bg-black/40">
+    <section 
+      ref={heroRef}
+      className="relative h-[100dvh] w-full overflow-hidden bg-white group cursor-none"
+    >
+      {/* Absolute White Background to ensure mix-blend-difference has a solid canvas */}
+      <div className="absolute inset-0 bg-white z-0 pointer-events-none" />
+
+      {/* Background Video Layer with Flashlight/Cursor Mask Effect */}
+      <div 
+        className="absolute inset-0 z-0 pointer-events-none transition-opacity duration-100 ease-out"
+        style={{
+          // The video is only visible inside this radial gradient centered on the cursor
+          WebkitMaskImage: "radial-gradient(circle 25vw at var(--x, 50%) var(--y, 50%), black 0%, transparent 100%)",
+          maskImage: "radial-gradient(circle 25vw at var(--x, 50%) var(--y, 50%), black 0%, transparent 100%)"
+        }}
+      >
         <video 
           src="https://noth-in.b-cdn.net/nothin-sharp-high.mp4" 
           autoPlay 
@@ -16,12 +44,15 @@ export function Hero() {
           muted 
           playsInline 
           crossOrigin="anonymous" 
-          className="w-full h-full object-cover mix-blend-lighten opacity-80"
+          className="w-full h-full object-cover opacity-90"
         />
+        {/* Dark overlay to increase contrast for the difference blend mode */}
+        <div className="absolute inset-0 bg-black/30 mix-blend-multiply" />
       </div>
 
-      {/* Hero Content */}
-      <div className="relative z-10 flex flex-col justify-between h-full w-full px-6 py-8 md:px-10 md:py-12 pointer-events-none">
+      {/* Hero Content with mix-blend-difference */}
+      {/* Over white background: White text becomes Black. Over dark video: White text becomes White. */}
+      <div className="relative z-10 flex flex-col justify-between h-full w-full px-6 py-8 md:px-10 md:py-12 pointer-events-none mix-blend-difference text-white">
         
         {/* Top Spacer for Navbar */}
         <div className="h-20" />
@@ -52,7 +83,8 @@ export function Hero() {
             href="#" 
             className="group inline-flex items-center gap-4 bg-transparent transition-colors duration-500 rounded-full overflow-hidden"
           >
-            <div className="flex items-center gap-6 bg-white/10 group-hover:bg-white backdrop-blur-sm transition-colors duration-500 rounded-full px-8 py-4">
+            {/* The button container */}
+            <div className="flex items-center gap-6 bg-white/10 group-hover:bg-white backdrop-blur-sm transition-colors duration-500 rounded-full px-8 py-4 border border-white/20 group-hover:border-white">
               <span className="text-xs md:text-sm uppercase tracking-widest font-mono text-white group-hover:text-black transition-colors duration-500">
                 book a demo
               </span>
