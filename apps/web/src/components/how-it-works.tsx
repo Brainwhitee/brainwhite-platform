@@ -134,7 +134,7 @@ export function HowItWorks() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center rounded-full border border-[#C99A5C]/30 bg-[#C99A5C]/10 px-3 py-1 text-xs font-semibold text-[#F3E9D6]/80 uppercase tracking-widest mb-6 backdrop-blur-md"
+            className="inline-flex items-center rounded-full border border-blue-500/30 bg-blue-500/10 px-3 py-1 text-xs font-semibold text-white/80 uppercase tracking-widest mb-6 backdrop-blur-md"
           >
             How It Works
           </motion.div>

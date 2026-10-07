@@ -158,19 +158,19 @@ export function ThreeViews() {
                 className={cn(
                   "relative flex flex-col text-left p-6 rounded-2xl transition-all duration-300",
                   activeTab === view.id
-                    ? "bg-[#F3E9D6]/10 shadow-xl border border-[#C99A5C]/30 backdrop-blur-md"
-                    : "hover:bg-[#F3E9D6]/5 border border-transparent"
+                    ? "bg-blue-500/10 shadow-xl border border-blue-500/30 backdrop-blur-md"
+                    : "hover:bg-white/5 border border-transparent"
                 )}
               >
                 <div
                   className={cn(
                     "flex items-center gap-3 mb-2 font-semibold",
-                    activeTab === view.id ? "text-[#F3E9D6]" : "text-[#F3E9D6]/50"
+                    activeTab === view.id ? "text-white" : "text-white/50"
                   )}
                 >
                   <div className={cn(
                     "p-2 rounded-lg",
-                    activeTab === view.id ? "bg-[#C99A5C] text-[#1C1210] shadow-[0_0_15px_rgba(201,154,92,0.35)]" : "bg-[#F3E9D6]/5 text-[#F3E9D6]/50"
+                    activeTab === view.id ? "bg-blue-600 text-white shadow-[0_0_15px_rgba(37,99,235,0.4)]" : "bg-white/5 text-white/50"
                   )}>
                     {view.icon}
                   </div>
@@ -198,7 +198,7 @@ export function ThreeViews() {
 
           {/* Tab Content Window (Right side on desktop) */}
           <div className="w-full lg:w-2/3">
-            <div className="relative w-full h-[480px] sm:h-[500px] lg:h-[550px] rounded-2xl border border-[#C99A5C]/25 bg-[#0f0f11] shadow-2xl overflow-hidden flex flex-col ring-1 ring-[#C99A5C]/10">
+            <div className="relative w-full h-[480px] sm:h-[500px] lg:h-[550px] rounded-2xl border border-white/10 bg-[#0f0f11] shadow-2xl overflow-hidden flex flex-col ring-1 ring-white/5">
               
               {/* Fake Mac Title Bar */}
               <div className="h-10 w-full bg-[#1a1b1e] border-b border-white/10 flex items-center px-4 gap-2 flex-shrink-0 z-10">

@@ -28,19 +28,19 @@ export function FaqSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="painted-section-dark py-24 md:py-40 overflow-hidden border-t border-[#C99A5C]/15">
+    <section className="painted-section-dark py-24 md:py-40 overflow-hidden border-t border-blue-500/15 relative">
 
-      {/* Background ambient glow - warm */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[600px] bg-[radial-gradient(ellipse_at_center,rgba(181,105,63,0.08)_0%,transparent_70%)] pointer-events-none z-0" />
+      {/* Background ambient glow - tech */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[600px] bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.08)_0%,transparent_70%)] pointer-events-none z-0" />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-10 relative z-10">
 
         {/* Aceternity Style Glowing Early Access CTA */}
         <div className="relative group rounded-3xl mb-32">
-          <div className="absolute -inset-[1px] bg-gradient-to-r from-[#C99A5C] via-[#6E7D55] to-[#B5693F] rounded-3xl blur-[10px] opacity-20 group-hover:opacity-60 transition duration-1000 group-hover:duration-200"></div>
-          <div className="relative bg-[#241810] rounded-3xl p-8 md:p-12 shadow-2xl border border-[#C99A5C]/25 overflow-hidden">
+          <div className="absolute -inset-[1px] bg-gradient-to-r from-blue-500 via-cyan-500 to-blue-600 rounded-3xl blur-[10px] opacity-20 group-hover:opacity-60 transition duration-1000 group-hover:duration-200"></div>
+          <div className="relative bg-[#050505] rounded-3xl p-8 md:p-12 shadow-2xl border border-blue-500/25 overflow-hidden">
             {/* Inner subtle glow */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-[#C99A5C]/10 blur-[50px] rounded-full pointer-events-none" />
+            <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 blur-[50px] rounded-full pointer-events-none" />
 
             <div className="max-w-2xl relative z-10">
               <h2 className="painted-heading text-3xl md:text-4xl mb-6">
@@ -83,11 +83,11 @@ export function FaqSection() {
                 >
                   {/* Front of Card (Question) */}
                   <div
-                    className="absolute inset-0 rounded-3xl bg-[#241810] border border-[#C99A5C]/25 p-8 flex flex-col justify-center items-center text-center shadow-xl backface-hidden"
+                    className="absolute inset-0 rounded-3xl bg-[#050505] border border-blue-500/25 p-8 flex flex-col justify-center items-center text-center shadow-xl backface-hidden"
                     style={{ backfaceVisibility: "hidden" }}
                   >
-                    <div className="w-12 h-12 rounded-full bg-[#C99A5C]/10 flex items-center justify-center mb-6 border border-[#C99A5C]/25 group-hover:scale-110 transition-transform">
-                      <span className="text-xl font-serif italic text-[#F3E9D6]/70">?</span>
+                    <div className="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center mb-6 border border-blue-500/25 group-hover:scale-110 transition-transform">
+                      <span className="text-xl font-serif italic text-white/70">?</span>
                     </div>
                     <h3 className="painted-heading text-xl md:text-2xl">
                       {faq.question}
@@ -96,10 +96,10 @@ export function FaqSection() {
 
                   {/* Back of Card (Answer) */}
                   <div
-                    className="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#C99A5C]/25 to-[#6E7D55]/25 border border-[#C99A5C]/40 p-8 flex flex-col justify-center text-center shadow-[0_0_30px_rgba(181,105,63,0.2)] backface-hidden backdrop-blur-xl"
+                    className="absolute inset-0 rounded-3xl bg-gradient-to-br from-blue-500/20 to-cyan-500/20 border border-blue-500/40 p-8 flex flex-col justify-center text-center shadow-[0_0_30px_rgba(59,130,246,0.2)] backface-hidden backdrop-blur-xl"
                     style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
                   >
-                    <p className="painted-body text-base md:text-lg leading-relaxed">
+                    <p className="painted-body text-base md:text-lg leading-relaxed text-white">
                       {faq.answer}
                     </p>
                   </div>

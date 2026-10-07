@@ -5,7 +5,8 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { ease } from "@/lib/constants";
 
 const fresherNodes = [
-  { name: "WEEK 1", domain: "Environment Setup", stack: "Codebase Tour", color: "#ff6600" },
+  { name: "WEEK 1", domain: "Environment Setup", stack: "
+    Codebase Tour", color: "#ff6600" },
   { name: "WEEK 2", domain: "First Bug Fix", stack: "Pair Programming", color: "#ff6600" },
   { name: "WEEK 3", domain: "Feature Dev", stack: "Code Reviews", color: "#ff6600" },
   { name: "MONTH 1", domain: "Core Contributor", stack: "Independence", color: "#ff6600" },

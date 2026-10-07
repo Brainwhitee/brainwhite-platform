@@ -1,0 +1,189 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #0a0a0a;
+  --muted: #6b6b6b;
+  --border: #e5e5e5;
+  --accent: #0a0a0a;
+
+  /* ---- Deep Tech Palette (Modern Dark) ---- */
+  --tech-bg: #000000;
+  --tech-surface: #0a0a0a;
+  --tech-surface-hover: #111111;
+  --tech-border: rgba(255, 255, 255, 0.1);
+  --tech-primary: #3b82f6;
+  --tech-primary-glow: rgba(59, 130, 246, 0.5);
+  --tech-text: #ffffff;
+  --tech-text-muted: #a1a1aa;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-general: var(--font-general);
+  --font-serif: var(--font-serif);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #000000;
+    --foreground: #ffffff;
+    --muted: #a3a3a3;
+    --border: #262626;
+    --accent: #ffffff;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--tech-bg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  background: var(--tech-bg);
+  color: var(--tech-text);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .font-display {
+    font-family: var(--font-sans), system-ui, sans-serif;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  /* ============================================================
+     DEEP TECH THEME
+     ============================================================ */
+
+  .painted-section {
+    position: relative;
+    background: var(--tech-bg);
+    color: var(--tech-text);
+    overflow: hidden;
+  }
+
+  .painted-paper {
+    position: relative;
+    z-index: 2;
+    background: var(--tech-surface);
+    border-radius: inherit;
+    border-top: 1px solid var(--tech-border);
+  }
+
+  .painted-heading {
+    font-family: var(--font-sans), sans-serif;
+    font-weight: 600;
+    color: var(--tech-text);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+  }
+
+  .painted-heading .painted-accent {
+    color: var(--tech-primary);
+  }
+
+  .painted-rule {
+    height: 1px;
+    width: 100px;
+    background: linear-gradient(
+      90deg,
+      var(--tech-primary) 0%,
+      transparent 100%
+    );
+    margin: 1.5rem 0;
+  }
+
+  .painted-body {
+    font-family: var(--font-sans), system-ui, sans-serif;
+    color: var(--tech-text-muted);
+    line-height: 1.6;
+    font-weight: 400;
+  }
+
+  .painted-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-sans), sans-serif;
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: #ffffff;
+    background: #ffffff;
+    color: #000000;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    box-shadow: 0 0 20px rgba(255,255,255,0.1);
+    transition: all 0.2s ease;
+  }
+
+  .painted-cta:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 0 25px rgba(255,255,255,0.2);
+    background: #f0f0f0;
+  }
+
+  .painted-cta:active {
+    transform: translateY(0);
+  }
+
+  .painted-card {
+    background: var(--tech-surface);
+    border: 1px solid var(--tech-border);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  }
+
+  .painted-section-dark {
+    position: relative;
+    background: #000000;
+    color: #ffffff;
+    overflow: hidden;
+  }
+
+  .painted-section-dark .painted-heading {
+    color: #ffffff;
+  }
+
+  .painted-section-dark .painted-body {
+    color: #a1a1aa;
+  }
+
+  .painted-section-dark .painted-rule {
+    background: linear-gradient(90deg, #3b82f6 0%, transparent 100%);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .painted-cta {
+      transition: none;
+    }
+  }
+}

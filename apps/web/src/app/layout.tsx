@@ -94,7 +94,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className="min-h-screen bg-white text-[var(--foreground)] font-display"
+        className="min-h-screen bg-black text-white font-display"
       >
         {children}
       </body>

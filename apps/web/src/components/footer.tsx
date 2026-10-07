@@ -22,10 +22,10 @@ export function Footer() {
       </div>
 
       <div className="max-w-7xl mx-auto w-full mt-auto">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 border-t border-[#C99A5C]/20 pt-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 border-t border-blue-500/20 pt-12">
 
           <div className="md:col-span-2">
-            <Link href="/" className="font-display font-bold text-2xl tracking-tighter hover:text-[#F3E9D6]/80 transition-colors">
+            <Link href="/" className="font-display font-bold text-2xl tracking-tighter hover:text-white/80 transition-colors">
               brainwhite.
             </Link>
             <p className="painted-body mt-4 max-w-sm">
@@ -34,26 +34,26 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4 text-[#F3E9D6]">Product</h4>
+            <h4 className="font-semibold mb-4 text-white">Product</h4>
             <ul className="space-y-3 painted-body text-sm">
-              <li><Link href="/how-it-works" className="hover:text-[#F3E9D6] transition-colors">How It Works</Link></li>
-              <li><Link href="/solutions" className="hover:text-[#F3E9D6] transition-colors">Solutions</Link></li>
-              <li><Link href="/pricing" className="hover:text-[#F3E9D6] transition-colors">Pricing</Link></li>
+              <li><Link href="/how-it-works" className="hover:text-white transition-colors">How It Works</Link></li>
+              <li><Link href="/solutions" className="hover:text-white transition-colors">Solutions</Link></li>
+              <li><Link href="/pricing" className="hover:text-white transition-colors">Pricing</Link></li>
             </ul>
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4 text-[#F3E9D6]">Company</h4>
+            <h4 className="font-semibold mb-4 text-white">Company</h4>
             <ul className="space-y-3 painted-body text-sm">
-              <li><Link href="/about" className="hover:text-[#F3E9D6] transition-colors">About</Link></li>
-              <li><Link href="/contact" className="hover:text-[#F3E9D6] transition-colors">Contact</Link></li>
-              <li><a href="mailto:hello@brainwhite.io" className="hover:text-[#F3E9D6] transition-colors">hello@brainwhite.io</a></li>
+              <li><Link href="/about" className="hover:text-white transition-colors">About</Link></li>
+              <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
+              <li><a href="mailto:hello@brainwhite.io" className="hover:text-white transition-colors">hello@brainwhite.io</a></li>
             </ul>
           </div>
 
         </div>
 
-        <div className="border-t border-[#C99A5C]/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center text-xs painted-body">
+        <div className="border-t border-blue-500/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center text-xs painted-body">
           <p>© 2026 brainwhite. All rights reserved.</p>
         </div>
       </div>
