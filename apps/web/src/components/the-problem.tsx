@@ -1,8 +1,8 @@
 "use client";
 
 import { StickyScroll } from "./ui/sticky-scroll";
-
 import { motion } from "framer-motion";
+import { HaikeiBackground } from "./ui/haikei-background";
 
 const problemContent = [
   {
@@ -76,7 +76,7 @@ const problemContent = [
         {/* Chroma Theme Window */}
         <div className="relative z-10 w-4/5 max-w-sm border border-white/10 bg-[#0a0a0a]/80 backdrop-blur-xl rounded-xl shadow-2xl overflow-hidden flex flex-col font-mono text-xs">
           <div className="flex items-center gap-2 px-3 py-2 border-b border-white/5 bg-white/5">
-            <span className="text-white/70">Slack • #engineering</span>
+            <span className="text-white/70">Slack — #engineering</span>
           </div>
           <div className="p-4 space-y-3">
             <div className="flex gap-2">
@@ -133,19 +133,22 @@ const problemContent = [
 
 export function TheProblem() {
   return (
-    <section className="painted-section painted-paper py-24 md:py-32 w-full relative z-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 mb-16 md:mb-24">
+    <section className="py-24 md:py-32 w-full relative z-20 overflow-hidden bg-black/40 border-y border-white/5">
+      <HaikeiBackground />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 mb-16 md:mb-24 relative z-10">
         <div className="max-w-3xl">
-          <h2 className="painted-heading text-3xl sm:text-4xl md:text-5xl mb-6" style={{ lineHeight: 1.15 }}>
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-b from-white to-white/40 mb-6" style={{ lineHeight: 1.15 }}>
             Onboarding shouldn't run on your best engineer's patience
           </h2>
-          <p className="painted-body text-lg md:text-xl leading-relaxed">
+          <p className="text-lg md:text-xl text-zinc-400 font-light leading-relaxed">
             Every developer who joins your team — or moves onto a new project — has to learn two things at once: how the company works, and how this specific codebase works.
           </p>
         </div>
       </div>
 
-      <StickyScroll content={problemContent} />
+      <div className="relative z-10">
+        <StickyScroll content={problemContent} />
+      </div>
     </section>
   );
 }

@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
+import { Magnetic } from "@/components/ui/magnetic";
 import { validateForm, validateEmail, companySizes, placementsPerYear, type WaitlistFormData } from "@/lib/utils";
 import { ease } from "@/lib/constants";
 
@@ -158,9 +159,11 @@ export function Waitlist() {
                 />
               </div>
 
-              <Button type="submit" size="lg" className="w-full" isLoading={submitStatus === "loading"}>
-                Join the waitlist →
-              </Button>
+              <Magnetic intensity={0.1}>
+                <Button type="submit" size="lg" className="w-full" isLoading={submitStatus === "loading"}>
+                  Join the waitlist ➔
+                </Button>
+              </Magnetic>
 
               <p className="text-xs text-[var(--muted)] text-center">
                 By submitting, you agree to receive updates from Brainwhite. No spam. Unsubscribe anytime.

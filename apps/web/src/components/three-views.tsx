@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Code2, BarChart, ShieldCheck } from "lucide-react";
 import { cn } from "@/lib/utils";
+import ConstellationGrid from "./ui/constellation-grid";
 
 const views = [
   {
@@ -136,13 +137,16 @@ export function ThreeViews() {
   const activeView = views.find((v) => v.id === activeTab) || views[0];
 
   return (
-    <section className="painted-section-dark py-24 md:py-32 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10">
+    <section className="py-24 md:py-32 relative overflow-hidden bg-black border-y border-white/5">
+      <div className="absolute inset-0 z-0 opacity-40">
+        <ConstellationGrid />
+      </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="painted-heading text-3xl sm:text-4xl md:text-5xl mb-6">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-b from-white to-white/40 mb-6">
             One platform, three views
           </h2>
-          <p className="painted-body text-lg">
+          <p className="text-lg md:text-xl text-zinc-400 font-light leading-relaxed">
             Built for everyone involved in getting a new hire up to speed.
           </p>
         </div>
@@ -186,7 +190,7 @@ export function ThreeViews() {
                       transition={{ duration: 0.3 }}
                       className="overflow-hidden"
                     >
-                      <p className="painted-body text-sm mt-2 leading-relaxed">
+                      <p className="text-sm text-zinc-400 mt-2 leading-relaxed font-light">
                         {view.description}
                       </p>
                     </motion.div>
