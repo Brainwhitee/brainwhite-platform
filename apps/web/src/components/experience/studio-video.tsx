@@ -32,7 +32,8 @@ export function StudioVideo() {
       <div className="sticky top-0 h-screen w-full flex items-center justify-center z-10 overflow-hidden perspective-[1000px]">
         <motion.div 
           style={{ scale: scaleArtwork }}
-          className="relative w-[80vw] md:w-[60vw] max-w-5xl aspect-[16/9] flex items-center justify-center"
+          className="relative w-[80vw] md:w-[60vw] max-w-5xl aspect-[16/9] flex items-center justify-center cursor-pointer"
+          data-cursor="sound"
         >
           {/* Main Video */}
           <video 

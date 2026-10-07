@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
 
@@ -29,16 +29,28 @@ const WORKS = [
 
 export function Works() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  const letterY = useTransform(scrollYProgress, [0, 1], [100, -100]);
 
   return (
-    <section className="relative w-full bg-[#050505] text-white py-32 px-6 md:px-10 z-10">
+    <section ref={containerRef} className="relative w-full bg-[#050505] text-white py-32 px-6 md:px-10 z-10">
       
       {/* Background massive "WORKS" text */}
       <div className="absolute top-0 left-0 w-full overflow-hidden pointer-events-none opacity-[0.03] select-none flex justify-between px-6 pt-10">
         {"FEATURES".split("").map((letter, i) => (
-          <span key={i} className="text-[25vw] leading-[0.8] font-bold uppercase">
+          <motion.span 
+            key={i} 
+            style={{ y: letterY }}
+            className="text-[25vw] leading-[0.8] font-bold uppercase"
+          >
             {letter}
-          </span>
+          </motion.span>
         ))}
       </div>
 
@@ -55,6 +67,7 @@ export function Works() {
           <div 
             key={i}
             className="group relative flex flex-col md:flex-row md:items-center justify-between py-10 md:py-16 border-b border-white/10 cursor-pointer overflow-hidden"
+            data-cursor="explore"
             onMouseEnter={() => setHoveredIndex(i)}
             onMouseLeave={() => setHoveredIndex(null)}
           >
@@ -80,8 +93,8 @@ export function Works() {
               </p>
             </div>
 
-            {/* Animated Explore Cursor/Button */}
-            <div className="relative z-10 mt-8 md:mt-0 opacity-0 md:-translate-x-10 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 ease-[0.16,1,0.3,1]">
+            {/* Animated Explore Cursor/Button (Fallback for mobile) */}
+            <div className="relative z-10 mt-8 md:mt-0 md:hidden">
               <div className="flex items-center gap-3 bg-white text-black px-6 py-3 rounded-full">
                 <span className="text-sm font-mono uppercase tracking-widest">explore</span>
                 <ArrowRight className="w-4 h-4" />
