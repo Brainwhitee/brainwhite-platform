@@ -3,6 +3,7 @@ import { Hero } from "@/components/experience/hero";
 import { Menu } from "@/components/experience/Menu";
 import { ScrollingText } from "@/components/experience/scrolling-text";
 import { Showreel } from "@/components/experience/showreel";
+import { DeveloperMetrics } from "@/components/experience/developer-metrics";
 import { Works } from "@/components/experience/works";
 import { StudioVideo } from "@/components/experience/studio-video";
 import { StudioInfo } from "@/components/experience/studio-info";
@@ -18,6 +19,7 @@ export default function Home() {
       <Hero />
       <ScrollingText />
       <Showreel />
+      <DeveloperMetrics />
       <Works />
       <StudioVideo />
       <StudioInfo />
