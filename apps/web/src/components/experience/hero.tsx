@@ -72,15 +72,7 @@ export function Hero() {
             </motion.a>
           </div>
 
-          {/* Top Right: Menu Trigger */}
-          <motion.button 
-            initial={{ opacity: 0, x: 10 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.3, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-sm md:text-base font-bold uppercase tracking-widest hover:opacity-50 transition-opacity"
-          >
-            Menu ::
-          </motion.button>
+        {/* Top Right: Menu component handles the trigger globally */}
         </div>
 
 
