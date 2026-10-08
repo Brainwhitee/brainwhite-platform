@@ -1,153 +1,160 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useRef } from "react";
-
-// The inner content component so we can render it exactly the same on both layers
-function HeroContent({ isVideoLayer }: { isVideoLayer: boolean }) {
-  return (
-    <div className={`relative flex flex-col justify-between h-full w-full px-6 py-8 md:px-10 md:py-12 pointer-events-none ${isVideoLayer ? 'text-white' : 'text-black'}`}>
-      
-      {/* Top Spacer for Navbar */}
-      <div className="h-20" />
-
-      {/* Top/Middle Text & Button */}
-      <div className="flex flex-col items-start mt-[10vh] md:mt-[20vh] max-w-xl pointer-events-auto">
-        <div className="text-[1.3rem] md:text-[2rem] leading-[1.1] font-light tracking-tight mb-8 overflow-hidden">
-          <motion.div 
-            initial={{ y: "100%" }}
-            animate={{ y: 0 }}
-            transition={{ delay: 1.5, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          >
-            Not just a tool, a readiness platform.
-          </motion.div>
-          <motion.div 
-            initial={{ y: "100%" }}
-            animate={{ y: 0 }}
-            transition={{ delay: 1.6, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          >
-            Because BrainWhite is Everything.
-          </motion.div>
-        </div>
-        
-        <motion.a 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2, duration: 1 }}
-          href="#" 
-          className="group inline-flex items-center gap-4 bg-transparent transition-colors duration-500 rounded-full overflow-hidden"
-        >
-          {/* Button Styling based on which layer it's on */}
-          <div className={`flex items-center gap-6 backdrop-blur-sm transition-colors duration-500 rounded-full px-8 py-4 border ${
-            isVideoLayer 
-              ? 'bg-white/10 group-hover:bg-white border-white/20 group-hover:border-white text-white group-hover:text-black' 
-              : 'bg-black/5 group-hover:bg-black border-black/10 group-hover:border-black text-black group-hover:text-white'
-          }`}>
-            <span className="text-xs md:text-sm uppercase tracking-widest font-mono transition-colors duration-500">
-              book a demo
-            </span>
-            <div className="relative flex items-center justify-center w-8 overflow-hidden">
-              <div className={`w-4 h-[1.5px] transition-all duration-500 ease-out absolute left-0 group-hover:w-6 ${isVideoLayer ? 'bg-white group-hover:bg-black' : 'bg-black group-hover:bg-white'}`} />
-              <div className={`w-2 h-2 border-t-[1.5px] border-r-[1.5px] rotate-45 transition-all duration-500 ease-out absolute left-[14px] group-hover:left-[22px] ${isVideoLayer ? 'border-white group-hover:border-black' : 'border-black group-hover:border-white'}`} />
-            </div>
-          </div>
-        </motion.a>
-      </div>
-
-      {/* Bottom Giant Title & Links */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between w-full pb-4 pointer-events-auto">
-        <motion.h1 
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.5, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="text-[10vw] md:text-[7vw] leading-[0.85] font-medium tracking-tighter uppercase mb-6 md:mb-0"
-        >
-          B2B Onboarding <br /> Platform
-        </motion.h1>
-
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 1 }}
-          className="flex items-center gap-6 text-xs md:text-sm font-mono uppercase tracking-widest"
-        >
-          <a href="#" className="hover:opacity-50 transition-opacity">LKDN</a>
-          <span className="opacity-30">/</span>
-          <a href="#" className="hover:opacity-50 transition-opacity">X.COM</a>
-          <span className="opacity-30">/</span>
-          <a href="#" className="hover:opacity-50 transition-opacity">EN</a>
-        </motion.div>
-      </div>
-    </div>
-  );
-}
+import { ArrowUpRight } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 export function Hero() {
-  const heroRef = useRef<HTMLElement>(null);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const badgeRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!heroRef.current) return;
-      const rect = heroRef.current.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      // We pass the coordinates to both layers to ensure masks line up perfectly if needed
-      heroRef.current.style.setProperty("--x", `${x}px`);
-      heroRef.current.style.setProperty("--y", `${y}px`);
-    };
+  // Subtle magnetic effect for the bottom right badge
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!badgeRef.current) return;
+    const rect = badgeRef.current.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    const distanceX = e.clientX - centerX;
+    const distanceY = e.clientY - centerY;
     
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
+    // Max magnetic pull distance
+    if (Math.abs(distanceX) < 100 && Math.abs(distanceY) < 100) {
+      setMousePos({ x: distanceX * 0.3, y: distanceY * 0.3 });
+    } else {
+      setMousePos({ x: 0, y: 0 });
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setMousePos({ x: 0, y: 0 });
+  };
 
   return (
     <section 
-      ref={heroRef}
-      className="relative h-[100dvh] w-full overflow-hidden bg-black group cursor-none"
+      className="relative h-[100dvh] w-full bg-white text-black overflow-hidden flex flex-col justify-between p-6 md:p-8"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
     >
-      {/* ======================================================== */}
-      {/* LAYER 1: BOTTOM (VIDEO LAYER) */}
-      {/* This layer is always present in the background. */}
-      {/* ======================================================== */}
-      <div className="absolute inset-0 z-0 flex flex-col items-center justify-center pointer-events-auto">
-        <video 
-          src="https://noth-in.b-cdn.net/nothin-sharp-high.mp4" 
-          autoPlay 
-          loop 
-          muted 
-          playsInline 
-          crossOrigin="anonymous" 
-          className="absolute inset-0 w-full h-full object-cover opacity-90"
-        />
-        {/* Dark overlay over video so white text is legible */}
-        <div className="absolute inset-0 bg-black/30 mix-blend-multiply" />
+      {/* ==================== TOP BAR ==================== */}
+      <div className="flex justify-between items-start w-full relative z-20">
         
-        {/* The White Text Content on top of the video */}
-        <div className="absolute inset-0 z-10">
-          <HeroContent isVideoLayer={true} />
+        {/* Top Left: Meta String & CTA */}
+        <div className="flex flex-col items-start gap-8">
+          <motion.div 
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="text-sm md:text-base font-medium tracking-tight leading-tight"
+          >
+            Not just a tool, a readiness platform.<br/>
+            Because BrainWhite is Everything.
+          </motion.div>
+
+          <motion.a 
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.4, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            href="#" 
+            className="group relative inline-flex items-center justify-center bg-black text-white px-6 py-3 rounded-full overflow-hidden hover:scale-105 transition-transform duration-300 ease-out"
+          >
+            <span className="relative z-10 text-xs md:text-sm font-bold uppercase tracking-widest">
+              Book a demo
+            </span>
+          </motion.a>
         </div>
+
+        {/* Top Right: Menu Trigger */}
+        <motion.button 
+          initial={{ opacity: 0, x: 10 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.3, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          className="text-sm md:text-base font-bold uppercase tracking-widest hover:opacity-50 transition-opacity"
+        >
+          Menu ::
+        </motion.button>
       </div>
 
 
-      {/* ======================================================== */}
-      {/* LAYER 2: TOP (WHITE LAYER) */}
-      {/* This layer is solid white with black text. */}
-      {/* It uses a mask-image to become TRANSPARENT around the cursor, revealing Layer 1 beneath it! */}
-      {/* ======================================================== */}
-      <div 
-        className="absolute inset-0 z-10 bg-white pointer-events-none transition-opacity duration-100 ease-out"
-        style={{
-          // Transparent at cursor (reveals video), black (opaque) everywhere else (shows white background)
-          WebkitMaskImage: "radial-gradient(circle 25vw at var(--x, 50%) var(--y, 50%), transparent 0%, black 100%)",
-          maskImage: "radial-gradient(circle 25vw at var(--x, 50%) var(--y, 50%), transparent 0%, black 100%)"
-        }}
-      >
-        {/* The Black Text Content on top of the white background */}
-        <div className="absolute inset-0 z-10">
-          <HeroContent isVideoLayer={false} />
+      {/* ==================== HERO CENTERPIECE ==================== */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+        <h1 
+          className="font-black uppercase tracking-tighter text-black overflow-hidden leading-[0.8] text-center w-full"
+          style={{ fontSize: "clamp(4rem, 15vw, 18rem)" }}
+        >
+          {"BRAINWHITE".split("").map((char, index) => (
+            <motion.span
+              key={index}
+              initial={{ y: "110%" }}
+              animate={{ y: 0 }}
+              transition={{
+                delay: 0.5 + index * 0.05,
+                duration: 1.2,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              className="inline-block"
+            >
+              {char}
+            </motion.span>
+          ))}
+        </h1>
+      </div>
+
+
+      {/* ==================== BOTTOM NAVIGATION ==================== */}
+      <div className="flex flex-col md:flex-row justify-between items-end w-full relative z-20 pb-2">
+        
+        {/* Bottom Left: Tracking Text */}
+        <motion.div 
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          className="text-xs md:text-sm font-medium tracking-tight uppercase max-w-[200px] leading-snug mb-8 md:mb-0"
+        >
+          Onboarding for<br/>
+          Client-Facing<br/>
+          Engineering Teams
+        </motion.div>
+
+        {/* Bottom Right: Links & Badge */}
+        <div className="flex items-end gap-12">
+          
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.2, duration: 1 }}
+            className="flex items-center gap-4 text-xs font-bold uppercase tracking-widest"
+          >
+            <a href="#" className="relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:bg-black after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left">LKDN</a>
+            <span className="opacity-30">/</span>
+            <a href="#" className="relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:bg-black after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left">X.COM</a>
+            <span className="opacity-30">/</span>
+            <a href="#" className="relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:bg-black after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left">EN</a>
+          </motion.div>
+
+          <motion.div 
+            ref={badgeRef}
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 1.4, duration: 1, type: "spring", bounce: 0.4 }}
+            className="relative hidden md:flex items-center justify-center w-24 h-24 bg-black text-white rounded-full cursor-pointer hover:bg-neutral-900 transition-colors"
+            style={{ 
+              x: mousePos.x, 
+              y: mousePos.y 
+            }}
+          >
+            <span className="text-[10px] font-bold uppercase tracking-widest absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center">
+              Explore
+            </span>
+            {/* Spinning decorative border */}
+            <motion.div 
+              animate={{ rotate: 360 }}
+              transition={{ repeat: Infinity, duration: 10, ease: "linear" }}
+              className="absolute inset-2 border border-dashed border-white/30 rounded-full pointer-events-none"
+            />
+          </motion.div>
+
         </div>
       </div>
-      
     </section>
   );
 }
