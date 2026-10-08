@@ -7,10 +7,13 @@ import ScanlineBloom from "@/components/ui/scanline-bloom";
 
 export function Hero() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [cursorPos, setCursorPos] = useState({ x: -1000, y: -1000 });
   const badgeRef = useRef<HTMLDivElement>(null);
 
   // Subtle magnetic effect for the bottom right badge
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    setCursorPos({ x: e.clientX, y: e.clientY });
+
     if (!badgeRef.current) return;
     const rect = badgeRef.current.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
@@ -28,6 +31,7 @@ export function Hero() {
 
   const handleMouseLeave = () => {
     setMousePos({ x: 0, y: 0 });
+    setCursorPos({ x: -1000, y: -1000 });
   };
 
   return (
@@ -41,10 +45,16 @@ export function Hero() {
         <ScanlineBloom ink="#ff3333" highlight="#ff8888" background="#000000" />
       </div>
 
-      {/* ==================== CONTENT LAYER (STENCIL MASK) ==================== */}
-      {/* We use bg-white text-black with mix-blend-screen over the black-backed WebGL canvas.
-          White areas stay white. Black text becomes a transparent window revealing the WebGL colors beneath! */}
-      <div className="absolute inset-0 z-10 flex flex-col justify-between p-6 md:p-8 bg-white mix-blend-screen text-black pointer-events-none">
+      {/* ==================== CONTENT LAYER (STENCIL MASK & SPOTLIGHT) ==================== */}
+      {/* We use mix-blend-screen with a dynamic radial gradient. 
+          Black areas become transparent windows revealing the WebGL colors beneath.
+          White areas stay opaque white. */}
+      <div 
+        className="absolute inset-0 z-10 flex flex-col justify-between p-6 md:p-8 mix-blend-screen text-black pointer-events-none"
+        style={{
+          background: `radial-gradient(circle 400px at ${cursorPos.x}px ${cursorPos.y}px, rgba(0,0,0,1) 0%, rgba(255,255,255,1) 100%)`
+        }}
+      >
         
         {/* ==================== TOP BAR ==================== */}
         <div className="flex justify-between items-start w-full relative z-20">
