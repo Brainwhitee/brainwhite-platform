@@ -45,16 +45,56 @@ export function Hero() {
         <ScanlineBloom ink="#ff3333" highlight="#ff8888" background="#000000" />
       </div>
 
+      {/* GOOEY FILTER DEFINITION */}
+      <svg className="hidden">
+        <filter id="goo">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur" />
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -11" result="goo" />
+        </filter>
+      </svg>
+
       {/* ==================== CONTENT LAYER (STENCIL MASK & SPOTLIGHT) ==================== */}
-      {/* We use mix-blend-screen with a dynamic radial gradient. 
-          Black areas become transparent windows revealing the WebGL colors beneath.
-          White areas stay opaque white. */}
-      <div 
-        className="absolute inset-0 z-10 flex flex-col justify-between p-6 md:p-8 mix-blend-screen text-black pointer-events-none"
-        style={{
-          background: `radial-gradient(circle 400px at ${cursorPos.x}px ${cursorPos.y}px, rgba(0,0,0,1) 0%, rgba(255,255,255,1) 100%)`
-        }}
-      >
+      {/* We use mix-blend-screen. The solid white bg hides the flowers.
+          The gooey black blobs become transparent windows revealing the WebGL colors beneath. */}
+      <div className="absolute inset-0 z-10 mix-blend-screen pointer-events-none">
+        
+        {/* Solid White Base */}
+        <div className="absolute inset-0 bg-white z-0" />
+
+        {/* Liquid Cursor Reveal Layer */}
+        <div className="absolute inset-0 z-10" style={{ filter: "url(#goo)" }}>
+          {/* Main Wobbling Blob */}
+          <motion.div 
+            className="absolute top-0 left-0"
+            animate={{ x: cursorPos.x, y: cursorPos.y }}
+            transition={{ type: "spring", stiffness: 150, damping: 20, mass: 0.1 }}
+          >
+            <motion.div 
+              className="w-32 h-28 bg-black -ml-16 -mt-14"
+              style={{ borderRadius: "40% 60% 70% 30%" }}
+              animate={{ rotate: 360 }}
+              transition={{ repeat: Infinity, duration: 5, ease: "linear" }}
+            />
+          </motion.div>
+          {/* Trailing Blob 1 */}
+          <motion.div 
+            className="absolute top-0 left-0"
+            animate={{ x: cursorPos.x, y: cursorPos.y }}
+            transition={{ type: "spring", stiffness: 100, damping: 25, mass: 0.4 }}
+          >
+            <div className="w-20 h-20 bg-black rounded-full -ml-10 -mt-10" />
+          </motion.div>
+          {/* Trailing Blob 2 */}
+          <motion.div 
+            className="absolute top-0 left-0"
+            animate={{ x: cursorPos.x, y: cursorPos.y }}
+            transition={{ type: "spring", stiffness: 60, damping: 30, mass: 0.8 }}
+          >
+            <div className="w-12 h-12 bg-black rounded-full -ml-6 -mt-6" />
+          </motion.div>
+        </div>
+
+        <div className="relative z-20 flex flex-col justify-between p-6 md:p-8 h-full w-full text-black">
         
         {/* ==================== TOP BAR ==================== */}
         <div className="flex justify-between items-start w-full relative z-20">
