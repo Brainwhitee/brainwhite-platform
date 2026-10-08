@@ -2,7 +2,7 @@ import { Preloader } from "@/components/experience/preloader";
 import { Hero } from "@/components/experience/hero";
 import { Menu } from "@/components/experience/Menu";
 import { ScrollingText } from "@/components/experience/scrolling-text";
-import { Showreel } from "@/components/experience/showreel";
+import { VideoScrubSection } from "@/components/experience/video-scrub-section";
 import { DeveloperMetrics } from "@/components/experience/developer-metrics";
 import { Works } from "@/components/experience/works";
 import { StudioVideo } from "@/components/experience/studio-video";
@@ -18,7 +18,7 @@ export default function Home() {
       {/* Noth.in style clone architecture */}
       <Hero />
       <ScrollingText />
-      <Showreel />
+      <VideoScrubSection />
       <DeveloperMetrics />
       <Works />
       <StudioVideo />
