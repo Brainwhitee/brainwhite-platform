@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { HeroLiquidCanvas } from "./HeroLiquidCanvas";
+import ScanlineBloom from "@/components/ui/scanline-bloom";
 
 export function Hero() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -37,12 +37,14 @@ export function Hero() {
       onMouseLeave={handleMouseLeave}
     >
       {/* ==================== WEBGL BACKGROUND ==================== */}
-      <HeroLiquidCanvas />
+      <div className="absolute inset-0 z-0 bg-black">
+        <ScanlineBloom ink="#ffffff" background="#000000" />
+      </div>
 
       {/* ==================== CONTENT LAYER (STENCIL MASK) ==================== */}
       {/* We use bg-white text-black with mix-blend-screen over the black-backed WebGL canvas.
           White areas stay white. Black text becomes a transparent window revealing the WebGL colors beneath! */}
-      <div className="absolute inset-0 z-10 flex flex-col justify-between p-6 md:p-8 bg-white mix-blend-screen text-black pointer-events-auto">
+      <div className="absolute inset-0 z-10 flex flex-col justify-between p-6 md:p-8 bg-white mix-blend-screen text-black pointer-events-none">
         
         {/* ==================== TOP BAR ==================== */}
         <div className="flex justify-between items-start w-full relative z-20">
@@ -64,7 +66,7 @@ export function Hero() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.4, duration: 1, ease: [0.16, 1, 0.3, 1] }}
               href="#" 
-              className="group relative inline-flex items-center justify-center bg-black text-white px-6 py-3 rounded-full overflow-hidden hover:scale-105 transition-transform duration-300 ease-out"
+              className="group relative inline-flex items-center justify-center bg-black text-white px-6 py-3 rounded-full overflow-hidden hover:scale-105 transition-transform duration-300 ease-out pointer-events-auto"
             >
               <span className="relative z-10 text-xs md:text-sm font-bold uppercase tracking-widest">
                 Book a demo
@@ -123,7 +125,7 @@ export function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.2, duration: 1 }}
-              className="flex items-center gap-4 text-xs font-bold uppercase tracking-widest"
+              className="flex items-center gap-4 text-xs font-bold uppercase tracking-widest pointer-events-auto"
             >
               <a href="#" className="relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:bg-black after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-left">LKDN</a>
               <span className="opacity-30">/</span>
