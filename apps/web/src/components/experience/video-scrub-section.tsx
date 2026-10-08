@@ -58,7 +58,7 @@ export function VideoScrubSection() {
                 To use your video, download it from Google Drive and place it in the `public/` folder, then change src to "/your-video.mp4" */}
             <video
               ref={videoRef}
-              src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4" 
+              src="/Brainwhitev1.mp4" 
               className="w-full h-full object-cover pointer-events-auto"
               muted
               playsInline
