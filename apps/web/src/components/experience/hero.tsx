@@ -70,7 +70,7 @@ export function Hero() {
             transition={{ type: "spring", stiffness: 150, damping: 20, mass: 0.1 }}
           >
             <motion.div 
-              className="w-32 h-28 bg-black -ml-16 -mt-14"
+              className="w-48 h-40 bg-black -ml-24 -mt-20"
               style={{ borderRadius: "40% 60% 70% 30%" }}
               animate={{ rotate: 360 }}
               transition={{ repeat: Infinity, duration: 5, ease: "linear" }}
@@ -82,7 +82,7 @@ export function Hero() {
             animate={{ x: cursorPos.x, y: cursorPos.y }}
             transition={{ type: "spring", stiffness: 100, damping: 25, mass: 0.4 }}
           >
-            <div className="w-20 h-20 bg-black rounded-full -ml-10 -mt-10" />
+            <div className="w-28 h-28 bg-black rounded-full -ml-14 -mt-14" />
           </motion.div>
           {/* Trailing Blob 2 */}
           <motion.div 
@@ -90,7 +90,7 @@ export function Hero() {
             animate={{ x: cursorPos.x, y: cursorPos.y }}
             transition={{ type: "spring", stiffness: 60, damping: 30, mass: 0.8 }}
           >
-            <div className="w-12 h-12 bg-black rounded-full -ml-6 -mt-6" />
+            <div className="w-16 h-16 bg-black rounded-full -ml-8 -mt-8" />
           </motion.div>
         </div>
 
