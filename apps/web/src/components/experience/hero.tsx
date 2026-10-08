@@ -37,14 +37,12 @@ export function Hero() {
       onMouseLeave={handleMouseLeave}
     >
       {/* ==================== WEBGL BACKGROUND ==================== */}
-      <div className="absolute inset-0 z-0 bg-black">
-        <ScanlineBloom ink="#ffffff" background="#000000" />
+      <div className="absolute inset-0 z-0 bg-white">
+        <ScanlineBloom ink="#000000" background="#ffffff" />
       </div>
 
-      {/* ==================== CONTENT LAYER (STENCIL MASK) ==================== */}
-      {/* We use bg-white text-black with mix-blend-screen over the black-backed WebGL canvas.
-          White areas stay white. Black text becomes a transparent window revealing the WebGL colors beneath! */}
-      <div className="absolute inset-0 z-10 flex flex-col justify-between p-6 md:p-8 bg-white mix-blend-screen text-black pointer-events-none">
+      {/* ==================== CONTENT LAYER ==================== */}
+      <div className="absolute inset-0 z-10 flex flex-col justify-between p-6 md:p-8 bg-transparent text-black pointer-events-none">
         
         {/* ==================== TOP BAR ==================== */}
         <div className="flex justify-between items-start w-full relative z-20">
