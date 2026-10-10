@@ -24,8 +24,43 @@ export function Hero() {
   const badgeX = useMotionValue(0);
   const badgeY = useMotionValue(0);
 
+  useEffect(() => {
+    let animationFrameId: number;
+    let time = 0;
+    
+    const isMobile = typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches;
+    
+    const animate = () => {
+      if (isMobile && sectionRef.current) {
+        const width = sectionRef.current.clientWidth;
+        const height = sectionRef.current.clientHeight;
+        
+        // Complex Lissajous curve for natural floating
+        const cx = width / 2;
+        const cy = height / 2;
+        const x = cx + Math.sin(time * 0.7) * (width * 0.35);
+        const y = cy + Math.cos(time * 0.5) * (height * 0.25);
+        
+        cursorX.set(x);
+        cursorY.set(y);
+        
+        time += 0.015;
+      }
+      animationFrameId = requestAnimationFrame(animate);
+    };
+    
+    if (isMobile) {
+      animate();
+    }
+    
+    return () => {
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
+    };
+  }, [cursorX, cursorY]);
+
   // Subtle magnetic effect for the bottom right badge
   const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    if (typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches) return;
     if (!sectionRef.current) return;
     const sectionRect = sectionRef.current.getBoundingClientRect();
     const relativeX = e.clientX - sectionRect.left;
@@ -52,6 +87,7 @@ export function Hero() {
   };
 
   const handleMouseLeave = () => {
+    if (typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches) return;
     badgeX.set(0);
     badgeY.set(0);
     cursorX.set(-1000);
