@@ -5,6 +5,7 @@ import { ScrollingText } from "@/components/experience/scrolling-text";
 import { VideoScrubSection } from "@/components/experience/video-scrub-section";
 import { DeveloperMetrics } from "@/components/experience/developer-metrics";
 import { Works } from "@/components/experience/works";
+import WorksWheelDemo from "@/components/works-wheel-demo";
 import { StudioVideo } from "@/components/experience/studio-video";
 import { StudioInfo } from "@/components/experience/studio-info";
 import { ExperienceFooter } from "@/components/experience/footer";
@@ -21,6 +22,10 @@ export default function Home() {
       <VideoScrubSection />
       <DeveloperMetrics />
       <Works />
+      
+      {/* Interactive 3D capabilities wheel for creative display */}
+      <WorksWheelDemo />
+      
       <StudioVideo />
       <StudioInfo />
       <ExperienceFooter />
