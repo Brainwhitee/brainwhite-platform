@@ -16,7 +16,7 @@ export function DeveloperMetrics() {
   return (
     <section 
       ref={containerRef}
-      className="relative min-h-[90vh] w-full bg-white text-black py-24 md:py-32 flex flex-col items-center justify-center overflow-hidden"
+      className="relative min-h-[90vh] w-full bg-white text-black py-12 md:py-32 flex flex-col items-center justify-center overflow-hidden"
     >
       <div className="container mx-auto px-6 md:px-12 flex flex-col items-center max-w-6xl">
         

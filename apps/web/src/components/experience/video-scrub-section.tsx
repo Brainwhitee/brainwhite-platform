@@ -16,14 +16,14 @@ export function VideoScrubSection() {
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.3]);
   const borderRadius = useTransform(scrollYProgress, [0, 1], ["0px", "24px"]);
 
-  // Animate text opacity so it fades in as the video shrinks
-  const textOpacity = useTransform(scrollYProgress, [0, 0.4, 0.8], [0, 0, 1]);
-  const textY = useTransform(scrollYProgress, [0, 0.4, 0.8], [50, 50, 0]);
+  // Animate text opacity so it fades in earlier and stays visible
+  const textOpacity = useTransform(scrollYProgress, [0, 0.2, 0.4], [0, 0, 1]);
+  const textY = useTransform(scrollYProgress, [0, 0.2, 0.4], [50, 50, 0]);
 
 
 
   return (
-    <section ref={containerRef} className="relative h-[120vh] md:h-[250vh] w-full bg-white text-black">
+    <section ref={containerRef} className="relative h-[150vh] md:h-[250vh] w-full bg-white text-black">
       <div className="sticky top-0 h-screen w-full overflow-hidden bg-white">
         
         {/* Background Content (revealed as video shrinks) */}
