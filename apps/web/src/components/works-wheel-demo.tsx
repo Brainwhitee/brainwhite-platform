@@ -79,16 +79,38 @@ const WORKS: WorksWheelItem[] = [
   },
 ];
 
+import { useRef } from "react";
+import { useScroll, useTransform, useMotionValueEvent } from "framer-motion";
+import { useState } from "react";
+
 export default function WorksWheelDemo() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [progress, setProgress] = useState(0);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
+
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    setProgress(latest);
+  });
+
   return (
-    <div className="bg-[#050505] text-white w-full h-[80vh] md:h-screen relative flex items-center justify-center border-y border-white/10">
-      <div className="absolute top-10 left-10 z-10 hidden md:block">
-        <p className="text-sm font-mono tracking-widest uppercase opacity-60">
-          Interactive Capabilities Wheel
-        </p>
+    <div ref={containerRef} className="relative w-full h-[300vh] bg-[#050505]">
+      <div className="sticky top-0 w-full h-screen flex items-center justify-center border-y border-white/10 overflow-hidden">
+        <div className="absolute top-10 left-10 z-10 hidden md:block">
+          <p className="text-sm font-mono tracking-widest uppercase opacity-60">
+            Interactive Capabilities Wheel (Scroll Down)
+          </p>
+        </div>
+        <WorksWheel 
+          items={WORKS} 
+          label="BrainWhite" 
+          action="Explore" 
+          progress={progress} 
+        />
       </div>
-      {/* WorksWheel automatically calculates its dimensions based on this parent wrapper */}
-      <WorksWheel items={WORKS} label="BrainWhite" action="Explore" />
     </div>
   );
 }

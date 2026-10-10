@@ -33,6 +33,8 @@ export interface WorksWheelProps extends Omit<
   label?: string;
   /** Label on the card's hover affordance. Omit to drop it. @default undefined */
   action?: string;
+  /** Optional progress (0 to 1) to externally control the wheel via page scroll */
+  progress?: number;
 }
 
 /* Geometry. The card is measured against the stage; everything else is measured
@@ -105,6 +107,7 @@ export function WorksWheel({
   label = "Works '26",
   action = "View",
   className,
+  progress,
   ...props
 }: WorksWheelProps) {
   const stageRef = React.useRef<HTMLDivElement>(null);
@@ -177,6 +180,12 @@ export function WorksWheel({
 
     const draw = () => {
       frame = requestAnimationFrame(draw);
+      
+      // If progress is provided externally, override the target
+      if (progress !== undefined) {
+        target.current = progress * last;
+      }
+
       const gap = target.current - turn.current;
       if (Math.abs(gap) < 0.0005) turn.current = target.current;
       else turn.current += gap * (reduced ? 1 : EASE);
@@ -236,6 +245,7 @@ export function WorksWheel({
   // cancels while it still has somewhere to go, so the page scrolls on at
   // either end instead of trapping the reader.
   React.useEffect(() => {
+    if (progress !== undefined) return; // disable internal wheel interception if controlled externally
     const el = stageRef.current;
     if (!el) return;
     const onWheel = (event: WheelEvent) => {
@@ -257,7 +267,7 @@ export function WorksWheel({
       el.removeEventListener("wheel", onWheel);
       window.clearTimeout(settling.current);
     };
-  }, [to, last]);
+  }, [to, last, progress]);
 
   const drag = React.useRef<number | null>(null);
   const settling = React.useRef(0);
