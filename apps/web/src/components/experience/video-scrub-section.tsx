@@ -50,7 +50,7 @@ export function VideoScrubSection() {
             <video
               ref={videoRef}
               src="/Brainwhitev1.mp4" 
-              className="w-full h-full object-cover scale-[1.15] translate-y-4 pointer-events-auto"
+              className="w-full h-full object-cover scale-[1.25] md:scale-[1.15] translate-y-6 md:translate-y-4 pointer-events-auto"
               autoPlay
               loop
               muted
