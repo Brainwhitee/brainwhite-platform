@@ -19,7 +19,7 @@ export function ScrollingText() {
   return (
     <section 
       ref={containerRef}
-      className="relative w-full bg-[#050505] text-white py-24 md:py-40 overflow-hidden flex flex-col gap-4 md:gap-8 z-10 border-t border-white/10"
+      className="relative w-full bg-[#050505] text-white py-12 md:py-40 overflow-hidden flex flex-col gap-4 md:gap-8 z-10 border-t border-white/10"
     >
       {/* Row 1 - Moves Left */}
       <motion.div 

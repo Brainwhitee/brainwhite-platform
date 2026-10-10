@@ -23,7 +23,7 @@ export function VideoScrubSection() {
 
 
   return (
-    <section ref={containerRef} className="relative h-[250vh] w-full bg-white text-black">
+    <section ref={containerRef} className="relative h-[120vh] md:h-[250vh] w-full bg-white text-black">
       <div className="sticky top-0 h-screen w-full overflow-hidden bg-white">
         
         {/* Background Content (revealed as video shrinks) */}
