@@ -39,9 +39,9 @@ export function VideoScrubSection() {
         </div>
 
         {/* Video Wrapper */}
-        <div className="absolute inset-0 z-10 p-4 md:p-8 pointer-events-none flex items-end justify-center md:justify-end">
+        <div className="absolute inset-0 z-10 p-4 md:p-8 pointer-events-none flex items-start md:items-end justify-center md:justify-end">
           <motion.div 
-            className="w-full aspect-video md:aspect-auto md:h-full overflow-hidden shadow-2xl bg-black md:origin-bottom-right origin-bottom"
+            className="w-full aspect-video md:aspect-auto md:h-full overflow-hidden shadow-2xl bg-black md:origin-bottom-right origin-top"
             style={{ 
               scale,
               borderRadius
