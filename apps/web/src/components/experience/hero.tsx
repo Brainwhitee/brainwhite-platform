@@ -1,41 +1,66 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import ScanlineBloom from "@/components/ui/scanline-bloom";
 
 export function Hero() {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [cursorPos, setCursorPos] = useState({ x: -1000, y: -1000 });
+  const sectionRef = useRef<HTMLElement>(null);
   const badgeRef = useRef<HTMLDivElement>(null);
+
+  const cursorX = useMotionValue(-1000);
+  const cursorY = useMotionValue(-1000);
+  
+  const blob1X = useSpring(cursorX, { stiffness: 150, damping: 20, mass: 0.1 });
+  const blob1Y = useSpring(cursorY, { stiffness: 150, damping: 20, mass: 0.1 });
+  
+  const blob2X = useSpring(cursorX, { stiffness: 100, damping: 25, mass: 0.4 });
+  const blob2Y = useSpring(cursorY, { stiffness: 100, damping: 25, mass: 0.4 });
+  
+  const blob3X = useSpring(cursorX, { stiffness: 60, damping: 30, mass: 0.8 });
+  const blob3Y = useSpring(cursorY, { stiffness: 60, damping: 30, mass: 0.8 });
+
+  const badgeX = useMotionValue(0);
+  const badgeY = useMotionValue(0);
 
   // Subtle magnetic effect for the bottom right badge
   const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
-    setCursorPos({ x: e.clientX, y: e.clientY });
+    if (!sectionRef.current) return;
+    const sectionRect = sectionRef.current.getBoundingClientRect();
+    const relativeX = e.clientX - sectionRect.left;
+    const relativeY = e.clientY - sectionRect.top;
+
+    cursorX.set(relativeX);
+    cursorY.set(relativeY);
 
     if (!badgeRef.current) return;
-    const rect = badgeRef.current.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
+    const badgeRect = badgeRef.current.getBoundingClientRect();
+    const centerX = badgeRect.left + badgeRect.width / 2;
+    const centerY = badgeRect.top + badgeRect.height / 2;
     const distanceX = e.clientX - centerX;
     const distanceY = e.clientY - centerY;
     
     // Max magnetic pull distance
     if (Math.abs(distanceX) < 100 && Math.abs(distanceY) < 100) {
-      setMousePos({ x: distanceX * 0.3, y: distanceY * 0.3 });
+      badgeX.set(distanceX * 0.3);
+      badgeY.set(distanceY * 0.3);
     } else {
-      setMousePos({ x: 0, y: 0 });
+      badgeX.set(0);
+      badgeY.set(0);
     }
   };
 
   const handleMouseLeave = () => {
-    setMousePos({ x: 0, y: 0 });
-    setCursorPos({ x: -1000, y: -1000 });
+    badgeX.set(0);
+    badgeY.set(0);
+    cursorX.set(-1000);
+    cursorY.set(-1000);
   };
 
   return (
     <section 
+      ref={sectionRef}
       className="relative h-[100dvh] w-full bg-white text-black overflow-hidden flex flex-col justify-between"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
@@ -46,7 +71,7 @@ export function Hero() {
       </div>
 
       {/* GOOEY FILTER DEFINITION */}
-      <svg className="hidden">
+      <svg width="0" height="0" className="absolute" aria-hidden="true">
         <filter id="goo">
           <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur" />
           <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -11" result="goo" />
@@ -66,8 +91,7 @@ export function Hero() {
           {/* Main Wobbling Blob */}
           <motion.div 
             className="absolute top-0 left-0"
-            animate={{ x: cursorPos.x, y: cursorPos.y }}
-            transition={{ type: "spring", stiffness: 150, damping: 20, mass: 0.1 }}
+            style={{ x: blob1X, y: blob1Y }}
           >
             <motion.div 
               className="w-48 h-40 bg-black -ml-24 -mt-20"
@@ -79,16 +103,14 @@ export function Hero() {
           {/* Trailing Blob 1 */}
           <motion.div 
             className="absolute top-0 left-0"
-            animate={{ x: cursorPos.x, y: cursorPos.y }}
-            transition={{ type: "spring", stiffness: 100, damping: 25, mass: 0.4 }}
+            style={{ x: blob2X, y: blob2Y }}
           >
             <div className="w-28 h-28 bg-black rounded-full -ml-14 -mt-14" />
           </motion.div>
           {/* Trailing Blob 2 */}
           <motion.div 
             className="absolute top-0 left-0"
-            animate={{ x: cursorPos.x, y: cursorPos.y }}
-            transition={{ type: "spring", stiffness: 60, damping: 30, mass: 0.8 }}
+            style={{ x: blob3X, y: blob3Y }}
           >
             <div className="w-16 h-16 bg-black rounded-full -ml-8 -mt-8" />
           </motion.div>
@@ -191,8 +213,8 @@ export function Hero() {
               transition={{ delay: 1.4, duration: 1, type: "spring", bounce: 0.4 }}
               className="relative hidden md:flex items-center justify-center w-24 h-24 bg-black text-white rounded-full cursor-pointer hover:bg-neutral-900 transition-colors pointer-events-auto"
               style={{ 
-                x: mousePos.x, 
-                y: mousePos.y 
+                x: badgeX, 
+                y: badgeY 
               }}
             >
               <span className="text-[10px] font-bold uppercase tracking-widest absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center">
