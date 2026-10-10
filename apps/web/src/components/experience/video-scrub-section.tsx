@@ -20,15 +20,10 @@ export function VideoScrubSection() {
   const textOpacity = useTransform(scrollYProgress, [0, 0.4, 0.8], [0, 0, 1]);
   const textY = useTransform(scrollYProgress, [0, 0.4, 0.8], [50, 50, 0]);
 
-  // Sync video time to scroll progress
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    if (videoRef.current && videoRef.current.duration) {
-      videoRef.current.currentTime = latest * videoRef.current.duration;
-    }
-  });
+
 
   return (
-    <section ref={containerRef} className="relative h-[400vh] w-full bg-white text-black">
+    <section ref={containerRef} className="relative h-[250vh] w-full bg-white text-black">
       <div className="sticky top-0 h-screen w-full overflow-hidden bg-white">
         
         {/* Background Content (revealed as video shrinks) */}
@@ -38,28 +33,26 @@ export function VideoScrubSection() {
               Power <br /> In Motion.
             </h2>
             <p className="text-lg md:text-2xl max-w-2xl font-medium tracking-tight">
-              Scrubbing time with your scroll. 
               The platform adapts perfectly as the narrative unfolds.
             </p>
           </motion.div>
         </div>
 
         {/* Video Wrapper */}
-        <div className="absolute inset-0 z-10 p-4 md:p-8 pointer-events-none">
+        <div className="absolute inset-0 z-10 md:p-8 pointer-events-none flex items-end justify-end">
           <motion.div 
-            className="w-full h-full origin-bottom-right overflow-hidden shadow-2xl bg-black"
+            className="w-full h-full overflow-hidden shadow-2xl bg-black md:origin-bottom-right origin-bottom"
             style={{ 
               scale,
               borderRadius
             }}
           >
-            {/* Note to Developer: Google Drive streams do not support the fast byte-range requests required for smooth scrubbing.
-                I'm using a high-quality placeholder that supports HTTP Range requests.
-                To use your video, download it from Google Drive and place it in the `public/` folder, then change src to "/your-video.mp4" */}
             <video
               ref={videoRef}
               src="/Brainwhitev1.mp4" 
-              className="w-full h-full object-cover pointer-events-auto"
+              className="w-full h-full object-cover scale-[1.15] translate-y-4 pointer-events-auto"
+              autoPlay
+              loop
               muted
               playsInline
               preload="auto"
