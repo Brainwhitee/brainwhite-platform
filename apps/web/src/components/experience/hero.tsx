@@ -154,7 +154,7 @@ export function Hero() {
 
 
         {/* ==================== BOTTOM NAVIGATION ==================== */}
-        <div className="flex flex-col md:flex-row justify-between items-end w-full relative z-20 pb-2">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end w-full relative z-20 pb-2 gap-8 md:gap-0">
           
           {/* Bottom Left: Tracking Text */}
           <motion.div 

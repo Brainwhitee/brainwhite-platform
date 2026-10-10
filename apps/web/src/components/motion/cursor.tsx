@@ -17,8 +17,10 @@ export function Cursor() {
   const cursorYSpring = useSpring(cursorY, springConfig);
 
   useEffect(() => {
-    // Hide default cursor
-    document.body.style.cursor = "none";
+    // Hide default cursor only if it's a fine pointer
+    if (window.matchMedia("(pointer: fine)").matches) {
+      document.body.style.cursor = "none";
+    }
     
     const moveCursor = (e: MouseEvent) => {
       cursorX.set(e.clientX);

@@ -42,7 +42,12 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
-    cursor: none; /* We will use a custom cursor */
+  }
+
+  @media (pointer: fine) {
+    body {
+      cursor: none; /* We will use a custom cursor only on desktop */
+    }
   }
 
   /* Lenis smooth scrolling requirement */

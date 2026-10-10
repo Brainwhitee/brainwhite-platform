@@ -104,7 +104,7 @@ export function Works() {
         ))}
       </div>
 
-      <div className="flex justify-between items-end mt-24 pb-12">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end mt-24 pb-12 gap-8 md:gap-0">
         <a href="#" className="group flex items-center gap-4 bg-transparent border border-white/20 hover:border-white transition-colors duration-500 rounded-full px-8 py-4 overflow-hidden relative">
           <div className="absolute inset-0 bg-white translate-y-[101%] group-hover:translate-y-0 transition-transform duration-500 ease-[0.16,1,0.3,1] z-0" />
           <span className="relative z-10 text-sm uppercase tracking-widest font-mono group-hover:text-black transition-colors duration-500">

@@ -46,7 +46,7 @@ export function ExperienceFooter() {
             <a href="#" className="hover:opacity-100 transition-opacity">Cookies</a>
           </div>
         </div>
-        <div className="text-right">
+        <div className="text-left md:text-right">
           <p>© {new Date().getFullYear()} BrainWhite Inc.</p>
           <p className="mt-2">All rights reserved.</p>
         </div>
