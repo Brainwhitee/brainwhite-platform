@@ -18,6 +18,12 @@ const geistMono = Geist_Mono({
   display: 'swap',
 });
 
+const caveat = Caveat({
+  variable: '--font-chalk',
+  subsets: ['latin'],
+  display: 'swap',
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://brainwhite.com'),
   title: 'BrainWhite — Onboarding for Client-Facing Engineering Teams',
@@ -70,7 +76,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} antialiased dark`}>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${caveat.variable} antialiased dark`}>
       <body className="min-h-screen bg-black text-white selection:bg-orange-500/30">
         <Cursor />
         <SmoothScroll>
