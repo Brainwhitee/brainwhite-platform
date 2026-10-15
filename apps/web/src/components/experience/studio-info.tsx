@@ -52,19 +52,19 @@ export function StudioInfo() {
         </motion.div>
       </div>
 
-      <div className="mt-48 mb-24 max-w-7xl mx-auto">
-        <h2 className="text-6xl md:text-8xl font-medium tracking-tighter uppercase leading-[0.85]">
+      <div className="mt-24 sm:mt-36 md:mt-48 mb-16 md:mb-24 max-w-7xl mx-auto">
+        <h2 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-medium tracking-tighter uppercase leading-[0.9]">
           Forms follow <br/> architecture.
         </h2>
       </div>
 
       {/* Capabilities List Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-12 max-w-7xl mx-auto border-t border-white/10 pt-24">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 max-w-7xl mx-auto border-t border-white/10 pt-16 md:pt-24">
         <div className="md:col-span-5 flex flex-col justify-between">
-          <div className="text-2xl font-light mb-12 md:mb-0">
+          <div className="text-xl sm:text-2xl font-light mb-8 md:mb-0">
             We deliver :
           </div>
-          <div className="text-lg font-light opacity-60 hidden md:block">
+          <div className="text-sm sm:text-base md:text-lg font-light opacity-60 hidden md:block">
             Architecture is where strategy <br/> meets engineering culture.
           </div>
         </div>
@@ -72,8 +72,8 @@ export function StudioInfo() {
         <div className="md:col-span-7">
           <ul className="flex flex-col w-full">
             {["Tenant Isolation", "Role-Based Access", "AI Query Routing", "Readiness Analytics", "Custom Workflows"].map((item, i) => (
-              <li key={i} className="group flex items-center gap-6 py-6 border-b border-white/10 text-3xl md:text-5xl font-light tracking-tight hover:pl-6 transition-all duration-500 cursor-default">
-                <span className="w-3 h-3 rounded-full bg-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <li key={i} className="group flex items-center gap-4 sm:gap-6 py-4 sm:py-6 border-b border-white/10 text-xl sm:text-3xl md:text-4xl lg:text-5xl font-light tracking-tight hover:pl-4 transition-all duration-300 cursor-default">
+                <span className="w-2.5 h-2.5 rounded-full bg-blue-500 opacity-60 group-hover:opacity-100 transition-opacity duration-300" />
                 {item}
               </li>
             ))}

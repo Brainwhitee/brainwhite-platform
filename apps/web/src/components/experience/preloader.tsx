@@ -1,7 +1,7 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 export function Preloader() {
   const [loading, setLoading] = useState(true);
@@ -42,15 +42,23 @@ export function Preloader() {
           className="fixed inset-0 z-[1000] flex flex-col items-center justify-center bg-[#050505] text-white"
         >
           <div className="flex flex-col items-center gap-8">
-            <div className="overflow-hidden">
-              <motion.h1 
-                initial={{ y: 100 }}
-                animate={{ y: 0 }}
+            <div className="overflow-hidden flex flex-col items-center gap-3">
+              <Image
+                src="/Brainwhitelogo.png"
+                alt="BrainWhite"
+                width={160}
+                height={40}
+                className="h-8 w-auto object-contain brightness-0 invert"
+                priority
+              />
+              <motion.span 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 0.6 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
-                className="text-meta tracking-[0.4em] font-medium"
+                className="text-[10px] tracking-[0.4em] font-mono uppercase text-white/60"
               >
-                BRAINWHITE
-              </motion.h1>
+                Developer Readiness Engine
+              </motion.span>
             </div>
             
             <div className="text-giant font-light tabular-nums leading-none tracking-tighter">

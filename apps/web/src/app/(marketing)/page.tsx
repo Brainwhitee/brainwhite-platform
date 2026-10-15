@@ -5,7 +5,6 @@ import { ScrollingText } from "@/components/experience/scrolling-text";
 import { VideoScrubSection } from "@/components/experience/video-scrub-section";
 import { DeveloperMetrics } from "@/components/experience/developer-metrics";
 import { Works } from "@/components/experience/works";
-import WorksWheelDemo from "@/components/works-wheel-demo";
 import { StudioVideo } from "@/components/experience/studio-video";
 import { StudioInfo } from "@/components/experience/studio-info";
 import { ExperienceFooter } from "@/components/experience/footer";
@@ -16,20 +15,29 @@ export default function Home() {
       <Preloader />
       <Menu />
       
-      {/* Noth.in style clone architecture */}
+      {/* Hero with WebGL scanline bloom & brand logo */}
       <Hero />
+
+      {/* Kinetic typography transition */}
       <ScrollingText />
+
+      {/* Interactive scroll-scrub video with educational platform capabilities */}
       <VideoScrubSection />
+
+      {/* Developer readiness topography & metrics */}
       <DeveloperMetrics />
+
+      {/* Feature showcase with dynamic hover reveals */}
       <Works />
       
-      {/* Interactive 3D capabilities wheel for creative display */}
-      <WorksWheelDemo />
-      
+      {/* BrainWhite Engine v2 architectural walkthrough video */}
       <StudioVideo />
+
+      {/* Core architectural thesis & platform deliverables */}
       <StudioInfo />
+
+      {/* Final conversion CTA and footer */}
       <ExperienceFooter />
-      
     </main>
   );
 }

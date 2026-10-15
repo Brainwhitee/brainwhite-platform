@@ -3,6 +3,7 @@
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import ScanlineBloom from "@/components/ui/scanline-bloom";
 
 export function Hero() {
@@ -157,23 +158,38 @@ export function Hero() {
         {/* ==================== TOP BAR ==================== */}
         <div className="flex justify-between items-start w-full relative z-20">
           
-          {/* Top Left: Meta String & CTA */}
-          <div className="flex flex-col items-start gap-8">
+          {/* Top Left: Logo & CTA */}
+          <div className="flex flex-col items-start gap-6">
             <motion.div 
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              className="text-sm md:text-base font-medium tracking-tight leading-tight"
+              className="flex items-center gap-3"
             >
-              Not just a tool, a readiness platform.<br/>
-              Because BrainWhite is Everything.
+              <Image
+                src="/Brainwhitelogo.png"
+                alt="BrainWhite"
+                width={160}
+                height={40}
+                className="h-8 md:h-10 w-auto object-contain brightness-0"
+                priority
+              />
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+              className="text-xs md:text-sm font-medium tracking-tight leading-tight text-black/70"
+            >
+              AI-powered developer onboarding<br/>for engineering teams.
             </motion.div>
 
             <motion.a 
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.4, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              href="#" 
+              href="/early-access" 
               className="group relative inline-flex items-center justify-center bg-black text-white px-6 py-3 rounded-full overflow-hidden hover:scale-105 transition-transform duration-300 ease-out pointer-events-auto"
             >
               <span className="relative z-10 text-xs md:text-sm font-bold uppercase tracking-widest">
@@ -190,7 +206,7 @@ export function Hero() {
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
           <h1 
             className="font-black uppercase tracking-tighter text-black overflow-hidden leading-[0.8] text-center w-full"
-            style={{ fontSize: "clamp(4rem, 15vw, 18rem)" }}
+            style={{ fontSize: "clamp(2.5rem, 13vw, 18rem)" }}
           >
             {"BRAINWHITE".split("").map((char, index) => (
               <motion.span

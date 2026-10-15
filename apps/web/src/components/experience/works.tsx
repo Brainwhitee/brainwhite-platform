@@ -54,19 +54,19 @@ export function Works() {
         ))}
       </div>
 
-      <div className="relative z-10 pt-24 mb-16">
-        <h2 className="text-2xl md:text-4xl font-light leading-tight">
+      <div className="relative z-10 pt-16 md:pt-24 mb-10 md:mb-16">
+        <h2 className="text-xl sm:text-2xl md:text-4xl font-light leading-tight">
           Good platforms organize.<br />
           <span className="italic font-serif">Great platforms accelerate.</span>
         </h2>
       </div>
 
       {/* The List */}
-      <div className="relative z-10 flex flex-col w-full border-t border-white/10 mt-12">
+      <div className="relative z-10 flex flex-col w-full border-t border-white/10 mt-8 md:mt-12">
         {WORKS.map((work, i) => (
           <div 
             key={i}
-            className="group relative flex flex-col md:flex-row md:items-center justify-between py-10 md:py-16 border-b border-white/10 cursor-pointer overflow-hidden"
+            className="group relative flex flex-col md:flex-row md:items-center justify-between py-6 sm:py-8 md:py-16 border-b border-white/10 cursor-pointer overflow-hidden"
             data-cursor="explore"
             onMouseEnter={() => setHoveredIndex(i)}
             onMouseLeave={() => setHoveredIndex(null)}
@@ -85,29 +85,29 @@ export function Works() {
 
             {/* Text Content */}
             <div className="relative z-10 flex flex-col md:flex-row md:items-baseline md:gap-12">
-              <h2 className="text-5xl md:text-8xl font-medium tracking-tighter uppercase transition-transform duration-500 group-hover:translate-x-4">
+              <h2 className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-medium tracking-tighter uppercase transition-transform duration-500 group-hover:translate-x-4">
                 {work.title}
               </h2>
-              <p className="mt-4 md:mt-0 text-lg md:text-xl font-light opacity-60 group-hover:opacity-100 transition-opacity duration-500">
+              <p className="mt-2 md:mt-0 text-sm sm:text-base md:text-lg font-light opacity-60 group-hover:opacity-100 transition-opacity duration-500">
                 {work.subtitle}
               </p>
             </div>
 
             {/* Animated Explore Cursor/Button (Fallback for mobile) */}
-            <div className="relative z-10 mt-8 md:mt-0 md:hidden">
-              <div className="flex items-center gap-3 bg-white text-black px-6 py-3 rounded-full">
-                <span className="text-sm font-mono uppercase tracking-widest">explore</span>
-                <ArrowRight className="w-4 h-4" />
+            <div className="relative z-10 mt-4 md:mt-0 md:hidden">
+              <div className="inline-flex items-center gap-2 bg-white text-black px-4 py-1.5 rounded-full">
+                <span className="text-xs font-mono uppercase tracking-widest">explore</span>
+                <ArrowRight className="w-3.5 h-3.5" />
               </div>
             </div>
           </div>
         ))}
       </div>
 
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-end mt-24 pb-12 gap-8 md:gap-0">
-        <a href="#" className="group flex items-center gap-4 bg-transparent border border-white/20 hover:border-white transition-colors duration-500 rounded-full px-8 py-4 overflow-hidden relative">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end mt-16 md:mt-24 pb-8 md:pb-12 gap-6 md:gap-0">
+        <a href="/product" className="group flex items-center gap-4 bg-transparent border border-white/20 hover:border-white transition-colors duration-500 rounded-full px-6 sm:px-8 py-3 sm:py-4 overflow-hidden relative">
           <div className="absolute inset-0 bg-white translate-y-[101%] group-hover:translate-y-0 transition-transform duration-500 ease-[0.16,1,0.3,1] z-0" />
-          <span className="relative z-10 text-sm uppercase tracking-widest font-mono group-hover:text-black transition-colors duration-500">
+          <span className="relative z-10 text-xs sm:text-sm uppercase tracking-widest font-mono group-hover:text-black transition-colors duration-500">
             View all capabilities
           </span>
           <ArrowRight className="relative z-10 w-4 h-4 group-hover:text-black transition-colors duration-500" />

@@ -10,58 +10,75 @@ export function StudioVideo() {
     offset: ["start end", "end start"]
   });
 
-  // Parallax the museum background
+  // Parallax the background
   const yBg = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
-  // Scale the artwork as we scroll into it
-  const scaleArtwork = useTransform(scrollYProgress, [0.3, 0.6], [0.8, 1.1]);
+  // Scale the video display as we scroll into it
+  const scaleArtwork = useTransform(scrollYProgress, [0.25, 0.65], [0.85, 1.05]);
 
   return (
-    <section ref={containerRef} className="relative w-full h-[150vh] bg-[#050505] overflow-hidden">
+    <section ref={containerRef} className="relative w-full h-[140vh] md:h-[160vh] bg-[#050505] overflow-hidden">
       
-      {/* Museum Wall Background */}
+      {/* Background with subtle ambient darkening */}
       <motion.div style={{ y: yBg }} className="absolute inset-0 w-full h-[120%] -top-[10%] z-0">
         <img 
           src="https://noth-in.b-cdn.net/freepik__photography-frontal-shot-of-a-huge-large-169-white__495122.webp" 
-          alt="Museum wall" 
-          className="w-full h-full object-cover opacity-80"
+          alt="Architectural wall" 
+          className="w-full h-full object-cover opacity-70 filter brightness-[0.7] contrast-[1.1]"
         />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#050505] via-transparent to-[#050505]" />
         <div className="absolute inset-0 bg-black/40" />
       </motion.div>
 
-      {/* The Artwork (Video in Frame) */}
-      <div className="sticky top-0 h-screen w-full flex items-center justify-center z-10 overflow-hidden perspective-[1000px]">
+      {/* Sticky Video in Frame */}
+      <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center z-10 overflow-hidden px-4">
+        
+        {/* Caption Header */}
+        <motion.div 
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-6 z-20"
+        >
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 border border-white/10 backdrop-blur-md text-[11px] font-mono uppercase tracking-[0.2em] text-white/70 mb-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+            <span>BrainWhite Engine v2.0 In Action</span>
+          </div>
+          <h3 className="text-xl sm:text-2xl md:text-3xl font-black uppercase tracking-tight text-white drop-shadow-md">
+            Architectural Mapping & Assessment
+          </h3>
+        </motion.div>
+
+        {/* The Video Screen Display */}
         <motion.div 
           style={{ scale: scaleArtwork }}
-          className="relative w-[80vw] md:w-[60vw] max-w-5xl aspect-[16/9] flex items-center justify-center cursor-pointer"
-          data-cursor="sound"
+          className="relative w-[92vw] sm:w-[85vw] md:w-[65vw] max-w-5xl aspect-video rounded-xl sm:rounded-2xl overflow-hidden shadow-[0_20px_80px_rgba(0,0,0,0.8)] border border-white/20 bg-black cursor-pointer group"
         >
-          {/* Main Video */}
+          {/* Main Product Video: Brainwhitev2 */}
           <video 
-            src="https://noth-in.b-cdn.net/NOTHIN_MANIFESTE_CLEAN.mp4" 
+            src="/Brainwhitev2.mp4" 
             autoPlay 
             loop 
             muted 
             playsInline 
-            className="absolute inset-0 w-full h-full object-cover z-0"
-          />
-          
-          {/* Reflection Video (simulating glass reflection) */}
-          <video 
-            src="https://noth-in.b-cdn.net/NOTHIN_MANIFESTE_REFLECT_H265.mp4" 
-            autoPlay 
-            loop 
-            muted 
-            playsInline 
-            className="absolute inset-0 w-full h-full object-cover mix-blend-screen opacity-60 z-10 pointer-events-none"
+            preload="auto"
+            className="w-full h-full object-cover"
           />
 
-          {/* The Frame Overlay */}
-          <img 
-            src="https://cdn.prod.website-files.com/6a0c501c42b9751b78a9d1a7/6a281a4f86f15756a04aa88e_test-cadre-transparent.webp" 
-            alt="Frame" 
-            className="absolute inset-[-4%] w-[108%] h-[108%] object-fill z-20 pointer-events-none drop-shadow-2xl"
-          />
+          {/* Sleek edge vignette and glass reflection */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none" />
+          <div className="absolute inset-0 rounded-xl sm:rounded-2xl ring-1 ring-inset ring-white/10 pointer-events-none" />
+
+          {/* Video Metadata Tag (Bottom Right) */}
+          <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 flex items-center gap-2 bg-black/70 backdrop-blur-md px-3 py-1 rounded-full border border-white/15 text-[10px] sm:text-xs font-mono uppercase tracking-widest text-white/80 pointer-events-none">
+            <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+            <span>Interactive Demo</span>
+          </div>
         </motion.div>
+
+        {/* Sub-caption below video */}
+        <p className="mt-6 text-xs sm:text-sm font-mono text-white/50 uppercase tracking-widest text-center max-w-md">
+          Autonomous repository analysis · Live readiness verification
+        </p>
       </div>
 
     </section>

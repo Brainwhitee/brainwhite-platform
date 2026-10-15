@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
 
 export function Menu() {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,9 +38,11 @@ export function Menu() {
   }, [isOpen]);
 
   const links = [
-    { label: "WORKS", href: "#works" },
-    { label: "STUDIO", href: "#studio" },
-    { label: "CONTACT", href: "#contact" },
+    { label: "PRODUCT", href: "/product" },
+    { label: "HOW IT WORKS", href: "/how-it-works" },
+    { label: "SECURITY", href: "/security" },
+    { label: "PRICING", href: "/pricing" },
+    { label: "SIGN IN", href: "/admin/organization" },
   ];
 
   return (
@@ -47,20 +51,16 @@ export function Menu() {
         id="menu-button"
         aria-expanded={isOpen}
         aria-controls="menu-overlay"
-        className="fixed top-6 right-6 md:top-8 md:right-8 z-[100] text-sm md:text-base font-bold uppercase tracking-widest mix-blend-difference text-white h-6 md:h-7 overflow-hidden cursor-pointer"
+        className="fixed top-6 right-6 md:top-8 md:right-8 z-[100] text-xs sm:text-sm md:text-base font-bold uppercase tracking-widest mix-blend-difference text-white h-7 md:h-8 px-3 py-1 rounded-full border border-white/20 backdrop-blur-md hover:border-white/60 transition-colors cursor-pointer"
         onClick={() => setIsOpen(!isOpen)}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.3, duration: 1, ease: [0.16, 1, 0.3, 1] }}
       >
-        <motion.div
-          className="relative flex flex-col items-end"
-          whileHover={{ y: "-50%" }}
-          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <span className="block h-6 md:h-7 flex items-center leading-none">{isOpen ? "CLOSE ::" : "MENU ::"}</span>
-          <span className="block h-6 md:h-7 flex items-center leading-none" aria-hidden="true">{isOpen ? "CLOSE ::" : "MENU ::"}</span>
-        </motion.div>
+        <span className="flex items-center gap-2">
+          <span className={`w-2 h-2 rounded-full transition-colors ${isOpen ? "bg-red-500 animate-pulse" : "bg-emerald-400"}`} />
+          <span>{isOpen ? "CLOSE" : "MENU"}</span>
+        </span>
       </motion.button>
 
       <AnimatePresence>
@@ -71,40 +71,81 @@ export function Menu() {
               initial={{ clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)" }}
               animate={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" }}
               exit={{ clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)" }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="fixed inset-0 z-[90] bg-[#050505] text-white flex flex-col justify-center items-center pointer-events-auto"
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              className="fixed inset-0 z-[90] bg-[#050505] text-white flex flex-col justify-between p-6 sm:p-10 md:p-16 pointer-events-auto overflow-y-auto"
             >
-              <nav className="flex flex-col items-center gap-6 md:gap-10">
+              {/* Header with Logo */}
+              <div className="flex items-center justify-between w-full pt-2">
+                <Link href="/" onClick={() => setIsOpen(false)} className="inline-block">
+                  <Image
+                    src="/Brainwhitelogo.png"
+                    alt="BrainWhite"
+                    width={180}
+                    height={44}
+                    className="h-8 sm:h-10 w-auto object-contain brightness-0 invert"
+                  />
+                </Link>
+                <div className="text-xs font-mono uppercase tracking-widest text-white/50 hidden sm:block">
+                  Developer Readiness Engine
+                </div>
+              </div>
+
+              {/* Navigation Links */}
+              <nav className="flex flex-col items-center justify-center gap-3 sm:gap-6 my-auto py-8">
                 {links.map((link, i) => (
                   <div key={link.label} className="overflow-hidden">
-                    <motion.a
-                      href={link.href}
-                      onClick={() => setIsOpen(false)}
+                    <motion.div
                       initial={{ y: "100%" }}
                       animate={{ y: 0 }}
                       exit={{ y: "-100%" }}
                       transition={{
-                        delay: 0.2 + i * 0.1,
-                        duration: 0.8,
-                        ease: [0.16, 1, 0.3, 1]
+                        delay: 0.15 + i * 0.08,
+                        duration: 0.7,
+                        ease: [0.16, 1, 0.3, 1],
                       }}
-                      className="block text-5xl md:text-8xl font-black uppercase tracking-tighter hover:text-neutral-500 transition-colors duration-300"
                     >
-                      {link.label}
-                    </motion.a>
+                      <Link
+                        href={link.href}
+                        onClick={() => setIsOpen(false)}
+                        className="block text-3xl sm:text-5xl md:text-7xl font-black uppercase tracking-tighter text-white/90 hover:text-white hover:tracking-tight transition-all duration-300"
+                      >
+                        {link.label}
+                      </Link>
+                    </motion.div>
                   </div>
                 ))}
+
+                {/* Primary CTA in Menu */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6, duration: 0.6 }}
+                  className="mt-6 sm:mt-10"
+                >
+                  <Link
+                    href="/early-access"
+                    onClick={() => setIsOpen(false)}
+                    className="inline-flex items-center gap-3 bg-white text-black font-semibold text-sm sm:text-base px-8 py-3.5 rounded-full hover:scale-105 transition-transform shadow-[0_0_30px_rgba(255,255,255,0.2)]"
+                  >
+                    <span>Request Early Access</span>
+                    <span className="text-xs font-mono opacity-60">→</span>
+                  </Link>
+                </motion.div>
               </nav>
-              
-              <motion.div 
+
+              {/* Footer Meta */}
+              <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 0.8, duration: 1 }}
-                className="absolute bottom-8 md:bottom-12 flex gap-8 text-xs font-bold tracking-widest uppercase opacity-50"
+                transition={{ delay: 0.7, duration: 0.8 }}
+                className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono tracking-widest uppercase text-white/40 border-t border-white/10 pt-6"
               >
-                <a href="#" className="hover:opacity-100 transition-opacity">Twitter</a>
-                <a href="#" className="hover:opacity-100 transition-opacity">LinkedIn</a>
-                <a href="#" className="hover:opacity-100 transition-opacity">GitHub</a>
+                <div className="flex gap-6">
+                  <a href="#" className="hover:text-white transition-colors">Twitter</a>
+                  <a href="#" className="hover:text-white transition-colors">LinkedIn</a>
+                  <a href="#" className="hover:text-white transition-colors">GitHub</a>
+                </div>
+                <div>© {new Date().getFullYear()} BRAINWHITE INC.</div>
               </motion.div>
             </motion.div>
           </div>
