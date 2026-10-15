@@ -44,11 +44,11 @@ export function Preloader() {
           <div className="flex flex-col items-center gap-8">
             <div className="overflow-hidden flex flex-col items-center gap-3">
               <Image
-                src="/Brainwhitelogo.png"
+                src="/Brainwhitelogo-transparent.png"
                 alt="BrainWhite"
-                width={160}
-                height={40}
-                className="h-8 w-auto object-contain brightness-0 invert"
+                width={180}
+                height={48}
+                className="h-9 w-auto object-contain"
                 priority
               />
               <motion.span 

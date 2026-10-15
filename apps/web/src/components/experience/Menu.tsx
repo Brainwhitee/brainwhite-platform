@@ -78,11 +78,11 @@ export function Menu() {
               <div className="flex items-center justify-between w-full pt-2">
                 <Link href="/" onClick={() => setIsOpen(false)} className="inline-block">
                   <Image
-                    src="/Brainwhitelogo.png"
+                    src="/Brainwhitelogo-transparent.png"
                     alt="BrainWhite"
                     width={180}
                     height={44}
-                    className="h-8 sm:h-10 w-auto object-contain brightness-0 invert"
+                    className="h-8 sm:h-10 w-auto object-contain"
                   />
                 </Link>
                 <div className="text-xs font-mono uppercase tracking-widest text-white/50 hidden sm:block">

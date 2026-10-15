@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Bot, ShieldCheck, Zap } from "lucide-react";
 
 export function VideoScrubSection() {
@@ -105,7 +106,7 @@ export function VideoScrubSection() {
         {/* Video Wrapper (Smoothly scales down to bottom-right corner) */}
         <div className="absolute inset-0 z-10 p-4 md:p-8 pointer-events-none flex items-start md:items-end justify-center md:justify-end">
           <motion.div 
-            className="w-full aspect-video md:aspect-auto md:h-full overflow-hidden shadow-2xl bg-black md:origin-bottom-right origin-top border border-black/10"
+            className="w-full aspect-video md:aspect-auto md:h-full overflow-hidden shadow-2xl bg-black md:origin-bottom-right origin-top border border-black/10 relative"
             style={{ 
               scale,
               borderRadius
@@ -121,6 +122,20 @@ export function VideoScrubSection() {
               playsInline
               preload="auto"
             />
+
+            {/* Bottom Right Gemini Watermark Cover with BrainWhite Logo */}
+            <div className="absolute bottom-3 right-3 sm:bottom-5 sm:right-5 z-20 flex items-center gap-2 bg-black/90 backdrop-blur-md px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-white/20 shadow-2xl pointer-events-none">
+              <Image
+                src="/Brainwhitelogo-transparent.png"
+                alt="BrainWhite"
+                width={120}
+                height={32}
+                className="h-4 sm:h-5 w-auto object-contain"
+              />
+              <span className="text-[10px] sm:text-xs font-mono uppercase tracking-wider text-emerald-400 border-l border-white/20 pl-2 hidden sm:inline">
+                Readiness v1
+              </span>
+            </div>
           </motion.div>
         </div>
         

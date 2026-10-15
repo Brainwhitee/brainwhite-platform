@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 interface NavItem {
@@ -52,9 +53,15 @@ export function TubelightNavbar({ items, className }: NavBarProps) {
       )}>
         
         {/* Logo Area */}
-        <div className="pl-4 pr-6 hidden md:block">
-          <Link href="/" className="text-white font-display font-bold text-xl tracking-tighter hover:text-white/80 transition-colors">
-            brainwhite.
+        <div className="pl-4 pr-4 hidden md:flex items-center">
+          <Link href="/" className="hover:opacity-80 transition-opacity">
+            <Image
+              src="/Brainwhitelogo-transparent.png"
+              alt="BrainWhite"
+              width={130}
+              height={32}
+              className="h-6 w-auto object-contain"
+            />
           </Link>
         </div>
 

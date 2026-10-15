@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 
 export function ExperienceFooter() {
   return (
@@ -46,9 +47,16 @@ export function ExperienceFooter() {
             <a href="#" className="hover:opacity-100 transition-opacity">Cookies</a>
           </div>
         </div>
-        <div className="text-left md:text-right">
+        <div className="flex flex-col items-start md:items-end gap-2 text-left md:text-right">
+          <Image
+            src="/Brainwhitelogo-transparent.png"
+            alt="BrainWhite"
+            width={140}
+            height={36}
+            className="h-6 sm:h-7 w-auto object-contain opacity-80 mb-1"
+          />
           <p>© {new Date().getFullYear()} BrainWhite Inc.</p>
-          <p className="mt-2">All rights reserved.</p>
+          <p className="text-[10px] text-white/40">All rights reserved.</p>
         </div>
       </div>
     </footer>

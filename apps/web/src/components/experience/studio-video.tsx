@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import Image from "next/image";
 
 export function StudioVideo() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -68,10 +69,18 @@ export function StudioVideo() {
           <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none" />
           <div className="absolute inset-0 rounded-xl sm:rounded-2xl ring-1 ring-inset ring-white/10 pointer-events-none" />
 
-          {/* Video Metadata Tag (Bottom Right) */}
-          <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 flex items-center gap-2 bg-black/70 backdrop-blur-md px-3 py-1 rounded-full border border-white/15 text-[10px] sm:text-xs font-mono uppercase tracking-widest text-white/80 pointer-events-none">
-            <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-            <span>Interactive Demo</span>
+          {/* Overlay covering Gemini watermark in bottom right with BrainWhite logo */}
+          <div className="absolute bottom-3 right-3 sm:bottom-6 sm:right-6 z-20 flex items-center gap-2 bg-black/90 backdrop-blur-md px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full border border-white/20 shadow-2xl pointer-events-none">
+            <Image
+              src="/Brainwhitelogo-transparent.png"
+              alt="BrainWhite"
+              width={120}
+              height={32}
+              className="h-4 sm:h-5 w-auto object-contain"
+            />
+            <span className="text-[10px] sm:text-xs font-mono uppercase tracking-wider text-white/70 border-l border-white/20 pl-2 hidden sm:inline">
+              Engine v2.0
+            </span>
           </div>
         </motion.div>
 

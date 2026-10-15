@@ -167,11 +167,11 @@ export function Hero() {
               className="flex items-center gap-3"
             >
               <Image
-                src="/Brainwhitelogo.png"
+                src="/Brainwhitelogo-dark.png"
                 alt="BrainWhite"
-                width={160}
-                height={40}
-                className="h-8 md:h-10 w-auto object-contain brightness-0"
+                width={180}
+                height={48}
+                className="h-8 sm:h-10 w-auto object-contain"
                 priority
               />
             </motion.div>
