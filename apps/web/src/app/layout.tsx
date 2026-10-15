@@ -1,4 +1,4 @@
-﻿import type { Metadata, Viewport } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Geist, Geist_Mono, Caveat, VT323 } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 import { PostHogProvider } from '@/components/providers/posthog-provider';
@@ -23,6 +23,17 @@ export const metadata: Metadata = {
   title: 'BrainWhite — Onboarding for Client-Facing Engineering Teams',
   description: 'BrainWhite transforms your codebase into personalized learning paths and evidence-based readiness signals for every new developer.',
   robots: 'index, follow',
+  icons: {
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/icon.png', type: 'image/png', sizes: '32x32' },
+      { url: '/icon.png', type: 'image/png', sizes: '512x512' },
+    ],
+    apple: [
+      { url: '/apple-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+    shortcut: '/favicon.ico',
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
@@ -30,6 +41,20 @@ export const metadata: Metadata = {
     siteName: 'BrainWhite',
     title: 'BrainWhite — Onboarding for Engineering Teams',
     description: 'Personalized project-specific learning and assessment.',
+    images: [
+      {
+        url: '/icon.png',
+        width: 512,
+        height: 512,
+        alt: 'BrainWhite Logo',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary',
+    title: 'BrainWhite — Onboarding for Engineering Teams',
+    description: 'Personalized project-specific learning and assessment.',
+    images: ['/icon.png'],
   },
 };
 
