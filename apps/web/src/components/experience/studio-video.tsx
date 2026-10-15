@@ -69,16 +69,19 @@ export function StudioVideo() {
           <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none" />
           <div className="absolute inset-0 rounded-xl sm:rounded-2xl ring-1 ring-inset ring-white/10 pointer-events-none" />
 
-          {/* Overlay covering Gemini watermark in bottom right with BrainWhite logo */}
-          <div className="absolute bottom-3 right-3 sm:bottom-6 sm:right-6 z-20 flex items-center gap-2 bg-black/90 backdrop-blur-md px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full border border-white/20 shadow-2xl pointer-events-none">
+          {/* Dark corner blackout patch to eliminate any watermark traces */}
+          <div className="absolute bottom-0 right-0 w-72 h-36 bg-gradient-to-tl from-black via-black/90 to-transparent pointer-events-none z-10" />
+
+          {/* Large prominent BrainWhite logo badge covering watermark */}
+          <div className="absolute bottom-3 right-3 sm:bottom-6 sm:right-6 md:bottom-8 md:right-8 z-20 flex items-center gap-3 bg-black/95 backdrop-blur-xl px-5 sm:px-6 py-2.5 sm:py-3.5 rounded-full border border-white/25 shadow-[0_10px_40px_rgba(0,0,0,0.95)] pointer-events-none">
             <Image
               src="/Brainwhitelogo-transparent.png"
               alt="BrainWhite"
-              width={120}
-              height={32}
-              className="h-4 sm:h-5 w-auto object-contain"
+              width={220}
+              height={60}
+              className="h-7 sm:h-9 md:h-11 w-auto object-contain"
             />
-            <span className="text-[10px] sm:text-xs font-mono uppercase tracking-wider text-white/70 border-l border-white/20 pl-2 hidden sm:inline">
+            <span className="text-xs sm:text-sm font-mono uppercase tracking-widest text-white/80 border-l border-white/20 pl-3 font-semibold">
               Engine v2.0
             </span>
           </div>

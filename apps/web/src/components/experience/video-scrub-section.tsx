@@ -123,17 +123,20 @@ export function VideoScrubSection() {
               preload="auto"
             />
 
-            {/* Bottom Right Gemini Watermark Cover with BrainWhite Logo */}
-            <div className="absolute bottom-3 right-3 sm:bottom-5 sm:right-5 z-20 flex items-center gap-2 bg-black/90 backdrop-blur-md px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-white/20 shadow-2xl pointer-events-none">
+            {/* Dark vignette patch covering bottom-right corner to eliminate watermark */}
+            <div className="absolute bottom-0 right-0 w-64 h-32 bg-gradient-to-tl from-black via-black/90 to-transparent pointer-events-none z-10" />
+
+            {/* Bottom Right Gemini Watermark Cover with Prominent Large BrainWhite Logo */}
+            <div className="absolute bottom-3 right-3 sm:bottom-6 sm:right-6 z-20 flex items-center gap-3 bg-black/95 backdrop-blur-xl px-4 sm:px-6 py-2.5 sm:py-3.5 rounded-full border border-white/25 shadow-[0_10px_40px_rgba(0,0,0,0.95)] pointer-events-none">
               <Image
                 src="/Brainwhitelogo-transparent.png"
                 alt="BrainWhite"
-                width={120}
-                height={32}
-                className="h-4 sm:h-5 w-auto object-contain"
+                width={200}
+                height={54}
+                className="h-6 sm:h-8 md:h-10 w-auto object-contain"
               />
-              <span className="text-[10px] sm:text-xs font-mono uppercase tracking-wider text-emerald-400 border-l border-white/20 pl-2 hidden sm:inline">
-                Readiness v1
+              <span className="text-xs sm:text-sm font-mono uppercase tracking-widest text-emerald-400 border-l border-white/20 pl-3 font-semibold">
+                Platform v1
               </span>
             </div>
           </motion.div>
