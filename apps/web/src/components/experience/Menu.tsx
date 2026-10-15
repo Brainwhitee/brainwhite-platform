@@ -40,6 +40,7 @@ export function Menu() {
   const links = [
     { label: "PRODUCT", href: "/product" },
     { label: "HOW IT WORKS", href: "/how-it-works" },
+    { label: "BOOK A DEMO", href: "/book-demo" },
     { label: "SECURITY", href: "/security" },
     { label: "PRICING", href: "/pricing" },
     { label: "SIGN IN", href: "/admin/organization" },
@@ -123,11 +124,11 @@ export function Menu() {
                   className="mt-6 sm:mt-10"
                 >
                   <Link
-                    href="/early-access"
+                    href="/book-demo"
                     onClick={() => setIsOpen(false)}
                     className="inline-flex items-center gap-3 bg-white text-black font-semibold text-sm sm:text-base px-8 py-3.5 rounded-full hover:scale-105 transition-transform shadow-[0_0_30px_rgba(255,255,255,0.2)]"
                   >
-                    <span>Request Early Access</span>
+                    <span>Book a Technical Demo</span>
                     <span className="text-xs font-mono opacity-60">→</span>
                   </Link>
                 </motion.div>

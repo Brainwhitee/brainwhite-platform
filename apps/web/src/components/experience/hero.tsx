@@ -189,7 +189,7 @@ export function Hero() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.4, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              href="/early-access" 
+              href="/book-demo" 
               className="group relative inline-flex items-center justify-center bg-black text-white px-6 py-3 rounded-full overflow-hidden hover:scale-105 transition-transform duration-300 ease-out pointer-events-auto"
             >
               <span className="relative z-10 text-xs md:text-sm font-bold uppercase tracking-widest">

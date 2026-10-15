@@ -10,42 +10,47 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, label, error, helperText, id, ...props }, ref) => {
-    const inputId = id || label?.toLowerCase().replace(/\s+/g, "-");
+  ({ className, type, label, error, helperText, id, ...props }, ref) => {
+    const inputId = id || (label ? label.toLowerCase().replace(/\s+/g, "-") : undefined);
     
+    const inputElement = (
+      <input
+        type={type}
+        ref={ref}
+        id={inputId}
+        className={cn(
+          "flex h-11 w-full rounded-lg border border-white/15 bg-black/40 px-3.5 py-2 text-sm text-white placeholder:text-neutral-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:border-blue-500 disabled:cursor-not-allowed disabled:opacity-50 transition-all",
+          error && "border-red-500 focus-visible:ring-red-500",
+          className
+        )}
+        aria-invalid={error ? "true" : "false"}
+        aria-describedby={error ? `${inputId}-error` : helperText ? `${inputId}-helper` : undefined}
+        {...props}
+      />
+    );
+
+    if (!label && !error && !helperText) {
+      return inputElement;
+    }
+
     return (
       <div className="w-full">
         {label && (
           <label
             htmlFor={inputId}
-            className="block text-sm font-medium text-[var(--foreground)] mb-1.5"
+            className="block text-sm font-medium text-white/90 mb-1.5"
           >
             {label}
           </label>
         )}
-        <input
-          ref={ref}
-          id={inputId}
-          className={cn(
-            "w-full h-11 px-4 bg-white border border-[var(--border)] text-[var(--foreground)] placeholder:text-[var(--muted)]",
-            "transition-colors duration-200",
-            "focus:outline-none focus:ring-2 focus:ring-[var(--foreground)] focus:border-transparent",
-            "disabled:opacity-50 disabled:pointer-events-none",
-            "rounded-none",
-            error && "border-red-500 focus:ring-red-500",
-            className
-          )}
-          aria-invalid={error ? "true" : "false"}
-          aria-describedby={error ? `${inputId}-error` : helperText ? `${inputId}-helper` : undefined}
-          {...props}
-        />
+        {inputElement}
         {error && (
-          <p id={`${inputId}-error`} className="mt-1.5 text-sm text-red-500" role="alert">
+          <p id={`${inputId}-error`} className="mt-1.5 text-xs text-red-400" role="alert">
             {error}
           </p>
         )}
         {helperText && !error && (
-          <p id={`${inputId}-helper`} className="mt-1.5 text-sm text-[var(--muted)]">
+          <p id={`${inputId}-helper`} className="mt-1.5 text-xs text-neutral-400">
             {helperText}
           </p>
         )}
