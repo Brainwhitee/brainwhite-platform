@@ -6,24 +6,33 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-lg text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 cursor-pointer active:scale-[0.98]",
+  "inline-flex items-center justify-center whitespace-nowrap rounded-lg text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-blue)] focus-visible:ring-offset-1 disabled:pointer-events-none disabled:opacity-50 cursor-pointer active:scale-[0.99]",
   {
     variants: {
       variant: {
-        default: "bg-white text-black hover:bg-neutral-200 shadow-md",
-        primary: "bg-[#ff6600] text-white hover:bg-[#e65c00] shadow-md",
-        destructive: "bg-red-600 text-white hover:bg-red-700 shadow-sm",
-        outline: "border border-white/20 bg-transparent text-white hover:bg-white/10 hover:border-white/40",
-        secondary: "bg-white/10 text-white hover:bg-white/20 border border-white/10",
-        ghost: "hover:bg-white/10 text-white",
-        link: "text-blue-400 underline-offset-4 hover:underline",
+        primary:
+          "bg-[var(--brand-orange)] text-white hover:bg-[var(--brand-orange-hover)] shadow-sm font-semibold border border-transparent",
+        default:
+          "bg-[var(--foreground)] text-[var(--background)] hover:opacity-90 shadow-sm font-medium",
+        secondary:
+          "bg-[var(--surface-subtle)] text-[var(--foreground)] hover:bg-[var(--border)] border border-[var(--border)] shadow-xs",
+        outline:
+          "border border-[var(--border)] bg-transparent text-[var(--foreground)] hover:bg-[var(--surface-subtle)] hover:border-[var(--border-strong)]",
+        ghost:
+          "text-[var(--foreground)] hover:bg-[var(--surface-subtle)] hover:text-[var(--foreground)]",
+        destructive:
+          "bg-[var(--status-error)] text-white hover:opacity-90 shadow-xs",
+        link:
+          "text-[var(--brand-blue)] underline-offset-4 hover:underline p-0 h-auto font-normal",
+        subtle:
+          "bg-[var(--surface)] text-[var(--foreground)] border border-[var(--border)] hover:bg-[var(--surface-hover)] shadow-xs",
       },
       size: {
-        default: "h-11 px-5 py-2.5",
-        sm: "h-9 rounded-md px-3.5 text-xs",
-        md: "h-11 px-5 text-sm",
-        lg: "h-13 rounded-xl px-8 text-base",
-        icon: "h-10 w-10",
+        default: "h-9.5 px-4 py-2",
+        sm: "h-8 rounded-md px-3 text-xs",
+        md: "h-9.5 px-4 text-sm",
+        lg: "h-11 rounded-lg px-6 text-base font-medium",
+        icon: "h-9 w-9 p-0",
       },
     },
     defaultVariants: {

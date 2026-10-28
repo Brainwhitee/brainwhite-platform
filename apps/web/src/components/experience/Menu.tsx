@@ -38,12 +38,12 @@ export function Menu() {
   }, [isOpen]);
 
   const links = [
-    { label: "PRODUCT", href: "/product" },
+    { label: "PRODUCT & ARCHITECTURE", href: "/product" },
     { label: "HOW IT WORKS", href: "/how-it-works" },
     { label: "BOOK A DEMO", href: "/book-demo" },
-    { label: "SECURITY", href: "/security" },
-    { label: "PRICING", href: "/pricing" },
-    { label: "SIGN IN", href: "/admin/organization" },
+    { label: "SECURITY & COMPLIANCE", href: "/security" },
+    { label: "SIGN IN", href: "/login" },
+    { label: "GET STARTED", href: "/signup" },
   ];
 
   return (

@@ -90,7 +90,7 @@ export function Hero() {
               className="flex flex-col sm:flex-row gap-4 pt-4"
               variants={itemVariants}
             >
-              <Link href="/early-access" className="w-full sm:w-auto">
+              <Link href="/signup" className="w-full sm:w-auto">
                 <Button size="lg" className="w-full rounded-sm">
                   Start Onboarding →
                 </Button>
@@ -179,7 +179,7 @@ function LensRevealAnimation() {
         onMouseMove={handleMouseMove}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={handleMouseLeave}
-        className="relative w-full h-full rounded-2xl bg-[#fafafa] border border-gray-200 shadow-sm overflow-hidden cursor-none"
+        className="relative w-full h-full rounded-2xl bg-[#fafafa] border border-gray-200 shadow-sm overflow-hidden cursor-crosshair"
       >
         {/* ========================================= */}
         {/* BASE LAYER: The Chaotic, Messy Codebase */}

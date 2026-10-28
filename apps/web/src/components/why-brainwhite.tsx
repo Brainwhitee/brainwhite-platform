@@ -14,7 +14,7 @@ const ParticleNetwork = () => {
     if (!ctx) return;
 
     let particles: { x: number; y: number; vx: number; vy: number; radius: number }[] = [];
-    const particleCount = 60;
+    const particleCount = 50;
     
     let animationFrameId: number;
     let width = 0;
@@ -33,9 +33,9 @@ const ParticleNetwork = () => {
         particles.push({
           x: Math.random() * width,
           y: Math.random() * height,
-          vx: (Math.random() - 0.5) * 0.5,
-          vy: (Math.random() - 0.5) * 0.5,
-          radius: Math.random() * 2 + 1,
+          vx: (Math.random() - 0.5) * 0.4,
+          vy: (Math.random() - 0.5) * 0.4,
+          radius: Math.random() * 1.5 + 0.8,
         });
       }
     };
@@ -50,10 +50,10 @@ const ParticleNetwork = () => {
           const dy = particles[i].y - particles[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
           
-          if (dist < 150) {
+          if (dist < 140) {
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(59, 130, 246, ${0.15 - dist / 1000})`; // Blue glow
-            ctx.lineWidth = 1;
+            ctx.strokeStyle = `rgba(255, 255, 255, ${0.12 - dist / 1400})`;
+            ctx.lineWidth = 0.8;
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
             ctx.stroke();
@@ -76,14 +76,14 @@ const ParticleNetwork = () => {
         const dy = mouse.y - p.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
         
-        if (dist < 150) {
-          p.x -= (dx / dist) * 2;
-          p.y -= (dy / dist) * 2;
+        if (dist < 140) {
+          p.x -= (dx / dist) * 1.5;
+          p.y -= (dy / dist) * 1.5;
           
-          // Draw mouse connection
+          // Draw mouse connection with brand orange
           ctx.beginPath();
-          ctx.strokeStyle = `rgba(6, 182, 212, ${0.3 - dist / 500})`; // Cyan to mouse
-          ctx.lineWidth = 1.5;
+          ctx.strokeStyle = `rgba(255, 68, 0, ${0.35 - dist / 450})`;
+          ctx.lineWidth = 1.2;
           ctx.moveTo(p.x, p.y);
           ctx.lineTo(mouse.x, mouse.y);
           ctx.stroke();
@@ -91,7 +91,7 @@ const ParticleNetwork = () => {
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(255,255,255,0.3)";
+        ctx.fillStyle = "rgba(255, 255, 255, 0.4)";
         ctx.fill();
       });
 
@@ -153,13 +153,13 @@ export function WhyBrainwhite() {
   const text2 = "It understands your codebase, turns that understanding into a learning path built for the person in front of it, and answers questions grounded in your actual project.".split(" ");
 
   return (
-    <section className="painted-section-dark py-24 md:py-48 overflow-hidden" id="why-brainwhite">
+    <section className="bg-[#050505] py-24 md:py-48 overflow-hidden relative" id="why-brainwhite">
 
-      {/* Crazy 21st.dev style Particle Network */}
+      {/* Particle Network */}
       <ParticleNetwork />
 
-      {/* Bottom glowing gradient mask - tech blue */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(59,130,246,0.12)_0%,transparent_60%)] pointer-events-none z-0" />
+      {/* Bottom glowing gradient mask - brand orange glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(255,68,0,0.06)_0%,transparent_60%)] pointer-events-none z-0" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 relative z-10 pointer-events-none">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
@@ -171,14 +171,15 @@ export function WhyBrainwhite() {
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                className="inline-flex items-center rounded-full border border-blue-500/30 bg-blue-500/10 px-3 py-1 text-xs font-semibold text-white uppercase tracking-widest mb-6 backdrop-blur-md"
+                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-mono font-medium text-white/80 uppercase tracking-widest mb-6 backdrop-blur-md"
               >
+                <span className="w-1.5 h-1.5 rounded-full bg-[#ff4400]" />
                 Why Brainwhite
               </motion.div>
-              <h2 className="painted-heading text-3xl md:text-5xl mb-6">
+              <h2 className="text-3xl md:text-5xl font-medium tracking-tight text-white mb-6">
                 Not another docs tool.<br/>Not another AI chatbot.
               </h2>
-              <div className="h-1 w-20 bg-gradient-to-r from-blue-500 to-transparent mt-4 mb-8" />
+              <div className="h-0.5 w-16 bg-[#ff4400] mt-4 mb-8" />
             </div>
           </div>
 
@@ -195,7 +196,7 @@ export function WhyBrainwhite() {
                 );
               })}
               <br/><br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 font-bold drop-shadow-[0_0_15px_rgba(59,130,246,0.5)]">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/90 to-[#ff4400] font-semibold">
                 {text2.map((word, i) => {
                   const offset = text1.length;
                   const start = (i + offset) / (text1.length + text2.length);
@@ -212,22 +213,21 @@ export function WhyBrainwhite() {
         </div>
 
         {/* Who it's for section */}
-        <div className="mt-40 md:mt-64 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 border-t border-blue-500/15 pt-24 md:pt-32 relative">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[200px] h-[1px] bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
+        <div className="mt-40 md:mt-64 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 border-t border-white/10 pt-24 md:pt-32 relative">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[200px] h-[1px] bg-gradient-to-r from-transparent via-[#ff4400] to-transparent" />
 
           <div className="lg:col-span-4">
-            <h3 className="painted-body text-xl md:text-2xl mb-4">Who It's For</h3>
-            <h2 className="painted-heading text-3xl md:text-4xl">Built for growing engineering teams</h2>
+            <h3 className="font-mono text-xs uppercase tracking-widest text-white/50 mb-3">Target Engineering Pods</h3>
+            <h2 className="text-3xl md:text-4xl font-medium tracking-tight text-white">Built for growing engineering teams</h2>
           </div>
 
           <div className="lg:col-span-8">
-            <p className="painted-body text-xl sm:text-2xl md:text-3xl leading-[1.5]">
-              brainwhite is built for technology startups and mid-sized technology companies — typically <span className="text-white font-bold">20 to 200 engineers</span> — that regularly bring on interns, freshers, and junior developers, or move existing developers onto new projects.
+            <p className="text-xl sm:text-2xl md:text-3xl leading-[1.5] text-white/80">
+              Brainwhite is built for engineering organizations and client placement firms — typically <span className="text-white font-bold">20 to 500+ engineers</span> — that regularly bring on new hires, contractors, or cross-functional developers onto complex repositories.
             </p>
-            <div className="mt-12 p-8 rounded-2xl bg-gradient-to-br from-blue-500/10 to-cyan-500/10 border border-blue-500/20 backdrop-blur-xl relative overflow-hidden group">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-              <p className="relative z-10 painted-body md:text-xl">
-                If your senior engineers are your onboarding plan today, <span className="text-blue-400">this is for you.</span>
+            <div className="mt-12 p-8 rounded-2xl bg-white/[0.02] border border-white/10 backdrop-blur-xl relative overflow-hidden group hover:border-[#ff4400]/30 transition-colors">
+              <p className="relative z-10 text-white/80 md:text-xl font-mono">
+                If your senior engineers are your entire onboarding plan today, <span className="text-[#ff4400] font-semibold">this is for you.</span>
               </p>
             </div>
           </div>

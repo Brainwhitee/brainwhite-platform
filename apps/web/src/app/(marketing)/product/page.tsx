@@ -1,10 +1,19 @@
 "use client";
 
+import { ProductOverview } from "@/components/product-overview";
+import { Differentiation } from "@/components/differentiation";
+import { WhyBrainwhite } from "@/components/why-brainwhite";
+import { FaqSection } from "@/components/faq-section";
+import { Footer } from "@/components/footer";
+
 export default function ProductPage() {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center p-24">
-      <h1 className="text-4xl font-bold tracking-tighter">Product</h1>
-      <p className="text-muted-foreground mt-4">This is the Product page for BrainWhite.</p>
-    </div>
+    <main className="bg-[#050505] min-h-screen text-white pt-20 md:pt-28">
+      <ProductOverview />
+      <Differentiation />
+      <WhyBrainwhite />
+      <FaqSection />
+      <Footer />
+    </main>
   );
 }

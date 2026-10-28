@@ -1,10 +1,44 @@
 import type { Metadata, Viewport } from 'next';
-import { Geist, Geist_Mono, Caveat, VT323 } from 'next/font/google';
+import localFont from 'next/font/local';
+import { Geist, Geist_Mono, Caveat } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 import { PostHogProvider } from '@/components/providers/posthog-provider';
+import { ThemeProvider } from '@/components/theme-provider';
+import { ToastProvider } from '@/components/ui/toast';
 import { SmoothScroll } from "@/components/motion/smooth-scroll";
-import { Cursor } from "@/components/motion/cursor";
 import './globals.css';
+
+const ppNeueMontreal = localFont({
+  src: [
+    {
+      path: '../../public/fonts/PPNeueMontreal-Regular.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/PPNeueMontreal-Book.woff2',
+      weight: '450',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/PPNeueMontreal-Medium.woff2',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/PPNeueMontreal-SemiBold.woff2',
+      weight: '600',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/PPNeueMontreal-Bold.woff2',
+      weight: '700',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-neue-montreal',
+  display: 'swap',
+});
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -65,7 +99,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#000000',
+  themeColor: '#ffffff',
   width: 'device-width',
   initialScale: 1,
 };
@@ -76,15 +110,39 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${caveat.variable} antialiased dark`}>
-      <body className="min-h-screen bg-black text-white selection:bg-orange-500/30">
-        <Cursor />
-        <SmoothScroll>
-        <PostHogProvider>
-          {children}
-        </PostHogProvider>
-        <Analytics />
-        </SmoothScroll>
+    <html lang="en" suppressHydrationWarning className={`${ppNeueMontreal.variable} ${geistSans.variable} ${geistMono.variable} ${caveat.variable} antialiased`}>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                var theme = localStorage.getItem('bw-theme') || 'light';
+                var resolved = theme === 'system'
+                  ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+                  : theme;
+                if (resolved === 'dark') {
+                  document.documentElement.classList.add('dark');
+                  document.documentElement.setAttribute('data-theme', 'dark');
+                } else {
+                  document.documentElement.classList.remove('dark');
+                  document.documentElement.setAttribute('data-theme', 'light');
+                }
+              } catch (e) {}
+            `,
+          }}
+        />
+      </head>
+      <body className="min-h-screen bg-[var(--background)] text-[var(--foreground)] selection:bg-[var(--brand-orange)]/25">
+        <ThemeProvider>
+          <ToastProvider>
+            <SmoothScroll>
+              <PostHogProvider>
+                {children}
+              </PostHogProvider>
+              <Analytics />
+            </SmoothScroll>
+          </ToastProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

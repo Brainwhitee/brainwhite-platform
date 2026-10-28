@@ -1,10 +1,13 @@
 "use client";
 
+import { HowItWorks } from "@/components/how-it-works";
+import { Footer } from "@/components/footer";
+
 export default function HowItWorksPage() {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center p-24">
-      <h1 className="text-4xl font-bold tracking-tighter">How It Works</h1>
-      <p className="text-muted-foreground mt-4">This is the How It Works page for BrainWhite.</p>
-    </div>
+    <main className="bg-[#050505] min-h-screen text-white pt-20 md:pt-28">
+      <HowItWorks />
+      <Footer />
+    </main>
   );
 }

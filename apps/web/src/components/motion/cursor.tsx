@@ -2,151 +2,112 @@
 
 import { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
-import { ArrowRight, Volume2 } from "lucide-react";
 
-type CursorState = "default" | "hover" | "explore" | "sound" | "hidden";
+export function CircularCursor() {
+  const [isHovered, setIsHovered] = useState(false);
+  const [isClicking, setIsClicking] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
-export function Cursor() {
-  const [cursorState, setCursorState] = useState<CursorState>("default");
-  
-  const cursorX = useMotionValue(-100);
-  const cursorY = useMotionValue(-100);
-  
-  const springConfig = { damping: 25, stiffness: 300, mass: 0.2 };
-  const cursorXSpring = useSpring(cursorX, springConfig);
-  const cursorYSpring = useSpring(cursorY, springConfig);
+  // Exact mouse coordinates
+  const mouseX = useMotionValue(-100);
+  const mouseY = useMotionValue(-100);
+
+  // Trailing ring with smooth physics
+  const springConfig = { damping: 28, stiffness: 220, mass: 0.35 };
+  const ringX = useSpring(mouseX, springConfig);
+  const ringY = useSpring(mouseY, springConfig);
 
   useEffect(() => {
-    // Hide default cursor only if it's a fine pointer
-    if (window.matchMedia("(pointer: fine)").matches) {
-      document.body.style.cursor = "none";
-    }
-    
-    const moveCursor = (e: MouseEvent) => {
-      cursorX.set(e.clientX);
-      cursorY.set(e.clientY);
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
+      if (!isVisible) setIsVisible(true);
     };
 
-    const handleMouseOver = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      
-      const exploreTarget = target.closest('[data-cursor="explore"]');
-      const soundTarget = target.closest('[data-cursor="sound"]');
-      const hoverTarget = target.closest('a, button, [data-cursor="hover"]');
+    const handleMouseDown = () => setIsClicking(true);
+    const handleMouseUp = () => setIsClicking(false);
 
-      if (exploreTarget) {
-        setCursorState("explore");
-      } else if (soundTarget) {
-        setCursorState("sound");
-      } else if (hoverTarget) {
-        setCursorState("hover");
-      } else {
-        setCursorState("default");
-      }
+    const handleMouseOver = (e: MouseEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (!target) return;
+
+      const interactive = target.closest(
+        'a, button, [role="button"], input, textarea, select, [data-cursor="hover"], [data-cursor="pointer"]'
+      );
+      setIsHovered(!!interactive);
     };
 
     const handleMouseLeave = () => {
-      setCursorState("hidden");
+      setIsVisible(false);
     };
 
     const handleMouseEnter = () => {
-      setCursorState("default");
+      setIsVisible(true);
     };
 
-    window.addEventListener("mousemove", moveCursor);
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousedown", handleMouseDown);
+    window.addEventListener("mouseup", handleMouseUp);
     window.addEventListener("mouseover", handleMouseOver);
     document.addEventListener("mouseleave", handleMouseLeave);
     document.addEventListener("mouseenter", handleMouseEnter);
 
     return () => {
-      document.body.style.cursor = "auto";
-      window.removeEventListener("mousemove", moveCursor);
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mousedown", handleMouseDown);
+      window.removeEventListener("mouseup", handleMouseUp);
       window.removeEventListener("mouseover", handleMouseOver);
       document.removeEventListener("mouseleave", handleMouseLeave);
       document.removeEventListener("mouseenter", handleMouseEnter);
     };
-  }, [cursorX, cursorY]);
+  }, [mouseX, mouseY, isVisible]);
 
-  // Hide cursor on touch devices
+  // Touch devices check
   if (typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches) {
     return null;
   }
 
-  const variants = {
-    default: {
-      width: 12,
-      height: 12,
-      x: "-50%",
-      y: "-50%",
-      backgroundColor: "rgba(255, 255, 255, 1)",
-      mixBlendMode: "difference" as const,
-      border: "0px solid transparent"
-    },
-    hover: {
-      width: 48,
-      height: 48,
-      x: "-50%",
-      y: "-50%",
-      backgroundColor: "rgba(255, 255, 255, 0.1)",
-      mixBlendMode: "normal" as const,
-      border: "1px solid rgba(255, 255, 255, 0.5)"
-    },
-    explore: {
-      width: 100,
-      height: 40,
-      x: "-50%",
-      y: "-50%",
-      backgroundColor: "rgba(255, 255, 255, 1)",
-      mixBlendMode: "normal" as const,
-      border: "0px solid transparent"
-    },
-    sound: {
-      width: 80,
-      height: 80,
-      x: "-50%",
-      y: "-50%",
-      backgroundColor: "rgba(255, 255, 255, 1)",
-      mixBlendMode: "normal" as const,
-      border: "0px solid transparent"
-    },
-    hidden: {
-      width: 0,
-      height: 0,
-      opacity: 0,
-      x: "-50%",
-      y: "-50%"
-    }
-  };
+  if (!isVisible) return null;
 
   return (
-    <motion.div
-      className="fixed top-0 left-0 rounded-full pointer-events-none z-[9999] flex items-center justify-center overflow-hidden"
-      style={{
-        left: cursorXSpring,
-        top: cursorYSpring,
-      }}
-      variants={variants}
-      animate={cursorState}
-      initial="hidden"
-      transition={{ type: "spring", stiffness: 400, damping: 25, mass: 0.2 }}
-    >
-      <motion.div 
-        className="text-black font-mono text-[10px] uppercase tracking-widest flex items-center gap-1 absolute whitespace-nowrap"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: cursorState === "explore" ? 1 : 0 }}
-        transition={{ duration: 0.2 }}
-      >
-        explore <ArrowRight className="w-3 h-3" />
-      </motion.div>
-      
-      <motion.div 
-        className="text-black font-mono text-[10px] uppercase tracking-widest flex items-center gap-1 absolute whitespace-nowrap"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: cursorState === "sound" ? 1 : 0 }}
-        transition={{ duration: 0.2 }}
-      >
-        <Volume2 className="w-4 h-4" /> sound
-      </motion.div>
-    </motion.div>
+    <>
+      {/* Outer Smooth Trailing Ring */}
+      <motion.div
+        className="fixed top-0 left-0 pointer-events-none z-[9999] rounded-full border border-white/40 mix-blend-difference"
+        style={{
+          x: ringX,
+          y: ringY,
+          translateX: "-50%",
+          translateY: "-50%",
+        }}
+        animate={{
+          width: isHovered ? 48 : 28,
+          height: isHovered ? 48 : 28,
+          scale: isClicking ? 0.85 : 1,
+          borderColor: isHovered ? "rgba(255, 102, 0, 0.9)" : "rgba(255, 255, 255, 0.5)",
+          backgroundColor: isHovered ? "rgba(255, 102, 0, 0.08)" : "transparent",
+        }}
+        transition={{ type: "spring", stiffness: 350, damping: 25 }}
+      />
+
+      {/* Inner Precision Center Dot */}
+      <motion.div
+        className="fixed top-0 left-0 pointer-events-none z-[9999] rounded-full bg-white mix-blend-difference"
+        style={{
+          x: mouseX,
+          y: mouseY,
+          translateX: "-50%",
+          translateY: "-50%",
+        }}
+        animate={{
+          width: isHovered ? 6 : 4,
+          height: isHovered ? 6 : 4,
+          backgroundColor: isHovered ? "#ff6600" : "#ffffff",
+        }}
+        transition={{ duration: 0.15 }}
+      />
+    </>
   );
 }
+
+export { CircularCursor as Cursor };

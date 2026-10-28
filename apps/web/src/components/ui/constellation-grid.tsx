@@ -21,7 +21,6 @@ export default function ConstellationGrid() {
     // Sync theme preference
     useEffect(() => {
         const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-        // eslint-disable-next-line react-hooks/set-state-in-effect
         setIsDarkMode(mediaQuery.matches);
         const handler = (e: MediaQueryListEvent) => setIsDarkMode(e.matches);
         mediaQuery.addEventListener('change', handler);

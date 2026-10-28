@@ -1,26 +1,26 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 const faqs = [
   {
     question: "Is this just another documentation tool?",
-    answer: "No. Documentation is static; brainwhite is an active layer that understands your project and adapts to whoever is asking."
+    answer: "No. Documentation is static and quickly goes obsolete. BrainWhite connects directly to the repository AST, extracting living architecture, symbol dependency graphs, and test execution conventions."
   },
   {
-    question: "Will it work with our stack?",
-    answer: "brainwhite connects to your repositories and the tools your team already uses, starting with the ones that matter most to onboarding."
+    question: "Will it work with our tech stack?",
+    answer: "BrainWhite connects to your private GitHub/GitLab repositories and toolchains across Next.js, TypeScript, Python FastAPI, Go, Rust, Java, and monorepo configurations."
   },
   {
-    question: "Is our code safe?",
-    answer: "Your code and documentation stay yours. Access, permissions, and data handling are built around your organization's security requirements from day one."
+    question: "Is our proprietary code secure?",
+    answer: "Zero-retention architecture. Your code is never used to train public foundation models. Customer AST and embedding indexes are isolated with tenant-scoped row-level security."
   },
   {
     question: "What does joining as a design partner involve?",
-    answer: "A short conversation about how your team onboards today, early access to the product as it's built, and a direct line to shape what we build next."
+    answer: "A 30-minute architectural consultation about your onboarding pipeline, early access to private repo indexing, and custom evaluation rubric configuration."
   }
 ];
 
@@ -28,42 +28,49 @@ export function FaqSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="painted-section-dark py-24 md:py-40 overflow-hidden border-t border-blue-500/15 relative">
+    <section className="bg-[#050505] py-24 md:py-40 overflow-hidden border-t border-white/10 relative">
 
-      {/* Background ambient glow - tech */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[600px] bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.08)_0%,transparent_70%)] pointer-events-none z-0" />
+      {/* Subtle ambient glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[600px] bg-[radial-gradient(ellipse_at_center,rgba(255,68,0,0.04)_0%,transparent_70%)] pointer-events-none z-0" />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-10 relative z-10">
 
-        {/* Aceternity Style Glowing Early Access CTA */}
+        {/* Early Access / Architecture Intake Callout */}
         <div className="relative group rounded-3xl mb-32">
-          <div className="absolute -inset-[1px] bg-gradient-to-r from-blue-500 via-cyan-500 to-blue-600 rounded-3xl blur-[10px] opacity-20 group-hover:opacity-60 transition duration-1000 group-hover:duration-200"></div>
-          <div className="relative bg-[#050505] rounded-3xl p-8 md:p-12 shadow-2xl border border-blue-500/25 overflow-hidden">
-            {/* Inner subtle glow */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 blur-[50px] rounded-full pointer-events-none" />
-
+          <div className="absolute -inset-[1px] bg-gradient-to-r from-white/10 via-[#ff4400]/30 to-white/10 rounded-3xl blur-[8px] opacity-40 group-hover:opacity-75 transition duration-500" />
+          <div className="relative bg-[#0c0c0c] rounded-3xl p-8 md:p-12 shadow-2xl border border-white/15 overflow-hidden">
             <div className="max-w-2xl relative z-10">
-              <h2 className="painted-heading text-3xl md:text-4xl mb-6">
-                We're building this with a small group of design partners
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/70 text-xs font-mono uppercase tracking-widest mb-6">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#ff4400]" />
+                Private Beta Design Partner
+              </div>
+              <h2 className="text-3xl md:text-4xl font-medium tracking-tight text-white mb-6">
+                We're onboarding select engineering teams now
               </h2>
-              <p className="painted-body mb-10 leading-relaxed text-lg">
-                brainwhite is in active development, and we're working closely with a handful of engineering teams to get it right before opening up more broadly. Join as an early partner and help shape a product built around how your team actually onboards.
+              <p className="text-white/60 mb-8 leading-relaxed text-base sm:text-lg">
+                BrainWhite is actively deployed with leading engineering pods. Partner with us to eliminate senior developer ramp-up drag and gain full visibility into developer readiness.
               </p>
 
-              <button className="painted-cta">
-                Request Early Access
-              </button>
+              <Link href="/book-demo">
+                <button className="group inline-flex items-center gap-3 bg-[#ff4400] text-white hover:bg-[#ff5511] font-mono font-medium text-xs sm:text-sm px-6 py-3 rounded-full transition-all shadow-[0_0_20px_rgba(255,68,0,0.3)] hover:scale-105 active:scale-95 cursor-pointer">
+                  <span>Schedule Consultation</span>
+                  <ArrowRight className="w-4 h-4 -rotate-45 group-hover:rotate-0 transition-transform" />
+                </button>
+              </Link>
             </div>
           </div>
         </div>
 
         {/* FAQ Header */}
         <div className="text-center mb-16">
-          <h2 className="painted-heading text-3xl md:text-5xl mb-4">Frequently Asked Questions</h2>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/70 text-xs font-mono uppercase tracking-widest mb-4">
+            <span>// ARCHITECTURAL FAQ</span>
+          </div>
+          <h2 className="text-3xl md:text-5xl font-medium tracking-tight text-white">Frequently Asked Questions</h2>
         </div>
 
-        {/* FAQ 3D Flip Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 perspective-1000" style={{ perspective: "1000px" }}>
+        {/* FAQ Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6" style={{ perspective: "1000px" }}>
           {faqs.map((faq, index) => {
             const isFlipped = openIndex === index;
             return (
@@ -77,31 +84,43 @@ export function FaqSection() {
                 <motion.div
                   initial={false}
                   animate={{ rotateY: isFlipped ? 180 : 0 }}
-                  transition={{ duration: 0.6, type: "spring", stiffness: 100, damping: 20 }}
+                  transition={{ duration: 0.5, type: "spring", stiffness: 120, damping: 20 }}
                   style={{ transformStyle: "preserve-3d" }}
                   className="w-full h-full relative"
                 >
                   {/* Front of Card (Question) */}
                   <div
-                    className="absolute inset-0 rounded-3xl bg-[#050505] border border-blue-500/25 p-8 flex flex-col justify-center items-center text-center shadow-xl backface-hidden"
+                    className="absolute inset-0 rounded-2xl bg-[#0c0c0c] border border-white/10 group-hover:border-[#ff4400]/40 p-8 flex flex-col justify-between shadow-xl backface-hidden transition-colors"
                     style={{ backfaceVisibility: "hidden" }}
                   >
-                    <div className="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center mb-6 border border-blue-500/25 group-hover:scale-110 transition-transform">
-                      <span className="text-xl font-serif italic text-white/70">?</span>
+                    <div className="flex items-center justify-between">
+                      <span className="font-mono text-xs text-white/40 uppercase tracking-widest">0{index + 1}</span>
+                      <div className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-xs font-mono text-white/70">
+                        ?
+                      </div>
                     </div>
-                    <h3 className="painted-heading text-xl md:text-2xl">
+                    <h3 className="text-lg md:text-xl font-medium text-white tracking-tight">
                       {faq.question}
                     </h3>
+                    <div className="text-xs font-mono text-white/30 uppercase tracking-wider">
+                      Hover to view answer →
+                    </div>
                   </div>
 
                   {/* Back of Card (Answer) */}
                   <div
-                    className="absolute inset-0 rounded-3xl bg-gradient-to-br from-blue-500/20 to-cyan-500/20 border border-blue-500/40 p-8 flex flex-col justify-center text-center shadow-[0_0_30px_rgba(59,130,246,0.2)] backface-hidden backdrop-blur-xl"
+                    className="absolute inset-0 rounded-2xl bg-[#121212] border border-[#ff4400]/40 p-8 flex flex-col justify-between text-left shadow-[0_0_30px_rgba(255,68,0,0.1)] backface-hidden"
                     style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
                   >
-                    <p className="painted-body text-base md:text-lg leading-relaxed text-white">
+                    <div className="font-mono text-xs text-[#ff4400] uppercase tracking-widest">
+                      // Architectural Answer
+                    </div>
+                    <p className="text-sm md:text-base leading-relaxed text-white/80 font-mono">
                       {faq.answer}
                     </p>
+                    <div className="text-[10px] font-mono text-white/40 uppercase tracking-wider">
+                      Verified by BrainWhite Security Team
+                    </div>
                   </div>
                 </motion.div>
               </div>

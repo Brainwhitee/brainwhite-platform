@@ -1,0 +1,9 @@
+node_modules/
+.agent/
+.agents/
+.gsd/
+.pytest_cache/
+*.db
+*.db-journal
+.env
+.env.local

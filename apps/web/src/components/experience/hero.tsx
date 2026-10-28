@@ -185,17 +185,44 @@ export function Hero() {
               AI-powered developer onboarding<br/>for engineering teams.
             </motion.div>
 
-            <motion.a 
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.4, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              href="/book-demo" 
-              className="group relative inline-flex items-center justify-center bg-black text-white px-6 py-3 rounded-full overflow-hidden hover:scale-105 transition-transform duration-300 ease-out pointer-events-auto"
-            >
-              <span className="relative z-10 text-xs md:text-sm font-bold uppercase tracking-widest">
-                Book a demo
-              </span>
-            </motion.a>
+            <div className="flex flex-wrap items-center gap-2 pointer-events-auto">
+              <motion.a 
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.4, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                href="/signup" 
+                className="group relative inline-flex items-center justify-center bg-black text-white px-5 py-2.5 rounded-full overflow-hidden hover:scale-105 transition-transform duration-300 ease-out shadow-lg"
+              >
+                <span className="relative z-10 text-[11px] sm:text-xs font-bold uppercase tracking-widest flex items-center gap-1.5">
+                  <span>Get Started</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </span>
+              </motion.a>
+
+              <motion.a 
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.45, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                href="/login" 
+                className="group relative inline-flex items-center justify-center bg-black/10 hover:bg-black/20 text-black px-4 py-2.5 rounded-full overflow-hidden hover:scale-105 transition-all duration-300 ease-out border border-black/15"
+              >
+                <span className="relative z-10 text-[11px] sm:text-xs font-semibold uppercase tracking-wider">
+                  Sign In
+                </span>
+              </motion.a>
+
+              <motion.a 
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.5, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                href="/dashboard" 
+                className="group relative inline-flex items-center justify-center bg-black/10 hover:bg-black/20 text-black px-4 py-2.5 rounded-full overflow-hidden hover:scale-105 transition-all duration-300 ease-out border border-black/15"
+              >
+                <span className="relative z-10 text-[11px] sm:text-xs font-semibold uppercase tracking-wider">
+                  Workspace
+                </span>
+              </motion.a>
+            </div>
           </div>
 
         {/* Top Right: Menu component handles the trigger globally */}
